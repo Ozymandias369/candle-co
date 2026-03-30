@@ -4,27 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>IC Candle Co. — Business Plan 2026</title>
+<title>Amber &amp; Essence Candle Co. — Business Plan 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --card: #1a1a26;
-    --border: rgba(255,255,255,0.06);
-    --glow-cyan: #00e5ff;
-    --glow-purple: #a855f7;
-    --glow-green: #22d3ee;
-    --glow-orange: #f97316;
-    --glow-pink: #ec4899;
-    --text: #e8e8ec;
-    --text-dim: #8888a0;
-    --text-bright: #ffffff;
+    --bg: #F0EEE9;
+    --surface: #E8E4DD;
+    --card: #FFFFFF;
+    --border: rgba(58,54,51,0.12);
+    --glow-cyan: #C08B5C;
+    --glow-purple: #7A9E99;
+    --glow-green: #4A7A6F;
+    --glow-orange: #B87333;
+    --glow-pink: #A0522D;
+    --text: #3A3633;
+    --text-dim: #8C857D;
+    --text-bright: #2A2725;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  h1, h2, h3 { font-family: 'DM Serif Display', serif; }
+  :focus-visible { outline: 2px solid var(--glow-cyan); outline-offset: 2px; border-radius: 4px; }
+  :focus:not(:focus-visible) { outline: none; }
 
   html, body {
     width: 100%; height: 100%;
@@ -39,8 +42,8 @@
   .bg-grid {
     position: fixed; inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      linear-gradient(rgba(58,54,51,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58,54,51,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none; z-index: 0;
   }
@@ -56,16 +59,17 @@
   .top-nav {
     position: fixed; top: 0; left: 0; right: 0;
     height: 56px; z-index: 200;
-    background: rgba(10,10,15,0.92);
+    background: rgba(240,238,233,0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 24px;
+    box-shadow: 0 1px 4px rgba(58,54,51,0.06);
   }
   .top-nav .logo {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem; font-weight: 800;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; font-weight: 400;
     letter-spacing: 1px; color: var(--glow-cyan);
     white-space: nowrap;
   }
@@ -99,10 +103,10 @@
   .more-menu-dropdown {
     position: absolute; top: 100%; left: 0;
     min-width: 220px; z-index: 210;
-    background: rgba(10,10,15,0.96);
+    background: rgba(240,238,233,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border); border-radius: 0 0 12px 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 32px rgba(58,54,51,0.12);
     padding: 6px 0;
     overflow: visible;
   }
@@ -115,7 +119,7 @@
     transition: background 0.15s, color 0.15s;
   }
   .more-menu-dropdown button:hover {
-    background: rgba(0,229,255,0.06); color: var(--text);
+    background: rgba(192,139,92,0.06); color: var(--text);
   }
   .more-menu-dropdown button.active {
     color: var(--glow-cyan);
@@ -132,7 +136,7 @@
   }
   .search-toggle:hover {
     color: var(--glow-cyan); border-color: var(--glow-cyan);
-    background: rgba(0,229,255,0.06);
+    background: rgba(192,139,92,0.06);
   }
   .search-toggle svg { width: 16px; height: 16px; }
   .search-toggle .kbd-hint {
@@ -144,11 +148,11 @@
   }
   .search-overlay {
     position: fixed; top: 56px; left: 0; right: 0;
-    z-index: 199; background: rgba(10,10,15,0.96);
+    z-index: 199; background: rgba(240,238,233,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    max-height: 50vh; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(58,54,51,0.12);
+    max-height: 50vh; overflow-y: auto;
     display: flex; flex-direction: column;
   }
   .search-bar {
@@ -182,7 +186,7 @@
     transition: background 0.15s, border-color 0.15s;
   }
   .search-result-item:hover, .search-result-item.active {
-    background: rgba(255,255,255,0.04);
+    background: rgba(58,54,51,0.06);
     border-left-color: var(--glow-cyan);
   }
   .search-result-title {
@@ -192,7 +196,7 @@
   .search-result-tab {
     font-size: 0.65rem; font-weight: 600;
     color: var(--glow-cyan); text-transform: uppercase;
-    letter-spacing: 0.5px; background: rgba(0,229,255,0.08);
+    letter-spacing: 0.5px; background: rgba(192,139,92,0.08);
     padding: 2px 6px; border-radius: 4px; white-space: nowrap;
   }
   .search-result-snippet {
@@ -202,7 +206,7 @@
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   }
   .search-result-snippet mark {
-    background: rgba(249,115,22,0.25); color: var(--glow-orange);
+    background: rgba(184,115,51,0.20); color: var(--glow-orange);
     border-radius: 2px; padding: 0 1px;
   }
   .search-no-results {
@@ -221,6 +225,51 @@
     .search-bar { padding: 10px 12px; }
     .search-result-item { padding: 10px 12px; }
     .search-hint { display: none; }
+  }
+
+  /* ═══════════════ MOBILE NAV ═══════════════ */
+  .mobile-menu-toggle {
+    display: none; background: none; border: none;
+    color: var(--text); cursor: pointer; padding: 8px;
+    min-width: 44px; min-height: 44px;
+    align-items: center; justify-content: center;
+  }
+  @media (max-width: 700px) {
+    .mobile-menu-toggle { display: flex; }
+    .nav-tabs {
+      display: none;
+      position: absolute; top: 56px; left: 0; right: 0;
+      flex-direction: column; padding: 8px 0;
+      background: rgba(240,238,233,0.98);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(58,54,51,0.08);
+    }
+    .nav-tabs.open { display: flex; }
+    .nav-tabs .tab-btn {
+      padding: 12px 24px; text-align: left;
+      min-height: 44px; border-bottom: none;
+      font-size: 0.9rem;
+    }
+    .nav-tabs .tab-btn.active { border-bottom: none; border-left: 3px solid var(--glow-cyan); }
+    .more-menu-wrap { display: contents; }
+    .more-menu-btn { display: none; }
+    .more-menu-dropdown {
+      display: flex !important; position: static;
+      flex-direction: column; box-shadow: none;
+      border: none; border-radius: 0; padding: 0;
+      background: transparent; backdrop-filter: none;
+    }
+    .more-menu-dropdown button {
+      padding: 12px 24px 12px 32px; min-height: 44px;
+    }
+  }
+
+  /* ═══════════════ TOUCH TARGETS ═══════════════ */
+  .search-toggle, .task-check, .task-flag, .task-delete,
+  .task-add, .more-menu-btn, .task-filter-btn, .task-switch-btn {
+    min-width: 44px; min-height: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
   }
 
   /* ═══════════════ TAB CONTENT ═══════════════ */
@@ -281,8 +330,8 @@
     font-weight: 600; letter-spacing: 1.5px;
     text-transform: uppercase; margin-bottom: 14px;
   }
-  .tag-cyan { background: rgba(0,229,255,0.1); color: var(--glow-cyan); border: 1px solid rgba(0,229,255,0.2); }
-  .tag-purple { background: rgba(168,85,247,0.1); color: var(--glow-purple); border: 1px solid rgba(168,85,247,0.2); }
+  .tag-cyan { background: rgba(192,139,92,0.10); color: var(--glow-cyan); border: 1px solid rgba(192,139,92,0.20); }
+  .tag-purple { background: rgba(122,158,153,0.12); color: var(--glow-purple); border: 1px solid rgba(122,158,153,0.25); }
 
   /* Cards */
   .card-grid {
@@ -297,17 +346,23 @@
   .card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 14px; padding: 20px; position: relative; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(58,54,51,0.06), 0 4px 12px rgba(58,54,51,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 2px 8px rgba(58,54,51,0.08), 0 8px 24px rgba(58,54,51,0.06);
   }
   .card .icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
   .card p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.55; }
   .card .glow-bar {
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 3px 3px 0 0;
   }
-  .glow-bar.cyan { background: linear-gradient(90deg, transparent, var(--glow-cyan), transparent); }
-  .glow-bar.purple { background: linear-gradient(90deg, transparent, var(--glow-purple), transparent); }
-  .glow-bar.green { background: linear-gradient(90deg, transparent, var(--glow-green), transparent); }
-  .glow-bar.orange { background: linear-gradient(90deg, transparent, var(--glow-orange), transparent); }
-  .glow-bar.pink { background: linear-gradient(90deg, transparent, var(--glow-pink), transparent); }
+  .glow-bar.cyan { background: var(--glow-cyan); }
+  .glow-bar.purple { background: var(--glow-purple); }
+  .glow-bar.green { background: var(--glow-green); }
+  .glow-bar.orange { background: var(--glow-orange); }
+  .glow-bar.pink { background: var(--glow-pink); }
 
   /* Tables */
   .data-table {
@@ -509,10 +564,16 @@
   .cta-btn {
     display: inline-block; margin-top: 20px;
     padding: 14px 32px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--glow-cyan), var(--glow-purple));
-    color: var(--bg); font-weight: 700;
+    background: var(--glow-cyan);
+    color: #fff; font-weight: 700;
     font-size: 0.95rem; text-decoration: none;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(192,139,92,0.25);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover {
+    background: #A8783F;
+    box-shadow: 0 4px 16px rgba(192,139,92,0.35);
   }
 
   /* Navigation */
@@ -520,7 +581,7 @@
     position: fixed; bottom: 0; left: 0; right: 0;
     display: flex; justify-content: center; align-items: center;
     gap: 16px; padding: 14px 20px;
-    background: rgba(10,10,15,0.92);
+    background: rgba(240,238,233,0.95);
     border-top: 1px solid var(--border);
     z-index: 100;
   }
@@ -682,8 +743,8 @@
   .col-card.winners ul li::before { content: '\2713'; color: var(--glow-green); }
   .col-card.losers ul li::before { content: '\2717'; color: var(--glow-pink); }
   .scenario-highlight {
-    background: rgba(0,229,255,0.06);
-    border: 1px solid rgba(0,229,255,0.2);
+    background: rgba(192,139,92,0.06);
+    border: 1px solid rgba(192,139,92,0.20);
     border-radius: 14px; padding: 20px; margin-top: 16px;
     text-align: center;
   }
@@ -746,7 +807,7 @@
     transition: background 0.2s, color 0.2s;
   }
   .platform-toggle button.active {
-    background: var(--glow-cyan); color: var(--bg);
+    background: var(--glow-cyan); color: #fff;
   }
   .calc-results {
     display: grid; grid-template-columns: repeat(4, 1fr);
@@ -879,7 +940,7 @@
     font-size: 0.7rem; color: var(--text-dim);
   }
   .candle-keywords .kw.pin {
-    border-color: rgba(168,85,247,0.3);
+    border-color: rgba(122,158,153,0.30);
     color: var(--glow-purple);
   }
   .candle-card .candle-why {
@@ -905,9 +966,9 @@
     font-weight: 700; margin-left: 8px;
   }
   .trend-badge.hot {
-    background: rgba(249,115,22,0.15);
+    background: rgba(184,115,51,0.12);
     color: var(--glow-orange);
-    border: 1px solid rgba(249,115,22,0.3);
+    border: 1px solid rgba(184,115,51,0.25);
   }
   @media (max-width: 700px) {
     .candle-meta { grid-template-columns: repeat(2, 1fr); }
@@ -949,9 +1010,9 @@
     font-weight: 600; letter-spacing: 1px;
     text-transform: uppercase; margin-bottom: 8px;
   }
-  .cite-tag.verified { background: rgba(34,211,238,0.1); color: var(--glow-green); border: 1px solid rgba(34,211,238,0.2); }
-  .cite-tag.corrected { background: rgba(249,115,22,0.1); color: var(--glow-orange); border: 1px solid rgba(249,115,22,0.2); }
-  .cite-tag.derived { background: rgba(168,85,247,0.1); color: var(--glow-purple); border: 1px solid rgba(168,85,247,0.2); }
+  .cite-tag.verified { background: rgba(74,122,111,0.10); color: var(--glow-green); border: 1px solid rgba(74,122,111,0.20); }
+  .cite-tag.corrected { background: rgba(184,115,51,0.10); color: var(--glow-orange); border: 1px solid rgba(184,115,51,0.20); }
+  .cite-tag.derived { background: rgba(122,158,153,0.12); color: var(--glow-purple); border: 1px solid rgba(122,158,153,0.25); }
   .cite-item .cite-claim {
     font-size: 0.9rem; font-weight: 600; color: var(--text);
     margin-bottom: 6px;
@@ -1049,8 +1110,8 @@
     font-size: 1.2rem; color: var(--glow-purple); padding: 0 6px;
   }
   .strategy-callout {
-    background: rgba(168,85,247,0.08);
-    border: 1px solid rgba(168,85,247,0.3);
+    background: rgba(122,158,153,0.10);
+    border: 1px solid rgba(122,158,153,0.30);
     border-radius: 12px; padding: 20px 24px;
     margin: 20px 0;
   }
@@ -1154,7 +1215,7 @@
     content: counter(step);
     position: absolute; left: 16px; top: 16px;
     width: 28px; height: 28px; border-radius: 50%;
-    background: rgba(0,229,255,0.1); color: var(--glow-cyan);
+    background: rgba(192,139,92,0.10); color: var(--glow-cyan);
     font-size: 0.82rem; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
   }
@@ -1218,8 +1279,8 @@
     background: var(--card); border-color: var(--glow-orange);
   }
   .overhead-callout {
-    background: rgba(249,115,22,0.08);
-    border: 1px solid rgba(249,115,22,0.3);
+    background: rgba(184,115,51,0.08);
+    border: 1px solid rgba(184,115,51,0.25);
     border-radius: 12px; padding: 20px 24px;
     margin: 20px 0;
   }
@@ -1286,14 +1347,14 @@
   }
   .task-item:hover { border-color: var(--glow-cyan); }
   .task-item.dragging { opacity: 0.4; }
-  .task-column.drag-over { background: rgba(14,165,233,0.08); border-radius: 8px; }
+  .task-column.drag-over { background: rgba(192,139,92,0.08); border-radius: 8px; }
   .task-delete {
     position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
     background: none; border: none; color: var(--text-dim); cursor: pointer;
     font-size: 1rem; padding: 2px 6px; opacity: 0; transition: opacity 0.2s;
   }
   .task-item:hover .task-delete { opacity: 1; }
-  .task-delete:hover { color: #ef4444; }
+  .task-delete:hover { color: #B44032; }
   .task-add {
     display: block; width: 100%; margin-top: 8px; padding: 6px;
     background: none; border: 1px dashed var(--border); border-radius: 6px;
@@ -1302,7 +1363,7 @@
   }
   .task-add:hover { border-color: var(--glow-cyan); color: var(--glow-cyan); }
   .task-stamp {
-    display: block; font-size: 0.62rem; color: #ef4444; font-weight: 600;
+    display: block; font-size: 0.62rem; color: #B44032; font-weight: 600;
     margin-top: 2px; font-style: italic;
   }
   .task-check {
@@ -1312,45 +1373,48 @@
     display: inline-flex; align-items: center; justify-content: center;
     margin-right: 8px; vertical-align: middle;
     flex-shrink: 0; position: relative;
-    font-size: 10px; color: #fff; opacity: 0.7;
+    font-size: 10px; color: var(--text-dim); opacity: 0.7;
     transition: opacity 0.2s;
   }
   .task-check::after { content: '\25BC'; }
   .task-check:hover { opacity: 1; }
   .task-check.checked { opacity: 1; }
   .task-check.checked::after {
-    content: '\25BC'; color: var(--glow-green, #22c55e);
+    content: '\25BC'; color: var(--glow-green, #4A7A6F);
   }
   /* Status Dropdown */
   .task-status-dropdown {
     position: absolute; top: 100%; left: 0; margin-top: 4px;
     background: var(--bg, #0f172a); border: 1px solid var(--border);
     border-radius: 8px; padding: 4px 0; min-width: 160px;
-    z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    z-index: 200; box-shadow: 0 8px 24px rgba(58,54,51,0.12);
   }
   .task-status-option {
     display: flex; align-items: center; gap: 10px;
     padding: 8px 14px; cursor: pointer; font-size: 0.78rem;
     color: var(--text-dim); transition: background 0.15s, color 0.15s;
   }
-  .task-status-option:hover { background: rgba(14,165,233,0.1); color: var(--text); }
+  .task-status-option:hover { background: rgba(192,139,92,0.10); color: var(--text); }
   .task-status-option.active { font-weight: 700; }
-  .task-status-option.active-todo { color: #fb923c; }
-  .task-status-option.active-wip { color: var(--glow-orange, #f59e0b); }
-  .task-status-option.active-done { color: var(--glow-green, #22c55e); }
+  .task-status-option.active-todo { color: #B87333; }
+  .task-status-option.active-wip { color: var(--glow-orange, #B87333); }
+  .task-status-option.active-done { color: var(--glow-green, #4A7A6F); }
   .task-status-icon {
     width: 14px; height: 14px; border-radius: 50%; display: inline-block; flex-shrink: 0;
     border: 2px solid; box-sizing: border-box;
   }
-  .task-status-icon.s-todo { border-color: #fb923c; background: rgba(251,146,60,0.2); }
-  .task-status-icon.s-wip { border-color: var(--glow-orange, #f59e0b); background: rgba(245,158,11,0.3); }
-  .task-status-icon.s-done { border-color: var(--glow-green, #22c55e); background: var(--glow-green, #22c55e); }
+  .task-status-icon.s-todo { border-color: #B87333; background: rgba(184,115,51,0.20); }
+  .task-status-icon.s-wip { border-color: var(--glow-orange, #B87333); background: rgba(184,115,51,0.30); }
+  .task-status-icon.s-done { border-color: var(--glow-green, #4A7A6F); background: var(--glow-green, #4A7A6F); }
   .task-item.completed .task-text {
     text-decoration: line-through;
     color: var(--text-dim); opacity: 0.5;
   }
-  .task-item.completed {
+  .task-item.completed > *:not(.task-note-badge) {
     opacity: 0.6;
+  }
+  .task-item.completed .task-note-badge {
+    opacity: 1;
   }
   .task-item { display: flex; align-items: flex-start; }
   .task-drop-indicator {
@@ -1379,29 +1443,29 @@
   .task-user-bar .task-switch-btn:hover { color: var(--glow-cyan); border-color: var(--glow-cyan); }
   .task-user-modal {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+    background: rgba(58,54,51,0.40); display: flex; align-items: center; justify-content: center;
     z-index: 9999;
   }
   .task-user-modal-box {
     background: var(--bg, #0f172a); border: 1px solid var(--border); border-radius: 14px;
     padding: 32px; text-align: center; max-width: 360px; width: 90%;
   }
-  .task-user-modal-box h3 { margin-bottom: 16px; font-size: 1.1rem; color: #fff; }
+  .task-user-modal-box h3 { margin-bottom: 16px; font-size: 1.1rem; color: var(--text); }
   .task-user-modal-box .user-btn {
     display: block; width: 100%; padding: 10px; margin: 6px 0;
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
   }
   .task-user-modal-box .user-btn:hover {
-    border-color: var(--glow-cyan); background: rgba(14,165,233,0.1);
+    border-color: var(--glow-cyan); background: rgba(192,139,92,0.10);
   }
   /* 3-State: In-Progress */
   .task-check.in-progress { opacity: 1; }
   .task-check.in-progress::after {
-    content: '\25BC'; color: var(--glow-orange, #f59e0b);
+    content: '\25BC'; color: var(--glow-orange, #B87333);
   }
-  .task-item.in-progress { border-left: 3px solid var(--glow-orange, #f59e0b); }
+  .task-item.in-progress { border-left: 3px solid var(--glow-orange, #B87333); }
   /* Priority Flag */
   .task-flag {
     pointer-events: none;
@@ -1409,20 +1473,20 @@
     font-size: 0.85rem; flex-shrink: 0; margin-right: 4px;
     display: none;
   }
-  .task-flag.flagged { display: inline; color: #ef4444; }
-  .task-item.flagged { border-left: 3px solid #ef4444; }
-  .task-item.unsigned:not(.flagged):not(.in-progress) { border-left: 3px solid #f59e0b; }
+  .task-flag.flagged { display: inline; color: #B44032; }
+  .task-item.flagged { border-left: 3px solid #B44032; }
+  .task-item.unsigned:not(.flagged):not(.in-progress) { border-left: 3px solid #B87333; }
   .task-signed-badge {
-    display: block; font-size: 0.58rem; color: #22c55e; font-weight: 600;
-    background: rgba(34,197,94,0.1); padding: 1px 5px; border-radius: 3px;
+    display: block; font-size: 0.58rem; color: #4A7A6F; font-weight: 600;
+    background: rgba(74,122,111,0.10); padding: 1px 5px; border-radius: 3px;
     white-space: nowrap; text-align: right;
   }
   /* Completed Header */
   .task-completed-header {
     font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.05em; color: var(--glow-green, #22c55e);
+    letter-spacing: 0.05em; color: var(--glow-green, #4A7A6F);
     padding: 6px 8px 4px; margin-top: 12px;
-    border-top: 1px solid rgba(34,197,94,0.25);
+    border-top: 1px solid rgba(74,122,111,0.20);
   }
   /* Due Date */
   .task-due {
@@ -1430,17 +1494,17 @@
     padding: 1px 6px; border-radius: 3px;
     white-space: nowrap; flex-shrink: 0;
   }
-  .task-due.overdue { color: #ef4444; font-weight: 600; }
-  .task-due.due-soon { color: #f59e0b; }
+  .task-due.overdue { color: #B44032; font-weight: 600; }
+  .task-due.due-soon { color: #B87333; }
   .task-due input[type="date"] {
     background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
     color: var(--text); font-size: 0.65rem; padding: 2px 4px; cursor: pointer;
   }
   /* Blocked Indicator */
-  .task-item.blocked .task-text { color: #fde047; }
+  .task-item.blocked .task-text { color: #9A7B2E; }
   .task-item.blocked .task-flag { opacity: 0.3; }
   .task-blocked-label {
-    font-size: 0.58rem; color: #fde047; font-style: italic; margin-left: 4px;
+    font-size: 0.58rem; color: #9A7B2E; font-style: italic; margin-left: 4px;
     position: relative; cursor: default; display: block;
   }
   .task-blocked-label .blocked-tooltip {
@@ -1448,20 +1512,20 @@
     background: var(--bg, #0f172a); border: 1px solid var(--border);
     border-radius: 6px; padding: 6px 10px; font-size: 0.68rem;
     color: var(--text); white-space: normal; min-width: 180px; max-width: 280px;
-    z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 100; box-shadow: 0 4px 12px rgba(58,54,51,0.12);
     font-style: normal; line-height: 1.4;
   }
   .task-blocked-label:hover .blocked-tooltip { display: block; }
   /* Note Badge */
   .task-note-badge {
     font-size: 0.62rem; font-weight: 600;
-    color: var(--glow-purple); background: rgba(168,85,247,0.15);
-    border: 1px solid rgba(168,85,247,0.3);
+    color: var(--glow-purple); background: rgba(122,158,153,0.15);
+    border: 1px solid rgba(122,158,153,0.30);
     padding: 1px 6px; border-radius: 4px;
     margin-left: 6px; cursor: pointer;
     vertical-align: middle; position: relative;
   }
-  .task-note-badge:hover { background: rgba(168,85,247,0.25); }
+  .task-note-badge:hover { background: rgba(122,158,153,0.25); }
   .task-note-tooltip {
     display: none; position: absolute;
     bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
@@ -1470,7 +1534,7 @@
     font-size: 0.72rem; color: var(--text); white-space: pre-wrap;
     max-width: 260px; min-width: 120px; z-index: 300;
     pointer-events: none; font-weight: 400;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 16px rgba(58,54,51,0.12);
   }
   .task-note-badge:hover .task-note-tooltip { display: block; }
   /* Status Dropdown Divider */
@@ -1478,7 +1542,7 @@
   .task-note-icon { font-size: 0.72rem; margin-right: 4px; }
   /* Note Dialog */
   .task-note-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    position: fixed; inset: 0; background: rgba(58,54,51,0.35);
     z-index: 500; display: flex; align-items: center; justify-content: center;
   }
   .task-note-dialog {
@@ -1509,8 +1573,8 @@
     border-radius: 6px; color: var(--text-dim); cursor: pointer; font-size: 0.82rem;
   }
   .task-note-remove {
-    padding: 6px 16px; background: none; border: 1px solid #ef4444;
-    border-radius: 6px; color: #ef4444; cursor: pointer; font-size: 0.82rem; margin-right: auto;
+    padding: 6px 16px; background: none; border: 1px solid #B44032;
+    border-radius: 6px; color: #B44032; cursor: pointer; font-size: 0.82rem; margin-right: auto;
   }
   /* Progress Bar */
   .task-progress-bar {
@@ -1520,11 +1584,11 @@
     font-size: 0.78rem; color: var(--text-dim);
   }
   .task-progress-track {
-    flex: 1; height: 8px; background: rgba(255,255,255,0.06);
+    flex: 1; height: 8px; background: rgba(58,54,51,0.08);
     border-radius: 4px; overflow: hidden; display: flex;
   }
-  .task-progress-done { background: var(--glow-green, #22c55e); transition: width 0.3s; }
-  .task-progress-wip { background: var(--glow-orange, #f59e0b); transition: width 0.3s; }
+  .task-progress-done { background: var(--glow-green, #4A7A6F); transition: width 0.3s; }
+  .task-progress-wip { background: var(--glow-orange, #B87333); transition: width 0.3s; }
   /* Filter Bar */
   .task-filter-bar {
     display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;
@@ -1535,7 +1599,77 @@
     color: var(--text-dim); cursor: pointer; transition: all 0.2s;
   }
   .task-filter-btn:hover { border-color: var(--glow-cyan); color: var(--text); }
-  .task-filter-btn.active { background: rgba(14,165,233,0.15); border-color: var(--glow-cyan); color: var(--glow-cyan); }
+  .task-filter-btn.active { background: rgba(192,139,92,0.15); border-color: var(--glow-cyan); color: var(--glow-cyan); }
+  /* ═══════════════ DECISION BOARD ═══════════════ */
+  .decision-board { max-width: 960px; margin: 0 auto; }
+  .decision-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
+  .decision-filter-row .filter-label { font-size: 0.72rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px; }
+  .decision-filter-btn {
+    padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-dim); cursor: pointer; transition: all 0.2s;
+    min-height: 44px; display: inline-flex; align-items: center;
+  }
+  .decision-filter-btn:hover { border-color: var(--glow-cyan); color: var(--text); }
+  .decision-filter-btn.active { background: rgba(192,139,92,0.15); border-color: var(--glow-cyan); color: var(--glow-cyan); }
+  .decision-category { margin-top: 28px; margin-bottom: 12px; font-size: 0.82rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .decision-card {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px 14px; margin: 6px 0; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(58,54,51,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .decision-card:hover { box-shadow: 0 2px 8px rgba(58,54,51,0.08); }
+  .decision-status-btn {
+    flex-shrink: 0; padding: 3px 10px; border-radius: 12px; font-size: 0.68rem; font-weight: 700;
+    border: 1px solid; cursor: pointer; background: none; text-transform: uppercase; letter-spacing: 0.03em;
+    min-width: 72px; text-align: center; transition: all 0.2s; min-height: 44px;
+  }
+  .decision-status-btn.s-open { color: var(--glow-orange); border-color: var(--glow-orange); background: rgba(184,115,51,0.08); }
+  .decision-status-btn.s-proposed { color: var(--glow-cyan); border-color: var(--glow-cyan); background: rgba(192,139,92,0.08); }
+  .decision-status-btn.s-decided { color: var(--glow-green); border-color: var(--glow-green); background: rgba(74,122,111,0.10); }
+  .decision-body { flex: 1; min-width: 0; }
+  .decision-title { font-size: 0.88rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .decision-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; align-items: center; }
+  .decision-owner-tag {
+    font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+    background: rgba(122,158,153,0.12); color: var(--glow-purple);
+  }
+  .decision-outcome { font-size: 0.78rem; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .decision-decided-by { font-size: 0.65rem; color: var(--text-dim); font-style: italic; }
+  .decision-progress-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; margin-bottom: 16px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.78rem; color: var(--text-dim);
+  }
+  .decision-progress-track {
+    flex: 1; height: 8px; background: rgba(58,54,51,0.08);
+    border-radius: 4px; overflow: hidden; display: flex;
+  }
+  .decision-progress-decided { background: var(--glow-green); transition: width 0.3s; }
+  .decision-progress-proposed { background: var(--glow-cyan); transition: width 0.3s; }
+  .decision-card.hidden { display: none; }
+  .decision-status-dropdown {
+    position: absolute; z-index: 200; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; padding: 4px;
+    box-shadow: 0 4px 16px rgba(58,54,51,0.12); min-width: 130px;
+  }
+  .decision-status-option {
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+    font-size: 0.78rem; cursor: pointer; border-radius: 6px; border: none;
+    background: none; width: 100%; text-align: left; color: var(--text-dim);
+  }
+  .decision-status-option:hover { background: rgba(192,139,92,0.06); color: var(--text); }
+  .decision-status-option.active-open { color: var(--glow-orange); font-weight: 700; }
+  .decision-status-option.active-proposed { color: var(--glow-cyan); font-weight: 700; }
+  .decision-status-option.active-decided { color: var(--glow-green); font-weight: 700; }
+  @media (max-width: 700px) {
+    .decision-card { flex-direction: column; gap: 6px; }
+    .decision-status-btn { align-self: flex-start; }
+  }
+
   /* Task Board Layout */
   .task-board-columns {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -1549,7 +1683,7 @@
     font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.05em; padding: 4px 8px; margin: 12px 0 4px;
     border-radius: 4px; color: var(--text-dim);
-    background: rgba(255,255,255,0.03);
+    background: rgba(58,54,51,0.03);
   }
   @media (max-width: 900px) {
     .task-board-columns { grid-template-columns: repeat(2, 1fr); }
@@ -1585,7 +1719,10 @@
 
 <!-- ═══════════════ TOP NAVIGATION ═══════════════ -->
 <nav class="top-nav">
-  <span class="logo">IC CANDLE CO.</span>
+  <span class="logo">AMBER &amp; ESSENCE</span>
+  <button class="mobile-menu-toggle" onclick="document.querySelector('.nav-tabs').classList.toggle('open')" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
   <div class="nav-tabs">
     <button class="tab-btn active" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
     <button class="tab-btn" data-tab="research" onclick="switchTab('research')">Research</button>
@@ -1600,6 +1737,7 @@
         <button data-tab="citations" onclick="switchTab('citations');closeMoreMenu()">Research Citations</button>
         <button data-tab="custom-strategy" onclick="switchTab('custom-strategy');closeMoreMenu()">Custom Candle Strategy</button>
         <button data-tab="roles" onclick="switchTab('roles');closeMoreMenu()">Roles &amp; Ops</button>
+        <button data-tab="decisions" onclick="switchTab('decisions');closeMoreMenu()">Decisions</button>
       </div>
     </div>
     <a class="tab-btn" href="builder.html">Candle Builder</a>
@@ -2334,7 +2472,7 @@
     </div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
       <a class="cta-btn" href="business-plan-1sheet.html" target="_blank">View Business Plan</a>
-      <a class="cta-btn" onclick="switchTab('launch-guide')" style="background:linear-gradient(135deg, var(--glow-purple), var(--glow-cyan));cursor:pointer;">Explore Launch Guide</a>
+      <a class="cta-btn" onclick="switchTab('launch-guide')" style="background:var(--glow-cyan);color:#fff;cursor:pointer;">Explore Launch Guide</a>
     </div>
   </div>
 
@@ -2823,7 +2961,7 @@
     <div class="card" style="margin-top:20px;text-align:center;">
       <div class="glow-bar cyan"></div>
       <p style="margin:8px 0;font-size:0.9rem;">The interactive task board has moved to its own tab.</p>
-      <button onclick="switchTab('tasks')" style="padding:8px 20px;background:rgba(14,165,233,0.15);border:1px solid var(--glow-cyan);border-radius:8px;color:var(--glow-cyan);cursor:pointer;font-weight:600;font-size:0.85rem;">Open Task Board</button>
+      <button onclick="switchTab('tasks')" style="padding:8px 20px;background:rgba(192,139,92,0.15);border:1px solid var(--glow-cyan);border-radius:8px;color:var(--glow-cyan);cursor:pointer;font-weight:600;font-size:0.85rem;">Open Task Board</button>
     </div>
   </section>
 
@@ -3178,7 +3316,7 @@
   <!-- Deleted Tasks Section -->
   <div style="margin-top:40px;padding:16px;border-top:1px solid var(--border);">
     <div id="deleted-tasks-section">
-      <h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Recently Deleted Tasks <span style="font-size:0.65rem;font-weight:400;opacity:0.6;">(auto-clears after 7 days)</span></h4>
+      <h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Deleted Tasks</h4>
       <p style="font-style:italic;font-size:0.78rem;color:var(--text-dim);">No deleted tasks.</p>
     </div>
   </div>
@@ -3390,7 +3528,7 @@
       <tr>
         <td>Below Avg</td><td>40th</td><td>$16,800</td><td>$1,400</td><td>38</td><td>$5,400</td><td>$1,350/yr</td>
       </tr>
-      <tr style="background:rgba(0,229,255,0.06);">
+      <tr style="background:rgba(192,139,92,0.06);">
         <td><strong>Median</strong></td><td><strong>50th</strong></td><td class="highlight"><strong>$27,300</strong></td><td class="highlight"><strong>$2,275</strong></td><td><strong>62</strong></td><td class="highlight"><strong>$9,500</strong></td><td class="highlight"><strong>$2,375/yr</strong></td>
       </tr>
       <tr>
@@ -3421,7 +3559,7 @@
       <tr>
         <td>Below Avg</td><td>40th</td><td>$50,400</td><td>$4,200</td><td>$16,600</td><td>$346</td>
       </tr>
-      <tr style="background:rgba(0,229,255,0.06);">
+      <tr style="background:rgba(192,139,92,0.06);">
         <td><strong>Median</strong></td><td><strong>50th</strong></td><td class="highlight"><strong>$105,000</strong></td><td class="highlight"><strong>$8,750</strong></td><td class="highlight"><strong>$35,700</strong></td><td class="highlight"><strong>$743</strong></td>
       </tr>
       <tr>
@@ -3729,7 +3867,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(0,229,255,0.06);">
+      <tr style="background:rgba(192,139,92,0.06);">
         <td class="highlight">1</td>
         <td><strong>Pet Memorial</strong></td>
         <td class="highlight">~140</td>
@@ -4243,7 +4381,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(14,165,233,0.08);">
+      <tr style="background:rgba(192,139,92,0.08);">
         <td><strong style="color:var(--glow-cyan);">Lumient</strong></td>
         <td>100% Soy (USA)</td>
         <td>14</td>
@@ -4274,7 +4412,7 @@
         <td>75</td>
         <td>$5.29</td>
         <td>~$10+</td>
-        <td><span style="color:#ef4444;">2.5/5 Trustpilot</span></td>
+        <td><span style="color:#B44032;">2.5/5 Trustpilot</span></td>
       </tr>
       <tr>
         <td><strong>SwagRabbit</strong></td>
@@ -4296,7 +4434,7 @@
         <td>3</td>
         <td>$7.99</td>
         <td>—</td>
-        <td><span style="color:#ef4444;">Reddit complaints</span></td>
+        <td><span style="color:#B44032;">Reddit complaints</span></td>
       </tr>
     </tbody>
   </table>
@@ -4369,9 +4507,9 @@
       <tr><th>#</th><th>Scent</th><th>Score</th><th>Demand</th><th>Season</th><th>Trend</th><th>Notes</th></tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(34,197,94,0.06);"><td>1</td><td><strong>Cinnamon Vanilla</strong></td><td style="color:var(--glow-green);">95</td><td>Very High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Vanilla = #1 global candle scent (11% market share). "Elevated gourmand" 2026 trend.</td></tr>
-      <tr style="background:rgba(34,197,94,0.06);"><td>2</td><td><strong>Clean Cotton</strong></td><td style="color:var(--glow-green);">92</td><td>High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>2026 "clean scent" mega-wave. Yankee Candle halo effect. Minimalist aesthetic.</td></tr>
-      <tr style="background:rgba(34,197,94,0.06);"><td>3</td><td><strong>White Sage &amp; Lavender</strong></td><td style="color:var(--glow-green);">90</td><td>High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Lavender top-5 all-time + sage wellness trend. Commands premium pricing.</td></tr>
+      <tr style="background:rgba(74,122,111,0.06);"><td>1</td><td><strong>Cinnamon Vanilla</strong></td><td style="color:var(--glow-green);">95</td><td>Very High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Vanilla = #1 global candle scent (11% market share). "Elevated gourmand" 2026 trend.</td></tr>
+      <tr style="background:rgba(74,122,111,0.06);"><td>2</td><td><strong>Clean Cotton</strong></td><td style="color:var(--glow-green);">92</td><td>High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>2026 "clean scent" mega-wave. Yankee Candle halo effect. Minimalist aesthetic.</td></tr>
+      <tr style="background:rgba(74,122,111,0.06);"><td>3</td><td><strong>White Sage &amp; Lavender</strong></td><td style="color:var(--glow-green);">90</td><td>High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Lavender top-5 all-time + sage wellness trend. Commands premium pricing.</td></tr>
       <tr><td>4</td><td><strong>Sea Salt + Orchid</strong></td><td>87</td><td>High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Coastal/marine breakout 2025-2026. Orchid adds upscale positioning.</td></tr>
       <tr><td>5</td><td><strong>Coconut Cream + Cardamom</strong></td><td>85</td><td>Med-High</td><td>Year-round</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>"Elevated gourmand" + exotic spice. Unique differentiator.</td></tr>
       <tr><td>6</td><td><strong>Beach Rose</strong></td><td>82</td><td>Med-High</td><td>Spring/Summer</td><td style="color:var(--glow-green);">&uarr; Growing</td><td>Rose candle sales +38% YoY. Valentine's/Mother's Day gift potential.</td></tr>
@@ -5067,14 +5205,14 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
       <tr>
         <td>Own website for custom orders</td>
         <td>No traffic. We're a new brand with zero audience. Etsy gives us 90M+ buyers for free.</td>
-        <td style="color:#ef4444;font-weight:600;">Rejected</td>
+        <td style="color:#B44032;font-weight:600;">Rejected</td>
       </tr>
       <tr>
         <td>Etsy listing redirects to our site</td>
         <td><strong>Violates Etsy TOS.</strong> Can get shop suspended. Also loses reviews, sales velocity, and algorithm ranking.</td>
-        <td style="color:#ef4444;font-weight:600;">Rejected</td>
+        <td style="color:#B44032;font-weight:600;">Rejected</td>
       </tr>
-      <tr style="background:rgba(0,229,255,0.06);">
+      <tr style="background:rgba(192,139,92,0.06);">
         <td><strong>100% on Etsy + backend automation</strong></td>
         <td>None. Shipping bundled, reviews on Etsy, algorithm happy, TOS compliant.</td>
         <td style="color:var(--glow-green);font-weight:600;">Selected</td>
@@ -5348,6 +5486,7 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
   <a href="#res-pricing" style="color:var(--glow-green);border-color:var(--glow-green);">Supplier &amp; Pricing</a>
   <a href="#res-scents" style="color:var(--glow-cyan);border-color:var(--glow-cyan);">Scent Selection</a>
   <a href="#res-insurance" style="color:var(--glow-orange);border-color:var(--glow-orange);">Insurance</a>
+  <a href="#res-llc" style="color:var(--glow-purple);border-color:var(--glow-purple);">LLC &amp; EIN</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════════ -->
@@ -5466,11 +5605,11 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
       <tr><th>Movement</th><th>What It Is</th><th>Fit for A&amp;E</th></tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(0,229,255,0.06);"><td><strong>Quiet Luxury</strong></td><td>Warm neutrals, natural materials, lived-in textures. Pantone Cloud Dancer. Etsy Texture of Year: Washed Linen.</td><td style="color:var(--glow-green);font-weight:600;">Primary direction</td></tr>
-      <tr style="background:rgba(0,229,255,0.06);"><td><strong>Organic Modern</strong></td><td>Nature connection. Etsy 2026 COTY Patina Blue. Biophilic hues, oxidized metals, botanical motifs.</td><td style="color:var(--glow-green);font-weight:600;">Secondary influence</td></tr>
+      <tr style="background:rgba(192,139,92,0.06);"><td><strong>Quiet Luxury</strong></td><td>Warm neutrals, natural materials, lived-in textures. Pantone Cloud Dancer. Etsy Texture of Year: Washed Linen.</td><td style="color:var(--glow-green);font-weight:600;">Primary direction</td></tr>
+      <tr style="background:rgba(192,139,92,0.06);"><td><strong>Organic Modern</strong></td><td>Nature connection. Etsy 2026 COTY Patina Blue. Biophilic hues, oxidized metals, botanical motifs.</td><td style="color:var(--glow-green);font-weight:600;">Secondary influence</td></tr>
       <tr><td>Dopamine Design</td><td>Bold, joyful maximalist color. Gen Z counter-trend.</td><td style="color:var(--glow-orange);">Humor labels only</td></tr>
       <tr><td>Narrative Nostalgia</td><td>Heritage typography, aged patinas, storytelling products.</td><td style="color:var(--glow-cyan);">Useful for memorial line</td></tr>
-      <tr><td>Art Deco Revival</td><td>Geometric luxury, gold foil, Gatsby motifs.</td><td style="color:#ef4444;">Oversaturated in candles</td></tr>
+      <tr><td>Art Deco Revival</td><td>Geometric luxury, gold foil, Gatsby motifs.</td><td style="color:#B44032;">Oversaturated in candles</td></tr>
     </tbody>
   </table>
 
@@ -5549,8 +5688,8 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
   <table class="data-table" style="margin-top:16px;max-width:500px;margin-bottom:24px;">
     <thead><tr><th>Model</th><th>Text Quality</th><th>Cost</th><th>Use For</th></tr></thead>
     <tbody>
-      <tr><td>Nano Banana</td><td style="color:#ef4444;">Poor</td><td>$0.04</td><td>Icons only</td></tr>
-      <tr style="background:rgba(0,229,255,0.06);"><td><strong>Nano Banana 2</strong></td><td style="color:var(--glow-green);">Good</td><td><strong>$0.08</strong></td><td>Wordmarks + icons</td></tr>
+      <tr><td>Nano Banana</td><td style="color:#B44032;">Poor</td><td>$0.04</td><td>Icons only</td></tr>
+      <tr style="background:rgba(192,139,92,0.06);"><td><strong>Nano Banana 2</strong></td><td style="color:var(--glow-green);">Good</td><td><strong>$0.08</strong></td><td>Wordmarks + icons</td></tr>
       <tr><td>Nano Banana Pro</td><td style="color:var(--glow-green);">Best</td><td>$0.15</td><td>Final polish</td></tr>
     </tbody>
   </table>
@@ -5699,7 +5838,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <td><strong>4</strong></td><td>Frosted 11oz</td><td>$15.30</td><td class="highlight">$36.99</td>
         <td>In Loving Memory</td>
       </tr>
-      <tr style="background:rgba(168,85,247,0.06);">
+      <tr style="background:rgba(122,158,153,0.08);">
         <td><strong>5</strong></td><td>Engraved 14oz + Bamboo Lid</td><td>$20.97</td><td class="highlight">$49.99</td>
         <td>In Loving Memory Deluxe</td>
       </tr>
@@ -5728,7 +5867,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <tr><td>Breathe</td><td>2 &mdash; Amber 9oz</td><td>$32.99</td><td>$13.29</td><td>$4.29</td><td class="highlight"><strong>$15.41</strong></td><td><strong>47%</strong></td></tr>
       <tr><td>Hearthstone</td><td>3 &mdash; Clear 11oz</td><td>$34.99</td><td>$15.30</td><td>$4.55</td><td class="highlight"><strong>$15.14</strong></td><td><strong>43%</strong></td></tr>
       <tr><td>In Loving Memory</td><td>4 &mdash; Frosted 11oz</td><td>$36.99</td><td>$15.30</td><td>$4.81</td><td class="highlight"><strong>$16.88</strong></td><td><strong>46%</strong></td></tr>
-      <tr style="background:rgba(168,85,247,0.06);"><td>In Loving Memory Deluxe</td><td>5 &mdash; Engraved 14oz</td><td>$49.99</td><td>$20.97</td><td>$6.50</td><td class="highlight"><strong>$22.52</strong></td><td><strong>45%</strong></td></tr>
+      <tr style="background:rgba(122,158,153,0.08);"><td>In Loving Memory Deluxe</td><td>5 &mdash; Engraved 14oz</td><td>$49.99</td><td>$20.97</td><td>$6.50</td><td class="highlight"><strong>$22.52</strong></td><td><strong>45%</strong></td></tr>
     </tbody>
   </table>
   <p style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);">All products 43-47% margin. Blended AOV across flagship 6 (excl. Deluxe): $33.32.</p>
@@ -5930,7 +6069,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <tr><th>#</th><th>Scent</th><th>Score</th><th>Trend</th><th>Flagship Candle</th><th>Vessel</th><th>Available In</th><th>Why This Pairing</th></tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(34,197,94,0.06);">
+      <tr style="background:rgba(74,122,111,0.06);">
         <td class="highlight">1</td>
         <td><strong>Cinnamon Vanilla</strong></td>
         <td style="color:var(--glow-green);">95</td>
@@ -5940,7 +6079,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <td>Std 9oz, Amber 9oz, Glass 11oz</td>
         <td>Vanilla = #1 global candle scent (11% share). Warm, comforting &mdash; evokes memory and home. "Elevated gourmand" 2026 trend.</td>
       </tr>
-      <tr style="background:rgba(34,197,94,0.06);">
+      <tr style="background:rgba(74,122,111,0.06);">
         <td class="highlight">2</td>
         <td><strong>Clean Cotton</strong></td>
         <td style="color:var(--glow-green);">92</td>
@@ -5950,7 +6089,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <td>Std 9oz, Amber 9oz</td>
         <td>2026 "clean scent" mega-wave. Universal neutral &mdash; works for every profession variant. Yankee Candle halo effect.</td>
       </tr>
-      <tr style="background:rgba(34,197,94,0.06);">
+      <tr style="background:rgba(74,122,111,0.06);">
         <td class="highlight">3</td>
         <td><strong>White Sage &amp; Lavender</strong></td>
         <td style="color:var(--glow-green);">90</td>
@@ -6072,7 +6211,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <tr><th style="text-align:left;">Scent</th><th>Std 9oz<br>$29.99</th><th>Amber 4oz</th><th>Amber 9oz<br>$32.99</th><th>Glass 11oz<br>$34.99/$36.99</th><th>Engr 14oz<br>$49.99</th><th>Total</th></tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(34,197,94,0.06);"><td style="text-align:left;"><strong>White Sage &amp; Lavender</strong></td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);font-weight:700;">5</td></tr>
+      <tr style="background:rgba(74,122,111,0.06);"><td style="text-align:left;"><strong>White Sage &amp; Lavender</strong></td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);font-weight:700;">5</td></tr>
       <tr><td style="text-align:left;"><strong>Christmas Warmth</strong></td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td>&mdash;</td><td style="color:var(--glow-green);">Yes</td><td><strong>4</strong></td></tr>
       <tr><td style="text-align:left;"><strong>Unscented</strong></td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td><strong>5</strong></td></tr>
       <tr><td style="text-align:left;"><strong>Cinnamon Vanilla</strong></td><td style="color:var(--glow-green);">Yes</td><td>&mdash;</td><td style="color:var(--glow-green);">Yes</td><td style="color:var(--glow-green);">Yes</td><td>&mdash;</td><td><strong>3</strong></td></tr>
@@ -6138,7 +6277,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 <!-- ── Printify Liability Gap ── -->
 <div class="strategy-section" id="res-ins-gap" style="scroll-margin-top:72px;margin-bottom:40px;">
   <h3 style="font-size:1.2rem;margin-bottom:16px;">The Printify Liability Gap</h3>
-  <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:12px;padding:20px 24px;margin-bottom:16px;">
+  <div style="background:rgba(184,115,51,0.08);border:1px solid rgba(184,115,51,0.25);border-radius:12px;padding:20px 24px;margin-bottom:16px;">
     <span style="font-size:0.72rem;font-weight:700;color:var(--glow-orange);text-transform:uppercase;display:block;margin-bottom:8px;">Critical</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">As a POD seller, <strong>you are 100% legally liable</strong> for product safety even though Printify manufactures and ships the candles. Courts hold the seller of record responsible regardless of the supply chain.</p>
   </div>
@@ -6210,7 +6349,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <tr><td><strong>Growth</strong> (add Cyber + BOP at Shopify phase)</td><td class="highlight">$95&ndash;110</td><td>$1,140&ndash;1,320</td></tr>
     </tbody>
   </table>
-  <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:12px;padding:20px 24px;margin-top:16px;">
+  <div style="background:rgba(184,115,51,0.08);border:1px solid rgba(184,115,51,0.25);border-radius:12px;padding:20px 24px;margin-top:16px;">
     <span style="font-size:0.72rem;font-weight:700;color:var(--glow-orange);text-transform:uppercase;display:block;margin-bottom:8px;">Planning Number</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">Budget <strong>$55/mo ($660/year)</strong> for GL + Product Liability at launch. This is the midpoint of the NEXT/Thimble/Hiscox range and aligns with the business plan&rsquo;s $300&ndash;600/year estimate.</p>
   </div>
@@ -6230,7 +6369,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     </tbody>
   </table>
   <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin-top:16px;"><strong>Email setup:</strong> Use a custom domain (e.g., support@amberandessence.com) routed through <strong>Zoho Mail free tier</strong> ($0/mo, 1 user, 5GB). The custom domain is just a label&mdash;Zoho hosts all the data. Professional branding with zero hosting liability.</p>
-  <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:12px;padding:20px 24px;margin-top:16px;">
+  <div style="background:rgba(184,115,51,0.08);border:1px solid rgba(184,115,51,0.25);border-radius:12px;padding:20px 24px;margin-top:16px;">
     <span style="font-size:0.72rem;font-weight:700;color:var(--glow-orange);text-transform:uppercase;display:block;margin-bottom:8px;">Avoid</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">Do not export customer data to local spreadsheets, build your own CRM database, or self-host email. Keep everything on hosted platforms to avoid data liability.</p>
   </div>
@@ -6247,7 +6386,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     <li>But <strong>your account security is your responsibility</strong>&mdash;if phished or compromised, the breach is on you</li>
     <li>Customer data becomes exportable (CSV downloads create local exposure)</li>
   </ul>
-  <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:12px;padding:20px 24px;margin-top:16px;">
+  <div style="background:rgba(184,115,51,0.08);border:1px solid rgba(184,115,51,0.25);border-radius:12px;padding:20px 24px;margin-top:16px;">
     <span style="font-size:0.72rem;font-weight:700;color:var(--glow-orange);text-transform:uppercase;display:block;margin-bottom:8px;">Recommendation</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">Add cyber liability insurance ($15&ndash;30/mo) <strong>3&ndash;6 months after Shopify launch</strong>, or sooner if you integrate third-party apps that sync customer data. Use strong 2FA on all accounts and avoid exporting data locally.</p>
   </div>
@@ -6273,7 +6412,77 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 
 </div><!-- /res-insurance -->
 
-<p class="footnote" style="margin-top:40px;max-width:100%;">Research compiled March 2026. Sources: Printify API (live data), Lumient catalog (57 fragrances), Etsy marketplace analysis, NCA market data, 2026 trend reports, Lumient pricing blog, NEXT/Thimble/Hiscox insurance guides, Printify Merchant Protection policy. Production costs and scent availability verified via API on March 21-23, 2026. Insurance research compiled March 25, 2026.</p>
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ═══════ TOPIC: LLC & EIN FORMATION ═══════ -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="res-llc">
+<h2 style="font-size:1.5rem;border-bottom:2px solid var(--glow-purple);padding-bottom:10px;margin-bottom:24px;">LLC &amp; EIN Formation <span style="font-size:0.75rem;font-weight:400;color:var(--text-dim);margin-left:8px;">Updated March 30, 2026</span></h2>
+
+<div class="strategy-section">
+  <h3>Who Should Be Listed on the LLC Filing?</h3>
+  <p style="margin-bottom:16px;">Delaware LLCs require listing at least one member or organizer. The key decision is whether to list all 4 founders or just 1&ndash;2. Both approaches are legally valid &mdash; the operating agreement ultimately governs ownership &mdash; but the trade-offs differ significantly.</p>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Option A: All 4 Founders Listed</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th style="width:50%;">Pros</th><th style="width:50%;">Cons</th></tr></thead>
+    <tbody>
+      <tr><td>Full transparency &mdash; everyone has legal standing from day one</td><td>Harder to remove a founder later (requires amendment filing + state fees)</td></tr>
+      <tr><td>All members can sign documents, open accounts, and act on behalf of the company</td><td>All members' names become public record (Delaware Annual Report)</td></tr>
+      <tr><td>Clearer ownership trail for future funding or acquisition</td><td>Any membership change triggers paperwork &mdash; amended Articles of Organization + new operating agreement</td></tr>
+      <tr><td>Simpler operating agreement &mdash; matches the state filing</td><td>More SSNs/ITINs collected upfront for the EIN application</td></tr>
+      <tr><td>All founders share liability protection equally from the start</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Option B: 1&ndash;2 Founders Listed</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th style="width:50%;">Pros</th><th style="width:50%;">Cons</th></tr></thead>
+    <tbody>
+      <tr><td>Faster, simpler filing &mdash; fewer signatures, less coordination</td><td>Unlisted founders have no legal standing with the state until the operating agreement is executed</td></tr>
+      <tr><td>Flexibility to add members later via operating agreement without amending state filings</td><td>Banks may refuse to add unlisted members to the business account without extra documentation</td></tr>
+      <tr><td>Fewer personal details on public record</td><td>Creates a power imbalance &mdash; listed members technically control the entity at the state level</td></tr>
+      <tr><td>Easier to restructure early if a founder drops out pre-launch</td><td>If the listed founder becomes uncooperative, unlisted founders have limited recourse without a signed operating agreement</td></tr>
+      <tr><td>&mdash;</td><td>IRS treats all members as owners regardless &mdash; tax obligations apply to everyone, but proving ownership is harder</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="strategy-callout" style="margin-top:24px;">
+  <span class="callout-label" style="color:var(--glow-purple);">Recommendation</span>
+  <p style="margin:0;"><strong>List all 4 founders.</strong> For a $90 Delaware LLC with equal ownership and a clear 4-member operating agreement, the administrative overhead is minimal and the protection is worth it. The risk of a founder dispute without legal standing far outweighs the convenience of a leaner filing.</p>
+</div>
+
+<div class="strategy-section" style="margin-top:24px;">
+  <h3>Operating Agreement: Key Provisions</h3>
+  <p style="margin-bottom:12px;">The operating agreement (Task #3 &mdash; Mark) is the true safeguard regardless of who&rsquo;s on the LLC filing. It should define:</p>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Provision</th><th>Why It Matters</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ownership percentages</strong></td><td>Establishes each founder&rsquo;s equity stake and profit/loss allocation</td></tr>
+      <tr><td><strong>Exit / buyout provisions</strong></td><td>Defines how a departing member&rsquo;s share is valued and transferred</td></tr>
+      <tr><td><strong>Voting rights &amp; decision-making</strong></td><td>Prevents deadlocks &mdash; defines majority vs. unanimous vote thresholds</td></tr>
+      <tr><td><strong>Capital contributions</strong></td><td>Documents who invested what (cash, time, IP) and how that affects equity</td></tr>
+      <tr><td><strong>Inactive member clause</strong></td><td>Defines what happens if a member stops contributing but retains ownership</td></tr>
+      <tr><td><strong>Dispute resolution</strong></td><td>Mediation/arbitration before litigation &mdash; cheaper and faster</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="strategy-section" style="margin-top:24px;">
+  <h3>EIN Application Notes</h3>
+  <p>The EIN (Employer Identification Number) is applied for on <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" style="color:var(--glow-purple);">IRS.gov</a> the same day the LLC is filed. Key details:</p>
+  <ul style="margin-top:12px;padding-left:20px;line-height:2;">
+    <li>Only <strong>one &ldquo;responsible party&rdquo;</strong> is listed on the EIN application (typically Mark as Finance lead)</li>
+    <li>The responsible party must have a valid SSN or ITIN</li>
+    <li>EIN is issued immediately online &mdash; no cost</li>
+    <li>All 4 members are still recognized as owners for tax purposes regardless of who files</li>
+    <li>The EIN is required before opening the Mercury business bank account (Task #4)</li>
+  </ul>
+</div>
+
+</div><!-- /res-llc -->
+
+<p class="footnote" style="margin-top:40px;max-width:100%;">Research compiled March 2026. Sources: Printify API (live data), Lumient catalog (57 fragrances), Etsy marketplace analysis, NCA market data, 2026 trend reports, Lumient pricing blog, NEXT/Thimble/Hiscox insurance guides, Printify Merchant Protection policy. Production costs and scent availability verified via API on March 21-23, 2026. Insurance research compiled March 25, 2026. LLC formation research compiled March 30, 2026.</p>
 
 </div><!-- /strategy-container -->
 </div><!-- /tab-research -->
@@ -6364,7 +6573,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     </tbody>
   </table>
 
-  <div class="overhead-callout" style="background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.3);">
+  <div class="overhead-callout" style="background:rgba(74,122,111,0.08);border-color:rgba(74,122,111,0.25);">
     <span class="callout-label" style="color:var(--glow-green);">Etsy Fee Math</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">On a $35 candle, Etsy takes ~$3.50 in fees. Budget 10% of gross Etsy revenue for marketplace fees. The $0.20 listing fee is per-listing (not per-sale) and renews every 4 months or when sold.</p>
   </div>
@@ -6406,7 +6615,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     </tbody>
   </table>
 
-  <div class="overhead-callout" style="background:rgba(6,182,212,0.08);border-color:rgba(6,182,212,0.3);">
+  <div class="overhead-callout" style="background:rgba(192,139,92,0.08);border-color:rgba(192,139,92,0.25);">
     <span class="callout-label" style="color:var(--glow-cyan);">Ad Spend Guidance</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">Ad spend is the largest variable cost. Start at the low end ($20/day Meta, $100/mo Pinterest) and scale based on ROAS. If your ROAS is 3x or better, increase spend. If below 2x, optimize creative and targeting before scaling.</p>
   </div>
@@ -6444,7 +6653,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     </tbody>
   </table>
 
-  <div class="overhead-callout" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.3);">
+  <div class="overhead-callout" style="background:rgba(122,158,153,0.10);border-color:rgba(122,158,153,0.30);">
     <span class="callout-label" style="color:var(--glow-purple);">Scaling Gate</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">At this stage the business should be generating <strong>$5,000&ndash;10,000+/mo in revenue</strong> to justify the overhead. If you&rsquo;re not there yet, stay in Phase 3 and optimize before expanding. Amazon and Walmart add complexity&mdash;only expand when Shopify/Etsy channels are profitable and stable.</p>
   </div>
@@ -6564,7 +6773,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     <li>Once signed off, you are accountable for delivering by the due date. If the timeline slips, flag it early&mdash;don&rsquo;t wait until it&rsquo;s overdue.</li>
   </ol>
 
-  <div style="background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:12px;padding:20px 24px;margin-top:20px;">
+  <div style="background:rgba(192,139,92,0.08);border:1px solid rgba(192,139,92,0.30);border-radius:12px;padding:20px 24px;margin-top:20px;">
     <span style="font-size:0.72rem;font-weight:700;color:var(--glow-cyan);text-transform:uppercase;display:block;margin-bottom:8px;">Key Principle</span>
     <p style="font-size:0.9rem;line-height:1.65;margin:0;">Communicate early, communicate often. It is always better to flag a concern than to silently miss a deadline. No one will be faulted for raising issues&mdash;only for hiding them.</p>
   </div>
@@ -6609,6 +6818,354 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 
 </div><!-- /roles-container -->
 </div><!-- /tab-roles -->
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════ DECISIONS TAB ═════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-decisions">
+<div class="decision-board">
+
+  <h1 style="text-align:center;margin-bottom:8px;font-size:2rem;">Decision Board</h1>
+  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;">Track open questions, proposals, and finalized decisions across all AORs.</p>
+
+  <!-- Progress Bar -->
+  <div class="decision-progress-bar" id="decision-progress">
+    <span id="decision-progress-text">0 decided · 0 proposed · 0 open</span>
+    <div class="decision-progress-track">
+      <div class="decision-progress-decided" id="decision-progress-decided" style="width:0%"></div>
+      <div class="decision-progress-proposed" id="decision-progress-proposed" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Filter: Owner -->
+  <div class="decision-filter-row" id="decision-filter-owner">
+    <span class="filter-label">Owner:</span>
+    <button class="decision-filter-btn active" data-filter="all">All</button>
+    <button class="decision-filter-btn" data-filter="ricardo">Ricardo</button>
+    <button class="decision-filter-btn" data-filter="robert">Robert</button>
+    <button class="decision-filter-btn" data-filter="jose">Jose</button>
+    <button class="decision-filter-btn" data-filter="mark">Mark</button>
+    <button class="decision-filter-btn" data-filter="all-founders">All Founders</button>
+  </div>
+
+  <!-- Filter: Status -->
+  <div class="decision-filter-row" id="decision-filter-status">
+    <span class="filter-label">Status:</span>
+    <button class="decision-filter-btn active" data-filter="all">All</button>
+    <button class="decision-filter-btn" data-filter="open">Open</button>
+    <button class="decision-filter-btn" data-filter="proposed">Proposed</button>
+    <button class="decision-filter-btn" data-filter="decided">Decided</button>
+  </div>
+
+  <!-- Decisions List -->
+  <div id="decision-list">
+
+    <div class="decision-category">Brand &amp; Legal</div>
+
+    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d1">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Brand Name</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">Amber &amp; Essence Candle Co.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d2">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Legal Structure</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Delaware LLC ($90 filing fee)</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d3">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">LLC Membership Filing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">All 4 founders listed on the filing</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="proposed" data-id="d4">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Trademark Filing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
+        <div class="decision-outcome">USPTO Class 4 (candles), TEAS Plus ~$250-350. Recommended before scaling but optional at launch.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="proposed" data-id="d5">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Operating Agreement Terms</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
+        <div class="decision-outcome">Draft in progress. Must define: ownership %, exit clauses, voting rights, capital contributions, inactive member clause, dispute resolution.</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Supplier &amp; Platform</div>
+
+    <div class="decision-card" data-owner="robert" data-status="decided" data-id="d6">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Primary Candle Supplier</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Lumient via Printify (Provider 219). Chosen for: 57+ scents, 9 vessel styles, NCA certified, 100% soy wax, lowest base cost (~$9.66).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="jose" data-status="decided" data-id="d7">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Fulfillment Platform</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Printify as primary multi-vendor aggregation and fulfillment platform.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d8">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Expansion Supplier</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">Evaluate Gooten for vessel expansion (tin, wood wick options) as secondary supplier after launch.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d9">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Premium Tier Supplier</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">Seventh Avenue Apothecary for premium custom candles (360&deg; full wrap, 65hr burn, Tampa FL). Evaluate after volume established.</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Sales Channels</div>
+
+    <div class="decision-card" data-owner="jose" data-status="decided" data-id="d10">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Home Base Store</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Shopify Basic Plan ($39/mo) as primary DTC channel.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="jose" data-status="decided" data-id="d11">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Initial Marketplace</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Etsy as first launch marketplace (90M+ active buyers, free organic discovery).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="jose" data-status="decided" data-id="d12">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Primary Organic Traffic</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Pinterest as primary organic traffic driver (CPC $0.10-0.30 vs Meta $0.68).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="jose" data-status="proposed" data-id="d13">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Amazon Expansion</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
+        <div class="decision-outcome">Expand to Amazon once Etsy/Shopify channels are proven profitable and stable.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="jose" data-status="proposed" data-id="d14">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">TikTok Shop &amp; Instagram Shopping</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
+        <div class="decision-outcome">Apply for TikTok Shop and Instagram Shopping at launch for social commerce.</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Financial</div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d15">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Business Bank Account</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Mercury (Relay as backup).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d16">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Branded Candle Pricing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">$18-48 retail depending on jar size (43-55% margins).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d17">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Profit Allocation</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">60% reinvest / 25% reserve / 15% distribution.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d18">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Accounting Software</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Wave (free accounting).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="open" data-id="d19">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Custom Candle Pricing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
+        <div class="decision-outcome">Proposed range: $39-65 depending on jar size. 14oz Engraved could command $65+. Needs margin analysis.</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Operations</div>
+
+    <div class="decision-card" data-owner="robert" data-status="decided" data-id="d20">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Shipping Model</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Printify white-label blind shipping (no vendor branding visible to customer).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="decided" data-id="d21">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Insurance Coverage</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">General Liability + Product Liability ($1M/$2M standard). Evaluate NEXT, Thimble, and Hiscox. Budget midpoint $55/mo.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d22">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Cyber Liability Insurance</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">Add $15-30/mo cyber liability 3-6 months after Shopify launch (when handling customer data exports).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d23">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Email Provider</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Zoho Mail free tier ($0/mo, 1 user, 5GB, custom domain).</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d24">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Domain Name</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">amberandessencecandleco.com ($15/yr via Cloudflare).</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Brand Identity</div>
+
+    <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d25">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Color Palette</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">"Warm Mineral" palette: Cloud Cream, Charcoal Dusk, Warm Amber, Soft Patina, Warm Putty.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d26">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Logo Direction</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Restrained serif wordmark, neutral-warm across all niches. Labels carry per-collection personality.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d27">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Flagship Scent Selection</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">6 scents: Cinnamon Vanilla, Clean Cotton, White Sage &amp; Lavender, Sea Salt + Orchid, Coconut Cream + Cardamom, Christmas Warmth (Q4).</div>
+      </div>
+    </div>
+
+    <div class="decision-category">Custom Candle Service</div>
+
+    <div class="decision-card" data-owner="jose" data-status="open" data-id="d28">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Etsy Account Holder</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
+        <div class="decision-outcome">Who registers the business Etsy seller account? Needs payment method tied to business entity.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="open" data-id="d29">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Jar Types for Custom Line</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">All 4 Lumient jar types or start with 1-2 (e.g., Amber 9oz + Glass 11oz) to reduce complexity?</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="robert" data-status="open" data-id="d30">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Processing Time Commitment</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">5-7 business days (aggressive) or 7-10 business days (safer)? Image processing + Lumient production ~10 days + shipping.</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="ricardo" data-status="open" data-id="d31">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Etsy Developer Account</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span></div>
+        <div class="decision-outcome">Someone must register at etsy.com/developers for API keys. Ricardo or Robert (tech)?</div>
+      </div>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="open" data-id="d32">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Scent Library Scope</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
+        <div class="decision-outcome">Should custom candle listings support all 12 Lumient scents or a limited subset? Complexity vs. variety trade-off.</div>
+      </div>
+    </div>
+
+  </div><!-- /decision-list -->
+
+</div><!-- /decision-board -->
+</div><!-- /tab-decisions -->
 
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <!-- ═══════════════ JAVASCRIPT ═══════════════════════════════════════ -->
@@ -6842,9 +7399,12 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   });
 
   // ═══════════════ TAB SWITCHING ═══════════════
-  var MORE_TABS = ['presentation','launch-guide','revenue-forecast','product-line','citations','custom-strategy','roles'];
+  var MORE_TABS = ['presentation','launch-guide','revenue-forecast','product-line','citations','custom-strategy','roles','decisions'];
 
   function switchTab(tabId) {
+    // Close mobile nav if open
+    var navTabs = document.querySelector('.nav-tabs');
+    if (navTabs) navTabs.classList.remove('open');
     // Hide all tab content
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     // Deactivate all tab buttons (top-level)
@@ -7098,6 +7658,10 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         item.classList.add('completed');
         if (chk) chk.classList.add('checked');
         setStamp(item);
+        // Clear flag when marking done
+        var flagEl = item.querySelector('.task-flag');
+        if (flagEl) flagEl.classList.remove('flagged');
+        item.classList.remove('flagged');
         var col1 = item.closest('.task-column');
         if (col1) moveCompletedToBottom(col1);
         logAction('completed "' + getTaskText(item) + '"');
@@ -7143,11 +7707,11 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       var flagRow = document.createElement('div');
       var isFlagged = item.classList.contains('flagged');
       flagRow.className = 'task-status-option';
-      if (isFlagged) flagRow.style.color = '#ef4444';
+      if (isFlagged) flagRow.style.color = '#B44032';
       var flagIcon = document.createElement('span');
       flagIcon.className = 'task-note-icon';
       flagIcon.textContent = '\u26A0';
-      if (isFlagged) flagIcon.style.color = '#ef4444';
+      if (isFlagged) flagIcon.style.color = '#B44032';
       flagRow.appendChild(flagIcon);
       flagRow.appendChild(document.createTextNode(isFlagged ? 'Remove Concern' : 'Flag Concern'));
       flagRow.addEventListener('click', function(e) {
@@ -7160,7 +7724,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       var dueRow = document.createElement('div');
       var hasDue = item.dataset.dueDate && item.dataset.dueDate.length > 0;
       dueRow.className = 'task-status-option';
-      if (hasDue) dueRow.style.color = '#22c55e';
+      if (hasDue) dueRow.style.color = '#4A7A6F';
       var dueIcon = document.createElement('span');
       dueIcon.className = 'task-note-icon';
       dueIcon.textContent = '\u2713';
@@ -7522,6 +8086,8 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     if (undoBtn) undoBtn.addEventListener('click', performUndo);
     updateUndoBtn();
 
+    var _saveInFlight = false;
+    var _saveQueued = false;
     function saveTasks() {
       snapshotForUndo();
       var data = {};
@@ -7561,11 +8127,19 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         });
       });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      // Sync to Supabase
+      // Sync to Supabase (serialized to prevent duplicate inserts)
       if (_sbReady && sbRows.length) {
+        if (_saveInFlight) { _saveQueued = true; return; }
+        _saveInFlight = true;
         _lastSaveTime = Date.now();
         _sb.from('tasks').delete().neq('id', 0).then(function() {
-          _sb.from('tasks').insert(sbRows).then(function() {});
+          return _sb.from('tasks').insert(sbRows);
+        }).then(function() {
+          _saveInFlight = false;
+          if (_saveQueued) { _saveQueued = false; saveTasks(); }
+        }).catch(function() {
+          _saveInFlight = false;
+          if (_saveQueued) { _saveQueued = false; saveTasks(); }
         });
       }
     }
@@ -7644,9 +8218,13 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     function loadTasksFromSupabase() {
       return _sb.from('tasks').select('*').order('sort_order').then(function(res) {
         if (res.error || !res.data || !res.data.length) return false;
-        // Group by phase-member
+        // Group by phase-member, deduplicating by task_id+text
         var data = {};
+        var seen = {};
         res.data.forEach(function(row) {
+          var dedupKey = row.phase + '-' + row.member + '-' + (row.task_id || row.text);
+          if (seen[dedupKey]) return;
+          seen[dedupKey] = true;
           var key = row.phase + '-' + row.member;
           if (!data[key]) data[key] = [];
           data[key].push({
@@ -7667,8 +8245,13 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     function loadAuditFromSupabase() {
       return _sb.from('audit_log').select('*').order('created_at', {ascending: false}).limit(50).then(function(res) {
         if (res.error || !res.data) return;
-        var logs = res.data.map(function(r) {
-          return {action: r.action, user: r.user_name, time: r.created_at};
+        var seen = {};
+        var logs = [];
+        res.data.forEach(function(r) {
+          var dedupKey = r.action + '|' + r.user_name + '|' + r.created_at;
+          if (seen[dedupKey]) return;
+          seen[dedupKey] = true;
+          logs.push({action: r.action, user: r.user_name, time: r.created_at});
         });
         localStorage.setItem('ae-candle-audit', JSON.stringify(logs));
         renderAuditLog();
@@ -7690,7 +8273,6 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
           });
         })
         .on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'audit_log'}, function() {
-          if (Date.now() - _lastSaveTime < 3000) return;
           loadAuditFromSupabase();
         })
         .on('postgres_changes', {event: '*', schema: 'public', table: 'deleted_tasks'}, function() {
@@ -7717,6 +8299,9 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         columns.forEach(function(col) {
           if (col.querySelector('.task-item.completed')) moveCompletedToBottom(col);
         });
+        // Re-save deduplicated data back to Supabase to clean up duplicates
+        _sbReady = true;
+        saveTasks();
       }
       _sbReady = true;
       subscribeToChanges();
@@ -7739,6 +8324,25 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     });
 
     // ── Drag & Drop ──
+    var _dragScrollRAF = null;
+    var _dragClientY = 0;
+    var DRAG_SCROLL_ZONE = 50;
+    var DRAG_SCROLL_SPEED = 8;
+    function startDragScroll() {
+      function scrollStep() {
+        var viewH = window.innerHeight;
+        if (_dragClientY < DRAG_SCROLL_ZONE) {
+          window.scrollBy(0, -DRAG_SCROLL_SPEED * (1 - _dragClientY / DRAG_SCROLL_ZONE));
+        } else if (_dragClientY > viewH - DRAG_SCROLL_ZONE) {
+          window.scrollBy(0, DRAG_SCROLL_SPEED * (1 - (viewH - _dragClientY) / DRAG_SCROLL_ZONE));
+        }
+        _dragScrollRAF = requestAnimationFrame(scrollStep);
+      }
+      _dragScrollRAF = requestAnimationFrame(scrollStep);
+    }
+    function stopDragScroll() {
+      if (_dragScrollRAF) { cancelAnimationFrame(_dragScrollRAF); _dragScrollRAF = null; }
+    }
     function getDropTarget(col, y) {
       var items = col.querySelectorAll('.task-item:not(.dragging)');
       var closest = null; var closestOffset = Number.NEGATIVE_INFINITY;
@@ -7784,12 +8388,15 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         e.target.id = e.target.id || 'task-' + Date.now() + '-' + Math.random().toString(36).substr(2,5);
         e.dataTransfer.setData('text/plain', e.target.id);
         setTimeout(function() { e.target.classList.add('dragging'); }, 0);
+        startDragScroll();
       }
     });
     document.addEventListener('dragend', function(e) {
       if (e.target.classList && e.target.classList.contains('task-item')) e.target.classList.remove('dragging');
       document.querySelectorAll('.task-drop-indicator').forEach(function(ind) { ind.remove(); });
+      stopDragScroll();
     });
+    document.addEventListener('dragover', function(e) { _dragClientY = e.clientY; });
     board.addEventListener('click', function(e) {
       if (e.target.classList.contains('task-check')) {
         e.stopPropagation();
@@ -7985,10 +8592,6 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     // ── Deleted Tasks Section ──
     function loadDeletedTasks() {
       if (!_sbReady) return;
-      var sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-      // Auto-cleanup old entries
-      _sb.from('deleted_tasks').delete().lt('deleted_at', sevenDaysAgo).then(function() {});
-      // Load recent
       _sb.from('deleted_tasks').select('*').order('deleted_at', {ascending: false}).then(function(res) {
         renderDeletedTasks(res.data || []);
       });
@@ -7998,14 +8601,14 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       var section = document.getElementById('deleted-tasks-section');
       if (!section) return;
       if (!rows.length) {
-        section.innerHTML = '<h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Recently Deleted Tasks <span style="font-size:0.65rem;font-weight:400;opacity:0.6;">(auto-clears after 7 days)</span></h4><p style="font-style:italic;font-size:0.78rem;color:var(--text-dim);">No deleted tasks.</p>';
+        section.innerHTML = '<h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Deleted Tasks</h4><p style="font-style:italic;font-size:0.78rem;color:var(--text-dim);">No deleted tasks.</p>';
         return;
       }
-      var html = '<h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Recently Deleted Tasks <span style="font-size:0.65rem;font-weight:400;opacity:0.6;">(auto-clears after 7 days)</span></h4>';
+      var html = '<h4 style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Deleted Tasks</h4>';
       rows.forEach(function(r) {
         var dd = new Date(r.deleted_at);
         var ts = (dd.getMonth()+1) + '/' + dd.getDate() + '/' + String(dd.getFullYear()).slice(-2);
-        html += '<div style="display:flex;align-items:center;gap:8px;padding:6px 8px;margin:4px 0;background:var(--surface);border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:6px;font-size:0.78rem;">'
+        html += '<div style="display:flex;align-items:center;gap:8px;padding:6px 8px;margin:4px 0;background:var(--surface);border:1px solid var(--border);border-left:3px solid #B44032;border-radius:6px;font-size:0.78rem;">'
           + '<span style="flex:1;color:var(--text);text-decoration:line-through;opacity:0.7;">' + escapeHtmlInline(r.text) + '</span>'
           + '<span style="color:var(--text-dim);font-size:0.65rem;white-space:nowrap;">' + escapeHtmlInline(r.member) + ' &middot; ' + escapeHtmlInline(r.deleted_by) + ', ' + ts + '</span>'
           + '<button onclick="restoreTask(' + r.id + ')" style="background:none;border:1px solid var(--glow-green);color:var(--glow-green);font-size:0.65rem;padding:2px 8px;border-radius:4px;cursor:pointer;white-space:nowrap;">Restore</button>'
@@ -8092,13 +8695,13 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     };
 
     // CSS vars for chart colors
-    var CYAN = '#00e5ff';
-    var PURPLE = '#a855f7';
-    var GREEN = '#22d3ee';
-    var ORANGE = '#f97316';
-    var PINK = '#ec4899';
-    var SURFACE = '#1a1a26';
-    var DIM = '#8888a0';
+    var CYAN = '#C08B5C';
+    var PURPLE = '#7A9E99';
+    var GREEN = '#4A7A6F';
+    var ORANGE = '#B87333';
+    var PINK = '#A0522D';
+    var SURFACE = '#FFFFFF';
+    var DIM = '#8C857D';
 
     function initForecastCharts() {
       // Scenario chart — 5 lines over 36 months
@@ -8129,7 +8732,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
           datasets: [
             { label: 'Ceiling (90th)', data: genScenario(84000, 336000), borderColor: CYAN, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
             { label: 'Above Avg (75th)', data: genScenario(42000, 210000), borderColor: GREEN, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
-            { label: 'Median (50th)', data: genScenario(27300, 105000), borderColor: PURPLE, backgroundColor: 'rgba(168,85,247,0.1)', borderWidth: 3, pointRadius: 0, tension: 0.3, fill: true },
+            { label: 'Median (50th)', data: genScenario(27300, 105000), borderColor: PURPLE, backgroundColor: 'rgba(122,158,153,0.12)', borderWidth: 3, pointRadius: 0, tension: 0.3, fill: true },
             { label: 'Below Avg (40th)', data: genScenario(16800, 50400), borderColor: ORANGE, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 },
             { label: 'Floor (25th)', data: genScenario(8400, 23100), borderColor: PINK, backgroundColor: 'transparent', borderWidth: 2, pointRadius: 0, tension: 0.3 }
           ]
@@ -8144,8 +8747,8 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
             }
           },
           scales: {
-            x: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 12 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + (v/1000).toFixed(0) + 'K'; } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            x: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 12 }, grid: { color: 'rgba(58,54,51,0.06)' } },
+            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + (v/1000).toFixed(0) + 'K'; } }, grid: { color: 'rgba(58,54,51,0.06)' } }
           }
         }
       });
@@ -8185,7 +8788,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
           },
           scales: {
             x: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 } }, grid: { display: false } },
-            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + v.toLocaleString(); } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + v.toLocaleString(); } }, grid: { color: 'rgba(58,54,51,0.06)' } }
           }
         }
       });
@@ -8306,7 +8909,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
             {
               label: 'Revenue',
               data: revenues,
-              backgroundColor: 'rgba(0,229,255,0.5)',
+              backgroundColor: 'rgba(192,139,92,0.5)',
               borderColor: CYAN,
               borderWidth: 1,
               borderRadius: 4,
@@ -8337,7 +8940,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
           },
           scales: {
             x: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 } }, grid: { display: false } },
-            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + v.toLocaleString(); } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            y: { ticks: { color: DIM, font: { family: 'JetBrains Mono', size: 10 }, callback: function(v) { return '$' + v.toLocaleString(); } }, grid: { color: 'rgba(58,54,51,0.06)' } }
           }
         }
       });
@@ -8349,6 +8952,170 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       });
       localStorage.setItem('ae-revenue-calc', JSON.stringify(saveData));
     }
+  })();
+
+  // ═══════════════ DECISION BOARD ═══════════════
+  (function() {
+    var board = document.getElementById('decision-list');
+    if (!board) return;
+
+    var STORAGE_KEY = 'ae-decisions-v1';
+    var STATUS_ORDER = ['open', 'proposed', 'decided'];
+    var STATUS_LABELS = {open: 'Open', proposed: 'Proposed', decided: 'Decided'};
+
+    var activeOwnerFilter = 'all';
+    var activeStatusFilter = 'all';
+    var activeDropdown = null;
+
+    // ── Filter by Owner ──
+    document.getElementById('decision-filter-owner').addEventListener('click', function(e) {
+      var btn = e.target.closest('.decision-filter-btn');
+      if (!btn) return;
+      this.querySelectorAll('.decision-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeOwnerFilter = btn.dataset.filter;
+      applyFilters();
+    });
+
+    // ── Filter by Status ──
+    document.getElementById('decision-filter-status').addEventListener('click', function(e) {
+      var btn = e.target.closest('.decision-filter-btn');
+      if (!btn) return;
+      this.querySelectorAll('.decision-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeStatusFilter = btn.dataset.filter;
+      applyFilters();
+    });
+
+    function applyFilters() {
+      board.querySelectorAll('.decision-card').forEach(function(card) {
+        var ownerMatch = activeOwnerFilter === 'all' || card.dataset.owner === activeOwnerFilter;
+        var statusMatch = activeStatusFilter === 'all' || card.dataset.status === activeStatusFilter;
+        card.classList.toggle('hidden', !(ownerMatch && statusMatch));
+      });
+      // Show/hide category headers
+      board.querySelectorAll('.decision-category').forEach(function(cat) {
+        var next = cat.nextElementSibling;
+        var hasVisible = false;
+        while (next && !next.classList.contains('decision-category')) {
+          if (next.classList.contains('decision-card') && !next.classList.contains('hidden')) hasVisible = true;
+          next = next.nextElementSibling;
+        }
+        cat.style.display = hasVisible ? '' : 'none';
+      });
+    }
+
+    // ── Status Dropdown ──
+    function closeDropdown() {
+      if (activeDropdown) { activeDropdown.remove(); activeDropdown = null; }
+    }
+
+    function showStatusDropdown(card, btn) {
+      closeDropdown();
+      var currentStatus = card.dataset.status;
+      var dd = document.createElement('div');
+      dd.className = 'decision-status-dropdown';
+      STATUS_ORDER.forEach(function(s) {
+        var opt = document.createElement('button');
+        opt.className = 'decision-status-option' + (s === currentStatus ? ' active-' + s : '');
+        opt.textContent = STATUS_LABELS[s];
+        opt.onclick = function(e) {
+          e.stopPropagation();
+          setStatus(card, s);
+          closeDropdown();
+        };
+        dd.appendChild(opt);
+      });
+      var rect = btn.getBoundingClientRect();
+      dd.style.position = 'fixed';
+      dd.style.top = (rect.bottom + 4) + 'px';
+      dd.style.left = rect.left + 'px';
+      document.body.appendChild(dd);
+      activeDropdown = dd;
+    }
+
+    function setStatus(card, newStatus) {
+      card.dataset.status = newStatus;
+      var btn = card.querySelector('.decision-status-btn');
+      btn.className = 'decision-status-btn s-' + newStatus;
+      btn.textContent = STATUS_LABELS[newStatus];
+      // Update decided-by display
+      var decidedByEl = card.querySelector('.decision-decided-by');
+      if (newStatus === 'decided' && !decidedByEl) {
+        var meta = card.querySelector('.decision-meta');
+        var span = document.createElement('span');
+        span.className = 'decision-decided-by';
+        span.textContent = 'Finalized';
+        meta.appendChild(span);
+      }
+      saveDecisions();
+      updateProgress();
+      // Log to shared audit log
+      var title = card.querySelector('.decision-title').textContent;
+      if (typeof logAction === 'function') {
+        logAction('decision: ' + STATUS_LABELS[newStatus].toLowerCase() + ' "' + title + '"');
+      }
+    }
+
+    // ── Click Handler ──
+    board.addEventListener('click', function(e) {
+      var btn = e.target.closest('.decision-status-btn');
+      if (btn) {
+        e.stopPropagation();
+        var card = btn.closest('.decision-card');
+        showStatusDropdown(card, btn);
+        return;
+      }
+    });
+
+    document.addEventListener('click', function() { closeDropdown(); });
+
+    // ── Progress ──
+    function updateProgress() {
+      var cards = board.querySelectorAll('.decision-card');
+      var total = cards.length;
+      var decided = 0, proposed = 0, open = 0;
+      cards.forEach(function(c) {
+        if (c.dataset.status === 'decided') decided++;
+        else if (c.dataset.status === 'proposed') proposed++;
+        else open++;
+      });
+      var textEl = document.getElementById('decision-progress-text');
+      var decidedBar = document.getElementById('decision-progress-decided');
+      var proposedBar = document.getElementById('decision-progress-proposed');
+      if (textEl) textEl.textContent = decided + ' decided \u00b7 ' + proposed + ' proposed \u00b7 ' + open + ' open';
+      if (decidedBar) decidedBar.style.width = (total ? (decided / total * 100) : 0) + '%';
+      if (proposedBar) proposedBar.style.width = (total ? (proposed / total * 100) : 0) + '%';
+    }
+
+    // ── Save / Load ──
+    function saveDecisions() {
+      var data = {};
+      board.querySelectorAll('.decision-card').forEach(function(card) {
+        data[card.dataset.id] = { status: card.dataset.status };
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      // Supabase sync can be added when table is created
+    }
+
+    function loadDecisions() {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      var data = JSON.parse(saved);
+      board.querySelectorAll('.decision-card').forEach(function(card) {
+        var id = card.dataset.id;
+        if (data[id] && data[id].status) {
+          card.dataset.status = data[id].status;
+          var btn = card.querySelector('.decision-status-btn');
+          btn.className = 'decision-status-btn s-' + data[id].status;
+          btn.textContent = STATUS_LABELS[data[id].status];
+        }
+      });
+    }
+
+    // ── Init ──
+    loadDecisions();
+    updateProgress();
   })();
 </script>
 
