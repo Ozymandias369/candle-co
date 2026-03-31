@@ -1592,6 +1592,55 @@
     border-radius: 6px; color: #B44032; cursor: pointer; font-size: 0.82rem; margin-right: auto;
   }
   /* Progress Bar */
+  /* ═══════════════ DASHBOARD ═══════════════ */
+  .dashboard-section { margin-bottom: 24px; }
+  .dashboard-heading {
+    font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 10px;
+  }
+  .dashboard-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  }
+  .dashboard-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; box-shadow: 0 1px 3px rgba(58,54,51,0.04);
+  }
+  .dashboard-card-name {
+    font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 2px;
+  }
+  .dashboard-card-role {
+    font-size: 0.65rem; color: var(--text-dim); margin-bottom: 10px;
+  }
+  .dashboard-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 8px; background: var(--surface); border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .dashboard-item-text {
+    font-size: 0.78rem; color: var(--text); line-height: 1.4; flex: 1;
+  }
+  .dashboard-status-btn {
+    flex-shrink: 0; padding: 2px 8px; border-radius: 10px; font-size: 0.6rem;
+    font-weight: 700; border: 1px solid; cursor: pointer; background: none;
+    text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
+  }
+  .dashboard-status-btn.s-todo { color: var(--glow-orange); border-color: var(--glow-orange); }
+  .dashboard-status-btn.s-wip { color: var(--glow-cyan); border-color: var(--glow-cyan); }
+  .dashboard-status-btn.s-done { color: var(--glow-green); border-color: var(--glow-green); }
+  .dashboard-status-btn.s-open { color: var(--glow-orange); border-color: var(--glow-orange); }
+  .dashboard-status-btn.s-proposed { color: var(--glow-cyan); border-color: var(--glow-cyan); }
+  .dashboard-status-btn.s-decided { color: var(--glow-green); border-color: var(--glow-green); }
+  .dashboard-empty {
+    font-size: 0.75rem; color: var(--glow-green); font-style: italic;
+    padding: 8px; text-align: center;
+  }
+  .dashboard-card.all-founders {
+    grid-column: 1 / -1; border-left: 3px solid var(--glow-purple);
+  }
+  @media (max-width: 900px) { .dashboard-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+  /* Progress Bar */
   .task-progress-bar {
     display: flex; align-items: center; gap: 12px;
     padding: 10px 14px; margin-bottom: 16px;
@@ -3226,6 +3275,12 @@
 
   <h1 style="text-align:center;margin-bottom:8px;font-size:clamp(1.2rem,2.5vw,1.8rem);">Task Board</h1>
   <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:clamp(0.75rem,1.5vw,0.9rem);">Phase 1: Etsy Launch &nbsp;|&nbsp; Phase 2: Custom Candle Pipeline</p>
+
+  <!-- Dashboard -->
+  <div class="dashboard-section" id="task-dashboard">
+    <h3 class="dashboard-heading">Next Up</h3>
+    <div class="dashboard-grid" id="task-dashboard-grid"></div>
+  </div>
 
   <!-- Progress Bar -->
   <div class="task-progress-bar" id="task-progress">
@@ -6920,6 +6975,12 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   <h1 style="text-align:center;margin-bottom:8px;font-size:clamp(1.2rem,2.5vw,1.8rem);">Decision Board</h1>
   <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:clamp(0.75rem,1.5vw,0.9rem);">Track open questions, proposals, and finalized decisions across all AORs.</p>
 
+  <!-- Dashboard -->
+  <div class="dashboard-section" id="decision-dashboard">
+    <h3 class="dashboard-heading">Next Up</h3>
+    <div class="dashboard-grid" id="decision-dashboard-grid"></div>
+  </div>
+
   <!-- Progress Bar -->
   <div class="decision-progress-bar" id="decision-progress">
     <span id="decision-progress-text">0 decided · 0 proposed · 0 open</span>
@@ -7804,7 +7865,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         if (col2) { restoreOriginalPosition(item, col2); moveCompletedToBottom(col2); }
         logAction('reopened "' + getTaskText(item) + '"');
       }
-      saveTasks(); updateBlockedStates(); updateProgress();
+      saveTasks(); updateBlockedStates(); updateProgress(); renderTaskDashboard();
     }
 
     // ── Status Dropdown ──
@@ -8423,12 +8484,49 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         if (dueEl) renderDueDate(dueEl, item);
       });
     }
-    renderAuditLog(); updateBlockedStates(); updateProgress();
+    // ── Task Dashboard ──
+    var ROLES = {ricardo: 'Creative / Tech', robert: 'Operations', jose: 'Store / Marketing', mark: 'Finance'};
+    function renderTaskDashboard() {
+      var grid = document.getElementById('task-dashboard-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      TEAM.forEach(function(name) {
+        var member = name.toLowerCase();
+        var col = board.querySelector('.task-column[data-phase="1"][data-member="' + member + '"]');
+        var card = document.createElement('div');
+        card.className = 'dashboard-card';
+        card.innerHTML = '<div class="dashboard-card-name">' + name + '</div>'
+          + '<div class="dashboard-card-role">' + (ROLES[member] || '') + '</div>';
+        var nextItem = col ? col.querySelector('.task-item:not(.completed)') : null;
+        if (nextItem) {
+          var status = getStatus(nextItem);
+          var statusLabel = STATUS_LABELS[status] || 'In Queue';
+          var statusClass = status === 'wip' ? 's-wip' : (status === 'done' ? 's-done' : 's-todo');
+          var itemDiv = document.createElement('div');
+          itemDiv.className = 'dashboard-item';
+          var btn = document.createElement('button');
+          btn.className = 'dashboard-status-btn ' + statusClass;
+          btn.textContent = statusLabel;
+          btn.onclick = function(e) { e.stopPropagation(); showStatusDropdown(nextItem, nextItem.querySelector('.task-check')); };
+          itemDiv.appendChild(btn);
+          var text = document.createElement('span');
+          text.className = 'dashboard-item-text';
+          text.textContent = getTaskText(nextItem);
+          itemDiv.appendChild(text);
+          card.appendChild(itemDiv);
+        } else {
+          card.innerHTML += '<div class="dashboard-empty">All caught up</div>';
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    renderAuditLog(); updateBlockedStates(); updateProgress(); renderTaskDashboard();
 
     // Then load fresh from Supabase (async)
     loadTasksFromSupabase().then(function(loaded) {
       if (loaded) {
-        updateBlockedStates(); updateProgress();
+        updateBlockedStates(); updateProgress(); renderTaskDashboard();
         columns.forEach(function(col) {
           if (col.querySelector('.task-item.completed')) moveCompletedToBottom(col);
         });
@@ -9208,6 +9306,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       updateFinalizeBtn(card);
       saveDecisions();
       updateProgress();
+      if (typeof renderDecisionDashboard === 'function') renderDecisionDashboard();
       var title = card.querySelector('.decision-title').textContent;
       if (typeof logAction === 'function') logAction('decision: ' + STATUS_LABELS[newStatus].toLowerCase() + ' "' + title + '"');
     }
@@ -9728,12 +9827,68 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       }
     };
 
+    // ── Decision Dashboard ──
+    var D_ROLES = {ricardo: 'Creative / Tech', robert: 'Operations', jose: 'Store / Marketing', mark: 'Finance', 'all-founders': 'All Founders'};
+    function renderDecisionDashboard() {
+      var grid = document.getElementById('decision-dashboard-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      ['ricardo', 'robert', 'jose', 'mark'].forEach(function(owner) {
+        var nextCard = board.querySelector('.decision-card[data-owner="' + owner + '"]:not([data-status="decided"])');
+        var card = document.createElement('div');
+        card.className = 'dashboard-card';
+        card.innerHTML = '<div class="dashboard-card-name">' + (OWNER_LABELS[owner] || owner) + '</div>'
+          + '<div class="dashboard-card-role">' + (D_ROLES[owner] || '') + '</div>';
+        if (nextCard) {
+          var status = nextCard.dataset.status;
+          var itemDiv = document.createElement('div');
+          itemDiv.className = 'dashboard-item';
+          var btn = document.createElement('button');
+          btn.className = 'dashboard-status-btn s-' + status;
+          btn.textContent = STATUS_LABELS[status] || 'Open';
+          (function(nc) { btn.onclick = function(e) { e.stopPropagation(); showStatusDropdown(nc, nc.querySelector('.decision-status-btn')); }; })(nextCard);
+          itemDiv.appendChild(btn);
+          var text = document.createElement('span');
+          text.className = 'dashboard-item-text';
+          text.textContent = nextCard.querySelector('.decision-title').textContent;
+          itemDiv.appendChild(text);
+          card.appendChild(itemDiv);
+        } else {
+          card.innerHTML += '<div class="dashboard-empty">All caught up</div>';
+        }
+        grid.appendChild(card);
+      });
+      // All Founders row
+      var afCard = board.querySelector('.decision-card[data-owner="all-founders"]:not([data-status="decided"])');
+      if (afCard) {
+        var card = document.createElement('div');
+        card.className = 'dashboard-card all-founders';
+        card.innerHTML = '<div class="dashboard-card-name">All Founders</div>'
+          + '<div class="dashboard-card-role">Shared Decision</div>';
+        var status = afCard.dataset.status;
+        var itemDiv = document.createElement('div');
+        itemDiv.className = 'dashboard-item';
+        var btn = document.createElement('button');
+        btn.className = 'dashboard-status-btn s-' + status;
+        btn.textContent = STATUS_LABELS[status] || 'Open';
+        (function(nc) { btn.onclick = function(e) { e.stopPropagation(); showStatusDropdown(nc, nc.querySelector('.decision-status-btn')); }; })(afCard);
+        itemDiv.appendChild(btn);
+        var text = document.createElement('span');
+        text.className = 'dashboard-item-text';
+        text.textContent = afCard.querySelector('.decision-title').textContent;
+        itemDiv.appendChild(text);
+        card.appendChild(itemDiv);
+        grid.appendChild(card);
+      }
+    }
+
     // ── Init ──
     loadDecisions();
     normalizeCards();
     board.querySelectorAll('.decision-card').forEach(function(card) { updateFinalizeBtn(card); });
     updateProgress();
     updateFinalizedCount();
+    renderDecisionDashboard();
   })();
 </script>
 
