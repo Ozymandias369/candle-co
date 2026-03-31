@@ -29,13 +29,18 @@
   :focus-visible { outline: 2px solid var(--glow-cyan); outline-offset: 2px; border-radius: 4px; }
   :focus:not(:focus-visible) { outline: none; }
 
-  html, body {
-    width: 100%; height: 100%;
-    overflow: auto;
+  html {
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+  }
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+    position: relative;
   }
 
   /* Background */
@@ -48,12 +53,12 @@
     pointer-events: none; z-index: 0;
   }
   .bg-glow {
-    position: fixed; width: 600px; height: 600px;
+    position: fixed; width: 40vw; height: 40vw; max-width: 500px; max-height: 500px;
     border-radius: 50%; filter: blur(180px); opacity: 0.10;
     pointer-events: none; z-index: 0;
   }
-  .bg-glow.cyan { background: var(--glow-cyan); top: -200px; right: -100px; }
-  .bg-glow.purple { background: var(--glow-purple); bottom: -200px; left: -100px; }
+  .bg-glow.cyan { background: var(--glow-cyan); top: -10vw; right: 0; }
+  .bg-glow.purple { background: var(--glow-purple); bottom: -10vw; left: 0; }
 
   /* ═══════════════ TOP NAV ═══════════════ */
   .top-nav {
@@ -63,32 +68,36 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center;
     padding: 0 24px;
     box-shadow: 0 1px 4px rgba(58,54,51,0.06);
+    overflow: visible;
   }
   .top-nav .logo {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem; font-weight: 400;
-    letter-spacing: 1px; color: var(--glow-cyan);
-    white-space: nowrap;
+    font-size: 1rem; font-weight: 400;
+    letter-spacing: 0.5px; color: var(--glow-cyan);
+    white-space: nowrap; flex-shrink: 0;
   }
   .top-nav .nav-tabs {
-    display: flex; align-items: center; gap: 4px;
-    overflow: visible;
+    display: flex; align-items: center; gap: 2px;
+    overflow: visible; margin-left: auto;
   }
   .tab-btn {
     background: none; border: none;
     color: var(--text-dim); font-family: 'Inter', sans-serif;
     font-size: 0.85rem; font-weight: 500;
-    padding: 16px 16px; cursor: pointer;
+    padding: 16px 10px; cursor: pointer;
     border-bottom: 2px solid transparent;
     white-space: nowrap; transition: color 0.2s, border-color 0.2s;
-    text-decoration: none; display: inline-block;
+    text-decoration: none; display: inline-block; flex-shrink: 0;
   }
   .tab-btn:hover { color: var(--text); }
   .tab-btn.active { color: var(--glow-cyan); border-bottom-color: var(--glow-cyan); }
   a.tab-btn { text-decoration: none; }
+  @media (max-width: 900px) {
+    .tab-btn { padding: 16px 8px; font-size: 0.78rem; }
+  }
 
   /* ═══════════════ MORE MENU ═══════════════ */
   .more-menu-wrap {
@@ -644,7 +653,7 @@
   .forecast-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .forecast-section {
     margin-bottom: 60px;
@@ -849,7 +858,7 @@
     .two-col-cards { grid-template-columns: 1fr; }
     .calc-grid { grid-template-columns: 1fr; }
     .calc-results { grid-template-columns: repeat(2, 1fr); }
-    .forecast-container { padding: 24px 12px 80px; }
+    .forecast-container { padding: 72px 12px 80px; }
   }
 
   /* ═══════════════ PRODUCT LINE TAB ═══════════════ */
@@ -860,7 +869,7 @@
   .product-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .product-section {
     margin-bottom: 60px;
@@ -972,7 +981,7 @@
   }
   @media (max-width: 700px) {
     .candle-meta { grid-template-columns: repeat(2, 1fr); }
-    .product-container { padding: 24px 12px 80px; }
+    .product-container { padding: 72px 12px 80px; }
   }
 
   /* ═══════════════ CITATIONS TAB ═══════════════ */
@@ -983,7 +992,7 @@
   .citations-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .cite-section {
     margin-bottom: 48px;
@@ -1054,7 +1063,7 @@
   .strategy-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .strategy-section {
     margin-bottom: 60px;
@@ -1129,7 +1138,7 @@
   .roles-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .roles-section {
     margin-bottom: 60px;
@@ -1231,7 +1240,7 @@
   @media (max-width: 700px) {
     .founder-cards { grid-template-columns: 1fr; }
     .decision-cards { grid-template-columns: 1fr; }
-    .roles-container { padding: 24px 12px 80px; }
+    .roles-container { padding: 72px 12px 80px; }
   }
 
   /* ═══════════════ OVERHEAD TAB ═══════════════ */
@@ -1242,7 +1251,7 @@
   .overhead-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
   }
   .overhead-phase {
     margin-bottom: 60px;
@@ -1302,7 +1311,13 @@
   .guide-container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 72px 24px 80px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .guide-container.wide {
+    max-width: 100%;
+    padding: 72px 24px 80px;
   }
   .guide-section-nav {
     display: flex; flex-wrap: wrap; gap: 8px;
@@ -1601,7 +1616,7 @@
   .task-filter-btn:hover { border-color: var(--glow-cyan); color: var(--text); }
   .task-filter-btn.active { background: rgba(192,139,92,0.15); border-color: var(--glow-cyan); color: var(--glow-cyan); }
   /* ═══════════════ DECISION BOARD ═══════════════ */
-  .decision-board { max-width: 960px; margin: 0 auto; }
+  .decision-board { max-width: 960px; margin: 0 auto; padding: 72px 24px 80px; }
   .decision-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
   .decision-filter-row .filter-label { font-size: 0.72rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px; }
   .decision-filter-btn {
@@ -1651,6 +1666,82 @@
   .decision-progress-decided { background: var(--glow-green); transition: width 0.3s; }
   .decision-progress-proposed { background: var(--glow-cyan); transition: width 0.3s; }
   .decision-card.hidden { display: none; }
+  .decision-card.urgent { border-left: 3px solid #B44032; }
+  .decision-urgent-badge { font-size: 0.6rem; font-weight: 800; color: #B44032; text-transform: uppercase; letter-spacing: 0.05em; }
+  .decision-flag {
+    flex-shrink: 0; background: none; border: none; cursor: pointer; font-size: 0.85rem;
+    color: var(--text-dim); opacity: 0.4; transition: opacity 0.2s, color 0.2s;
+    min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;
+  }
+  .decision-flag:hover { opacity: 1; }
+  .decision-flag.flagged { opacity: 1; color: #B44032; }
+  .decision-finalize-btn {
+    background: none; border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+    font-size: 0.65rem; color: var(--text-dim); padding: 2px 8px; margin-left: 8px;
+    transition: all 0.2s;
+  }
+  .decision-finalize-btn:hover { border-color: var(--glow-green); color: var(--glow-green); }
+  .decision-owner-tag { cursor: pointer; transition: background 0.2s; }
+  .decision-owner-tag:hover { background: rgba(122,158,153,0.25); }
+  #decision-finalized { margin-top: 32px; }
+  .decision-finalized-header {
+    font-size: 0.85rem; font-weight: 700; color: var(--text-dim); cursor: pointer;
+    padding: 10px 0; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+  }
+  .decision-finalized-header:hover { color: var(--text); }
+  .decision-finalized-header .toggle-arrow { transition: transform 0.2s; font-size: 0.7rem; }
+  .decision-finalized-header .toggle-arrow.collapsed { transform: rotate(-90deg); }
+  #decision-finalized-list { }
+  #decision-finalized-list.collapsed { display: none; }
+  #decision-finalized-list .decision-card { opacity: 0.6; }
+  .decision-restore-btn {
+    background: none; border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+    font-size: 0.65rem; color: var(--text-dim); padding: 2px 8px;
+    transition: all 0.2s;
+  }
+  .decision-restore-btn:hover { border-color: var(--glow-cyan); color: var(--glow-cyan); }
+  .decision-card { cursor: grab; }
+  .decision-card.dragging { opacity: 0.4; }
+  .decision-drop-indicator { height: 2px; background: var(--glow-cyan); border-radius: 1px; margin: 2px 0; }
+  .decision-add-btn {
+    display: block; width: 100%; padding: 10px; margin: 8px 0;
+    background: none; border: 1px dashed var(--border); border-radius: 8px;
+    color: var(--text-dim); cursor: pointer; font-size: 0.8rem; font-weight: 500;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .decision-add-btn:hover { border-color: var(--glow-cyan); color: var(--glow-cyan); }
+  .decision-title[contenteditable] { outline: none; border-bottom: 1px dashed var(--glow-cyan); }
+  .decision-outcome[contenteditable] { outline: none; border-bottom: 1px dashed var(--glow-cyan); }
+  .decision-actions-btn {
+    flex-shrink: 0; background: none; border: none; cursor: pointer;
+    font-size: 0.75rem; color: var(--text-dim); opacity: 0; transition: opacity 0.2s;
+    padding: 4px 6px; min-width: 28px; min-height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .decision-card:hover .decision-actions-btn { opacity: 1; }
+  .decision-actions-btn:hover { color: var(--text); }
+  .decision-note-badge {
+    font-size: 0.62rem; font-weight: 600;
+    color: var(--glow-purple); background: rgba(122,158,153,0.15);
+    border: 1px solid rgba(122,158,153,0.30);
+    padding: 1px 6px; border-radius: 4px;
+    margin-left: 6px; cursor: pointer;
+    position: relative;
+  }
+  .decision-note-badge:hover { background: rgba(122,158,153,0.25); }
+  .decision-note-tooltip {
+    display: none; position: absolute;
+    bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: var(--card); border: 1px solid var(--glow-purple);
+    border-radius: 8px; padding: 8px 12px;
+    font-size: 0.72rem; color: var(--text); white-space: pre-wrap;
+    max-width: 260px; min-width: 120px; z-index: 300;
+    pointer-events: none; font-weight: 400;
+    box-shadow: 0 4px 16px rgba(58,54,51,0.12);
+  }
+  .decision-note-badge:hover .decision-note-tooltip { display: block; }
+  .decision-note-icon { font-size: 0.72rem; margin-right: 4px; }
+  .decision-card { position: relative; }
   .decision-status-dropdown {
     position: absolute; z-index: 200; background: var(--card);
     border: 1px solid var(--border); border-radius: 8px; padding: 4px;
@@ -1706,8 +1797,8 @@
     .top-nav { padding: 0 12px; }
     .top-nav .logo { font-size: 0.9rem; }
     .tab-btn { font-size: 0.78rem; padding: 16px 10px; }
-    .guide-container { padding: 24px 12px 80px; }
-    .overhead-container { padding: 24px 12px 80px; }
+    .guide-container { padding: 72px 12px 80px; }
+    .overhead-container { padding: 72px 12px 80px; }
   }
 </style>
 </head>
@@ -1725,6 +1816,7 @@
   </button>
   <div class="nav-tabs">
     <button class="tab-btn active" data-tab="tasks" onclick="switchTab('tasks')">Tasks</button>
+    <button class="tab-btn" data-tab="decisions" onclick="switchTab('decisions')">Decisions</button>
     <button class="tab-btn" data-tab="research" onclick="switchTab('research')">Research</button>
     <button class="tab-btn" data-tab="overhead" onclick="switchTab('overhead')">Overhead</button>
     <div class="more-menu-wrap">
@@ -1737,11 +1829,11 @@
         <button data-tab="citations" onclick="switchTab('citations');closeMoreMenu()">Research Citations</button>
         <button data-tab="custom-strategy" onclick="switchTab('custom-strategy');closeMoreMenu()">Custom Candle Strategy</button>
         <button data-tab="roles" onclick="switchTab('roles');closeMoreMenu()">Roles &amp; Ops</button>
-        <button data-tab="decisions" onclick="switchTab('decisions');closeMoreMenu()">Decisions</button>
+        <hr style="border:none;border-top:1px solid var(--border);margin:4px 0;">
+        <a href="builder.html" style="display:block;padding:10px 18px;color:var(--text-dim);font-size:0.82rem;text-decoration:none;font-weight:500;">Candle Builder &rarr;</a>
+        <a href="business-plan-1sheet.html" target="_blank" style="display:block;padding:10px 18px;color:var(--text-dim);font-size:0.82rem;text-decoration:none;font-weight:500;">Business Plan &rarr;</a>
       </div>
     </div>
-    <a class="tab-btn" href="builder.html">Candle Builder</a>
-    <a class="tab-btn" href="business-plan-1sheet.html" target="_blank">Business Plan</a>
   </div>
   <button class="search-toggle" onclick="toggleSearch()" aria-label="Search" title="Search (Ctrl+K)">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -2495,7 +2587,7 @@
 
 <div class="guide-container">
 
-  <h1 style="text-align:center;margin-bottom:8px;font-size:2rem;">IC <span class="accent">CANDLE</span> CO. — Launch Guide</h1>
+  <h1 style="text-align:center;margin-bottom:8px;font-size:clamp(1.2rem,2.5vw,1.8rem);">Launch Guide</h1>
   <p style="text-align:center;color:var(--text-dim);margin-bottom:32px;">Complete operational playbook for launching and scaling the business.</p>
 
   <!-- Section Navigation -->
@@ -3130,10 +3222,10 @@
 <!-- ═══════════════ TASKS TAB ═════════════════════════════════════════ -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <div class="tab-content active" id="tab-tasks">
-<div class="guide-container" style="max-width:1200px;">
+<div class="guide-container wide">
 
-  <h1 style="text-align:center;margin-bottom:8px;font-size:2rem;">AMBER &amp; ESSENCE <span class="accent">CANDLE</span> CO. — Task Board</h1>
-  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;">Phase 1: Etsy Launch &nbsp;|&nbsp; Phase 2: Custom Candle Pipeline</p>
+  <h1 style="text-align:center;margin-bottom:8px;font-size:clamp(1.2rem,2.5vw,1.8rem);">Task Board</h1>
+  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:clamp(0.75rem,1.5vw,0.9rem);">Phase 1: Etsy Launch &nbsp;|&nbsp; Phase 2: Custom Candle Pipeline</p>
 
   <!-- Progress Bar -->
   <div class="task-progress-bar" id="task-progress">
@@ -3837,7 +3929,7 @@
 <div class="tab-content" id="tab-product-line">
 <div class="product-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Flagship Product Line</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Flagship Product Line</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">6 curated candles designed to hit the sweet spot: high search demand, low competition, trending aesthetics, and year-round sales. Plus 8–10 profession variants from a single SKU.</p>
 
 <nav class="product-nav">
@@ -4588,7 +4680,7 @@
 <div class="tab-content" id="tab-citations">
 <div class="citations-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Research Citations</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Research Citations</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">Every claim in the Revenue Forecast tab is traced back to its source. Claims are tagged as <span style="color:var(--glow-green);">verified</span> (exact match), <span style="color:var(--glow-orange);">corrected</span> (updated from original research), or <span style="color:var(--glow-purple);">derived</span> (calculated from multiple sources).</p>
 
 <nav class="cite-nav">
@@ -5062,7 +5154,7 @@
 <div class="tab-content" id="tab-custom-strategy">
 <div class="strategy-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Custom Candle Strategy</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Custom Candle Strategy</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">Revenue Stream 2: Personalized photo candles fulfilled through Printify. This document outlines the technical pipeline, Etsy integration approach, and decisions needed from founders.</p>
 
 <nav class="strategy-nav">
@@ -5478,7 +5570,7 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
 <div class="tab-content" id="tab-research">
 <div class="strategy-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Research Library</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Research Library</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">Compiled research, market analysis, and reference material organized by topic.</p>
 
 <nav class="strategy-nav">
@@ -6493,7 +6585,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 <div class="tab-content" id="tab-overhead">
 <div class="overhead-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Overhead Tracker</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Overhead Tracker</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">Complete cost breakdown by business phase. Each phase builds on the previous one&mdash;costs are cumulative.</p>
 
 <nav class="overhead-nav">
@@ -6670,7 +6762,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 <div class="tab-content" id="tab-roles">
 <div class="roles-container">
 
-<h2 style="font-size:1.8rem;margin-bottom:8px;">Roles &amp; Operations</h2>
+<h2 style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;">Roles &amp; Operations</h2>
 <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.6;">Founder responsibilities, decision-making framework, and daily operating protocol.</p>
 
 <nav class="roles-nav">
@@ -6825,8 +6917,8 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 <div class="tab-content" id="tab-decisions">
 <div class="decision-board">
 
-  <h1 style="text-align:center;margin-bottom:8px;font-size:2rem;">Decision Board</h1>
-  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;">Track open questions, proposals, and finalized decisions across all AORs.</p>
+  <h1 style="text-align:center;margin-bottom:8px;font-size:clamp(1.2rem,2.5vw,1.8rem);">Decision Board</h1>
+  <p style="text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:clamp(0.75rem,1.5vw,0.9rem);">Track open questions, proposals, and finalized decisions across all AORs.</p>
 
   <!-- Progress Bar -->
   <div class="decision-progress-bar" id="decision-progress">
@@ -6862,31 +6954,14 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 
     <div class="decision-category">Brand &amp; Legal</div>
 
-    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d1">
-      <button class="decision-status-btn s-decided">Decided</button>
+    <div class="decision-card" data-owner="all-founders" data-status="proposed" data-id="d5">
+      <button class="decision-status-btn s-proposed">Proposed</button>
       <div class="decision-body">
-        <div class="decision-title">Brand Name</div>
-        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
-        <div class="decision-outcome">Amber &amp; Essence Candle Co.</div>
+        <div class="decision-title">Operating Agreement Terms</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span></div>
+        <div class="decision-outcome">Draft in progress. Must define: ownership %, exit clauses, voting rights, capital contributions, inactive member clause, dispute resolution.</div>
       </div>
-    </div>
-
-    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d2">
-      <button class="decision-status-btn s-decided">Decided</button>
-      <div class="decision-body">
-        <div class="decision-title">Legal Structure</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
-        <div class="decision-outcome">Delaware LLC ($90 filing fee)</div>
-      </div>
-    </div>
-
-    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d3">
-      <button class="decision-status-btn s-decided">Decided</button>
-      <div class="decision-body">
-        <div class="decision-title">LLC Membership Filing</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
-        <div class="decision-outcome">All 4 founders listed on the filing</div>
-      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="mark" data-status="proposed" data-id="d4">
@@ -6896,15 +6971,37 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
         <div class="decision-outcome">USPTO Class 4 (candles), TEAS Plus ~$250-350. Recommended before scaling but optional at launch.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
-    <div class="decision-card" data-owner="mark" data-status="proposed" data-id="d5">
-      <button class="decision-status-btn s-proposed">Proposed</button>
+    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d3">
+      <button class="decision-status-btn s-decided">Decided</button>
       <div class="decision-body">
-        <div class="decision-title">Operating Agreement Terms</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
-        <div class="decision-outcome">Draft in progress. Must define: ownership %, exit clauses, voting rights, capital contributions, inactive member clause, dispute resolution.</div>
+        <div class="decision-title">LLC Membership Filing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">All 4 founders listed on the filing.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
+
+    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d2">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Legal Structure</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
+        <div class="decision-outcome">Delaware LLC ($90 filing fee).</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
+
+    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d1">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Brand Name</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">Amber &amp; Essence Candle Co.</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Supplier &amp; Platform</div>
@@ -6914,8 +7011,9 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <div class="decision-body">
         <div class="decision-title">Primary Candle Supplier</div>
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
-        <div class="decision-outcome">Lumient via Printify (Provider 219). Chosen for: 57+ scents, 9 vessel styles, NCA certified, 100% soy wax, lowest base cost (~$9.66).</div>
+        <div class="decision-outcome">Lumient via Printify (Provider 219). 57+ scents, 9 vessel styles, NCA certified, 100% soy wax, lowest base cost (~$9.66).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="jose" data-status="decided" data-id="d7">
@@ -6925,6 +7023,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Printify as primary multi-vendor aggregation and fulfillment platform.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d8">
@@ -6934,6 +7033,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
         <div class="decision-outcome">Evaluate Gooten for vessel expansion (tin, wood wick options) as secondary supplier after launch.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d9">
@@ -6941,11 +7041,22 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <div class="decision-body">
         <div class="decision-title">Premium Tier Supplier</div>
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
-        <div class="decision-outcome">Seventh Avenue Apothecary for premium custom candles (360&deg; full wrap, 65hr burn, Tampa FL). Evaluate after volume established.</div>
+        <div class="decision-outcome">Seventh Avenue Apothecary for premium custom candles (360&deg; full wrap, 65hr burn, Tampa FL). Post-launch evaluation.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Sales Channels</div>
+
+    <div class="decision-card" data-owner="jose" data-status="open" data-id="d28">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Etsy Account Holder</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
+        <div class="decision-outcome">Who registers the business Etsy seller account? Needs payment method tied to business entity.</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
 
     <div class="decision-card" data-owner="jose" data-status="decided" data-id="d10">
       <button class="decision-status-btn s-decided">Decided</button>
@@ -6954,6 +7065,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Shopify Basic Plan ($39/mo) as primary DTC channel.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="jose" data-status="decided" data-id="d11">
@@ -6963,6 +7075,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Etsy as first launch marketplace (90M+ active buyers, free organic discovery).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="jose" data-status="decided" data-id="d12">
@@ -6972,6 +7085,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Pinterest as primary organic traffic driver (CPC $0.10-0.30 vs Meta $0.68).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="jose" data-status="proposed" data-id="d13">
@@ -6981,6 +7095,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
         <div class="decision-outcome">Expand to Amazon once Etsy/Shopify channels are proven profitable and stable.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="jose" data-status="proposed" data-id="d14">
@@ -6990,9 +7105,30 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
         <div class="decision-outcome">Apply for TikTok Shop and Instagram Shopping at launch for social commerce.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Financial</div>
+
+    <div class="decision-card" data-owner="all-founders" data-status="open" data-id="d19">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Custom Candle Pricing</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span></div>
+        <div class="decision-outcome">Proposed range: $39-65 depending on jar size. 14oz Engraved could command $65+. Needs margin analysis.</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
+
+    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d17">
+      <button class="decision-status-btn s-decided">Decided</button>
+      <div class="decision-body">
+        <div class="decision-title">Profit Allocation</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-outcome">60% reinvest / 25% reserve / 15% distribution.</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
 
     <div class="decision-card" data-owner="mark" data-status="decided" data-id="d15">
       <button class="decision-status-btn s-decided">Decided</button>
@@ -7001,6 +7137,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Mercury (Relay as backup).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="mark" data-status="decided" data-id="d16">
@@ -7010,15 +7147,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">$18-48 retail depending on jar size (43-55% margins).</div>
       </div>
-    </div>
-
-    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d17">
-      <button class="decision-status-btn s-decided">Decided</button>
-      <div class="decision-body">
-        <div class="decision-title">Profit Allocation</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
-        <div class="decision-outcome">60% reinvest / 25% reserve / 15% distribution.</div>
-      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="mark" data-status="decided" data-id="d18">
@@ -7028,18 +7157,20 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Wave (free accounting).</div>
       </div>
-    </div>
-
-    <div class="decision-card" data-owner="mark" data-status="open" data-id="d19">
-      <button class="decision-status-btn s-open">Open</button>
-      <div class="decision-body">
-        <div class="decision-title">Custom Candle Pricing</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
-        <div class="decision-outcome">Proposed range: $39-65 depending on jar size. 14oz Engraved could command $65+. Needs margin analysis.</div>
-      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Operations</div>
+
+    <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d22">
+      <button class="decision-status-btn s-proposed">Proposed</button>
+      <div class="decision-body">
+        <div class="decision-title">Cyber Liability Insurance</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-outcome">Add $15-30/mo cyber liability 3-6 months after Shopify launch (when handling customer data exports).</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
 
     <div class="decision-card" data-owner="robert" data-status="decided" data-id="d20">
       <button class="decision-status-btn s-decided">Decided</button>
@@ -7048,6 +7179,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Printify white-label blind shipping (no vendor branding visible to customer).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="robert" data-status="decided" data-id="d21">
@@ -7057,15 +7189,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">General Liability + Product Liability ($1M/$2M standard). Evaluate NEXT, Thimble, and Hiscox. Budget midpoint $55/mo.</div>
       </div>
-    </div>
-
-    <div class="decision-card" data-owner="robert" data-status="proposed" data-id="d22">
-      <button class="decision-status-btn s-proposed">Proposed</button>
-      <div class="decision-body">
-        <div class="decision-title">Cyber Liability Insurance</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
-        <div class="decision-outcome">Add $15-30/mo cyber liability 3-6 months after Shopify launch (when handling customer data exports).</div>
-      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d23">
@@ -7075,6 +7199,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Zoho Mail free tier ($0/mo, 1 user, 5GB, custom domain).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d24">
@@ -7084,6 +7209,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">amberandessencecandleco.com ($15/yr via Cloudflare).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Brand Identity</div>
@@ -7095,6 +7221,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">"Warm Mineral" palette: Cloud Cream, Charcoal Dusk, Warm Amber, Soft Patina, Warm Putty.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="ricardo" data-status="decided" data-id="d26">
@@ -7104,35 +7231,49 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span><span class="decision-decided-by">AOR decision</span></div>
         <div class="decision-outcome">Restrained serif wordmark, neutral-warm across all niches. Labels carry per-collection personality.</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
-    <div class="decision-card" data-owner="mark" data-status="decided" data-id="d27">
+    <div class="decision-card" data-owner="all-founders" data-status="decided" data-id="d27">
       <button class="decision-status-btn s-decided">Decided</button>
       <div class="decision-body">
         <div class="decision-title">Flagship Scent Selection</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span><span class="decision-decided-by">Group consensus</span></div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span><span class="decision-decided-by">Group consensus</span></div>
         <div class="decision-outcome">6 scents: Cinnamon Vanilla, Clean Cotton, White Sage &amp; Lavender, Sea Salt + Orchid, Coconut Cream + Cardamom, Christmas Warmth (Q4).</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-category">Custom Candle Service</div>
 
-    <div class="decision-card" data-owner="jose" data-status="open" data-id="d28">
+    <div class="decision-card" data-owner="ricardo" data-status="open" data-id="d31">
       <button class="decision-status-btn s-open">Open</button>
       <div class="decision-body">
-        <div class="decision-title">Etsy Account Holder</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Jose</span></div>
-        <div class="decision-outcome">Who registers the business Etsy seller account? Needs payment method tied to business entity.</div>
+        <div class="decision-title">Etsy Developer Account</div>
+        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span></div>
+        <div class="decision-outcome">Someone must register at etsy.com/developers for API keys. Ricardo or Robert (tech)?</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
-    <div class="decision-card" data-owner="robert" data-status="open" data-id="d29">
+    <div class="decision-card" data-owner="all-founders" data-status="open" data-id="d29">
       <button class="decision-status-btn s-open">Open</button>
       <div class="decision-body">
         <div class="decision-title">Jar Types for Custom Line</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span></div>
         <div class="decision-outcome">All 4 Lumient jar types or start with 1-2 (e.g., Amber 9oz + Glass 11oz) to reduce complexity?</div>
       </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
+    </div>
+
+    <div class="decision-card" data-owner="all-founders" data-status="open" data-id="d32">
+      <button class="decision-status-btn s-open">Open</button>
+      <div class="decision-body">
+        <div class="decision-title">Scent Library Scope</div>
+        <div class="decision-meta"><span class="decision-owner-tag">All Founders</span></div>
+        <div class="decision-outcome">Should custom candle listings support all 12 Lumient scents or a limited subset? Complexity vs. variety trade-off.</div>
+      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
     <div class="decision-card" data-owner="robert" data-status="open" data-id="d30">
@@ -7142,27 +7283,19 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span></div>
         <div class="decision-outcome">5-7 business days (aggressive) or 7-10 business days (safer)? Image processing + Lumient production ~10 days + shipping.</div>
       </div>
-    </div>
-
-    <div class="decision-card" data-owner="ricardo" data-status="open" data-id="d31">
-      <button class="decision-status-btn s-open">Open</button>
-      <div class="decision-body">
-        <div class="decision-title">Etsy Developer Account</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Ricardo</span></div>
-        <div class="decision-outcome">Someone must register at etsy.com/developers for API keys. Ricardo or Robert (tech)?</div>
-      </div>
-    </div>
-
-    <div class="decision-card" data-owner="mark" data-status="open" data-id="d32">
-      <button class="decision-status-btn s-open">Open</button>
-      <div class="decision-body">
-        <div class="decision-title">Scent Library Scope</div>
-        <div class="decision-meta"><span class="decision-owner-tag">Mark</span></div>
-        <div class="decision-outcome">Should custom candle listings support all 12 Lumient scents or a limited subset? Complexity vs. variety trade-off.</div>
-      </div>
+      <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
 
   </div><!-- /decision-list -->
+
+  <!-- Finalized Decisions Section -->
+  <div id="decision-finalized">
+    <div class="decision-finalized-header" onclick="document.getElementById('decision-finalized-list').classList.toggle('collapsed');this.querySelector('.toggle-arrow').classList.toggle('collapsed');">
+      <span class="toggle-arrow">&#9660;</span>
+      <span>Finalized Decisions (<span id="decision-finalized-count">0</span>)</span>
+    </div>
+    <div id="decision-finalized-list"></div>
+  </div>
 
 </div><!-- /decision-board -->
 </div><!-- /tab-decisions -->
@@ -7399,7 +7532,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   });
 
   // ═══════════════ TAB SWITCHING ═══════════════
-  var MORE_TABS = ['presentation','launch-guide','revenue-forecast','product-line','citations','custom-strategy','roles','decisions'];
+  var MORE_TABS = ['presentation','launch-guide','revenue-forecast','product-line','citations','custom-strategy','roles'];
 
   function switchTab(tabId) {
     // Close mobile nav if open
@@ -8957,11 +9090,14 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   // ═══════════════ DECISION BOARD ═══════════════
   (function() {
     var board = document.getElementById('decision-list');
+    var finalizedList = document.getElementById('decision-finalized-list');
     if (!board) return;
 
     var STORAGE_KEY = 'ae-decisions-v1';
     var STATUS_ORDER = ['open', 'proposed', 'decided'];
     var STATUS_LABELS = {open: 'Open', proposed: 'Proposed', decided: 'Decided'};
+    var OWNERS = ['ricardo', 'robert', 'jose', 'mark', 'all-founders'];
+    var OWNER_LABELS = {ricardo: 'Ricardo', robert: 'Robert', jose: 'Jose', mark: 'Mark', 'all-founders': 'All Founders'};
 
     var activeOwnerFilter = 'all';
     var activeStatusFilter = 'all';
@@ -8993,7 +9129,6 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         var statusMatch = activeStatusFilter === 'all' || card.dataset.status === activeStatusFilter;
         card.classList.toggle('hidden', !(ownerMatch && statusMatch));
       });
-      // Show/hide category headers
       board.querySelectorAll('.decision-category').forEach(function(cat) {
         var next = cat.nextElementSibling;
         var hasVisible = false;
@@ -9005,11 +9140,13 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       });
     }
 
-    // ── Status Dropdown ──
+    // ── Close any dropdown ──
     function closeDropdown() {
       if (activeDropdown) { activeDropdown.remove(); activeDropdown = null; }
     }
+    document.addEventListener('click', function() { closeDropdown(); });
 
+    // ── Status Dropdown ──
     function showStatusDropdown(card, btn) {
       closeDropdown();
       var currentStatus = card.dataset.status;
@@ -9019,17 +9156,37 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         var opt = document.createElement('button');
         opt.className = 'decision-status-option' + (s === currentStatus ? ' active-' + s : '');
         opt.textContent = STATUS_LABELS[s];
-        opt.onclick = function(e) {
-          e.stopPropagation();
-          setStatus(card, s);
-          closeDropdown();
-        };
+        opt.onclick = function(e) { e.stopPropagation(); setStatus(card, s); closeDropdown(); };
         dd.appendChild(opt);
       });
       var rect = btn.getBoundingClientRect();
-      dd.style.position = 'fixed';
-      dd.style.top = (rect.bottom + 4) + 'px';
-      dd.style.left = rect.left + 'px';
+      dd.style.position = 'fixed'; dd.style.top = (rect.bottom + 4) + 'px'; dd.style.left = rect.left + 'px';
+      document.body.appendChild(dd);
+      activeDropdown = dd;
+    }
+
+    // ── Owner Dropdown ──
+    function showOwnerDropdown(card, tag) {
+      closeDropdown();
+      var dd = document.createElement('div');
+      dd.className = 'decision-status-dropdown';
+      OWNERS.forEach(function(o) {
+        var opt = document.createElement('button');
+        opt.className = 'decision-status-option' + (o === card.dataset.owner ? ' active-proposed' : '');
+        opt.textContent = OWNER_LABELS[o];
+        opt.onclick = function(e) {
+          e.stopPropagation();
+          card.dataset.owner = o;
+          tag.textContent = OWNER_LABELS[o];
+          saveDecisions();
+          closeDropdown();
+          var title = card.querySelector('.decision-title').textContent;
+          if (typeof logAction === 'function') logAction('decision: reassigned "' + title + '" to ' + OWNER_LABELS[o]);
+        };
+        dd.appendChild(opt);
+      });
+      var rect = tag.getBoundingClientRect();
+      dd.style.position = 'fixed'; dd.style.top = (rect.bottom + 4) + 'px'; dd.style.left = rect.left + 'px';
       document.body.appendChild(dd);
       activeDropdown = dd;
     }
@@ -9039,7 +9196,6 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       var btn = card.querySelector('.decision-status-btn');
       btn.className = 'decision-status-btn s-' + newStatus;
       btn.textContent = STATUS_LABELS[newStatus];
-      // Update decided-by display
       var decidedByEl = card.querySelector('.decision-decided-by');
       if (newStatus === 'decided' && !decidedByEl) {
         var meta = card.querySelector('.decision-meta');
@@ -9048,34 +9204,116 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         span.textContent = 'Finalized';
         meta.appendChild(span);
       }
+      // Show/hide finalize button
+      updateFinalizeBtn(card);
       saveDecisions();
       updateProgress();
-      // Log to shared audit log
       var title = card.querySelector('.decision-title').textContent;
-      if (typeof logAction === 'function') {
-        logAction('decision: ' + STATUS_LABELS[newStatus].toLowerCase() + ' "' + title + '"');
+      if (typeof logAction === 'function') logAction('decision: ' + STATUS_LABELS[newStatus].toLowerCase() + ' "' + title + '"');
+    }
+
+    // ── Urgent Flag ──
+    function toggleUrgent(card) {
+      var flag = card.querySelector('.decision-flag');
+      var isUrgent = card.classList.toggle('urgent');
+      if (flag) flag.classList.toggle('flagged', isUrgent);
+      // Move urgent cards to top of their category
+      if (isUrgent) {
+        var prev = card.previousElementSibling;
+        while (prev && !prev.classList.contains('decision-category')) prev = prev.previousElementSibling;
+        if (prev && prev.nextElementSibling !== card) prev.after(card);
       }
+      saveDecisions();
+      var title = card.querySelector('.decision-title').textContent;
+      if (typeof logAction === 'function') logAction('decision: ' + (isUrgent ? 'flagged' : 'unflagged') + ' "' + title + '"');
+    }
+
+    // ── Finalize / Restore ──
+    function updateFinalizeBtn(card) {
+      var existing = card.querySelector('.decision-finalize-btn');
+      if (card.dataset.status === 'decided' && !card.closest('#decision-finalized-list')) {
+        if (!existing) {
+          var btn = document.createElement('button');
+          btn.className = 'decision-finalize-btn';
+          btn.textContent = 'Finalize \u2193';
+          btn.title = 'Move to finalized';
+          card.querySelector('.decision-meta').appendChild(btn);
+        }
+      } else if (existing) {
+        existing.remove();
+      }
+    }
+
+    function finalizeDecision(card) {
+      card.dataset.finalized = 'true';
+      // Remove finalize button, add restore button
+      var finBtn = card.querySelector('.decision-finalize-btn');
+      if (finBtn) finBtn.remove();
+      var restoreBtn = document.createElement('button');
+      restoreBtn.className = 'decision-restore-btn';
+      restoreBtn.textContent = '\u2191 Restore';
+      restoreBtn.title = 'Move back to active';
+      card.querySelector('.decision-meta').appendChild(restoreBtn);
+      finalizedList.appendChild(card);
+      updateFinalizedCount();
+      saveDecisions();
+      applyFilters();
+    }
+
+    function unfinalizeDecision(card) {
+      delete card.dataset.finalized;
+      var restoreBtn = card.querySelector('.decision-restore-btn');
+      if (restoreBtn) restoreBtn.remove();
+      // Find the right category to restore to
+      var categories = board.querySelectorAll('.decision-category');
+      var lastCat = categories[categories.length - 1];
+      // Insert after the last card in the last category (or at end of board)
+      var next = lastCat ? lastCat.nextElementSibling : null;
+      while (next && !next.classList.contains('decision-category') && next.nextElementSibling) next = next.nextElementSibling;
+      if (next) next.after(card); else board.appendChild(card);
+      updateFinalizeBtn(card);
+      updateFinalizedCount();
+      saveDecisions();
+      applyFilters();
+    }
+
+    function updateFinalizedCount() {
+      var el = document.getElementById('decision-finalized-count');
+      if (el) el.textContent = finalizedList.querySelectorAll('.decision-card').length;
     }
 
     // ── Click Handler ──
     board.addEventListener('click', function(e) {
-      var btn = e.target.closest('.decision-status-btn');
-      if (btn) {
-        e.stopPropagation();
-        var card = btn.closest('.decision-card');
-        showStatusDropdown(card, btn);
-        return;
-      }
+      var statusBtn = e.target.closest('.decision-status-btn');
+      if (statusBtn) { e.stopPropagation(); showStatusDropdown(statusBtn.closest('.decision-card'), statusBtn); return; }
+      var ownerTag = e.target.closest('.decision-owner-tag');
+      if (ownerTag) { e.stopPropagation(); showOwnerDropdown(ownerTag.closest('.decision-card'), ownerTag); return; }
+      var flagBtn = e.target.closest('.decision-flag');
+      if (flagBtn) { e.stopPropagation(); toggleUrgent(flagBtn.closest('.decision-card')); return; }
+      var finBtn = e.target.closest('.decision-finalize-btn');
+      if (finBtn) { e.stopPropagation(); finalizeDecision(finBtn.closest('.decision-card')); return; }
     });
-
-    document.addEventListener('click', function() { closeDropdown(); });
+    finalizedList.addEventListener('click', function(e) {
+      var actionsBtn = e.target.closest('.decision-actions-btn');
+      if (actionsBtn) { e.stopPropagation(); showActionsDropdown(actionsBtn.closest('.decision-card'), actionsBtn); return; }
+      var statusBtn = e.target.closest('.decision-status-btn');
+      if (statusBtn) { e.stopPropagation(); showStatusDropdown(statusBtn.closest('.decision-card'), statusBtn); return; }
+      var ownerTag = e.target.closest('.decision-owner-tag');
+      if (ownerTag) { e.stopPropagation(); showOwnerDropdown(ownerTag.closest('.decision-card'), ownerTag); return; }
+      var flagBtn = e.target.closest('.decision-flag');
+      if (flagBtn) { e.stopPropagation(); toggleUrgent(flagBtn.closest('.decision-card')); return; }
+      var restoreBtn = e.target.closest('.decision-restore-btn');
+      if (restoreBtn) { e.stopPropagation(); unfinalizeDecision(restoreBtn.closest('.decision-card')); return; }
+      var noteBadge = e.target.closest('.decision-note-badge');
+      if (noteBadge) { e.stopPropagation(); openDecisionNote(noteBadge.closest('.decision-card')); return; }
+    });
 
     // ── Progress ──
     function updateProgress() {
-      var cards = board.querySelectorAll('.decision-card');
-      var total = cards.length;
+      var allCards = document.querySelectorAll('#decision-list .decision-card, #decision-finalized-list .decision-card');
+      var total = allCards.length;
       var decided = 0, proposed = 0, open = 0;
-      cards.forEach(function(c) {
+      allCards.forEach(function(c) {
         if (c.dataset.status === 'decided') decided++;
         else if (c.dataset.status === 'proposed') proposed++;
         else open++;
@@ -9091,11 +9329,15 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     // ── Save / Load ──
     function saveDecisions() {
       var data = {};
-      board.querySelectorAll('.decision-card').forEach(function(card) {
-        data[card.dataset.id] = { status: card.dataset.status };
+      document.querySelectorAll('#decision-list .decision-card, #decision-finalized-list .decision-card').forEach(function(card) {
+        data[card.dataset.id] = {
+          status: card.dataset.status,
+          owner: card.dataset.owner,
+          urgent: card.classList.contains('urgent'),
+          finalized: card.dataset.finalized === 'true'
+        };
       });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      // Supabase sync can be added when table is created
     }
 
     function loadDecisions() {
@@ -9104,18 +9346,394 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       var data = JSON.parse(saved);
       board.querySelectorAll('.decision-card').forEach(function(card) {
         var id = card.dataset.id;
-        if (data[id] && data[id].status) {
-          card.dataset.status = data[id].status;
+        if (!data[id]) return;
+        var d = data[id];
+        if (d.status) {
+          card.dataset.status = d.status;
           var btn = card.querySelector('.decision-status-btn');
-          btn.className = 'decision-status-btn s-' + data[id].status;
-          btn.textContent = STATUS_LABELS[data[id].status];
+          btn.className = 'decision-status-btn s-' + d.status;
+          btn.textContent = STATUS_LABELS[d.status];
+        }
+        if (d.owner) {
+          card.dataset.owner = d.owner;
+          var tag = card.querySelector('.decision-owner-tag');
+          if (tag) tag.textContent = OWNER_LABELS[d.owner] || d.owner;
+        }
+        if (d.urgent) {
+          card.classList.add('urgent');
+          var flag = card.querySelector('.decision-flag');
+          if (flag) flag.classList.add('flagged');
+        }
+        updateFinalizeBtn(card);
+        if (d.finalized) finalizeDecision(card);
+      });
+    }
+
+    // ── Drag & Drop ──
+    var _dragScrollRAF2 = null, _dragClientY2 = 0;
+    function startDragScroll2() {
+      function step() {
+        var h = window.innerHeight;
+        if (_dragClientY2 < 50) window.scrollBy(0, -8 * (1 - _dragClientY2 / 50));
+        else if (_dragClientY2 > h - 50) window.scrollBy(0, 8 * (1 - (h - _dragClientY2) / 50));
+        _dragScrollRAF2 = requestAnimationFrame(step);
+      }
+      _dragScrollRAF2 = requestAnimationFrame(step);
+    }
+    function stopDragScroll2() { if (_dragScrollRAF2) { cancelAnimationFrame(_dragScrollRAF2); _dragScrollRAF2 = null; } }
+
+    board.addEventListener('dragstart', function(e) {
+      var card = e.target.closest('.decision-card');
+      if (!card) return;
+      card.id = card.id || 'dec-' + Date.now();
+      e.dataTransfer.setData('text/plain', card.id);
+      setTimeout(function() { card.classList.add('dragging'); }, 0);
+      startDragScroll2();
+    });
+    board.addEventListener('dragend', function(e) {
+      var card = e.target.closest('.decision-card');
+      if (card) card.classList.remove('dragging');
+      board.querySelectorAll('.decision-drop-indicator').forEach(function(i) { i.remove(); });
+      stopDragScroll2();
+    });
+    board.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      _dragClientY2 = e.clientY;
+      var cards = board.querySelectorAll('.decision-card:not(.dragging)');
+      var closest = null, closestOffset = Number.NEGATIVE_INFINITY;
+      cards.forEach(function(c) {
+        var box = c.getBoundingClientRect();
+        var offset = e.clientY - box.top - box.height / 2;
+        if (offset < 0 && offset > closestOffset) { closestOffset = offset; closest = c; }
+      });
+      board.querySelectorAll('.decision-drop-indicator').forEach(function(i) { i.remove(); });
+      var ind = document.createElement('div');
+      ind.className = 'decision-drop-indicator';
+      if (closest) board.insertBefore(ind, closest);
+      else {
+        var last = board.querySelector('.decision-add-btn:last-of-type') || board.lastElementChild;
+        if (last) board.insertBefore(ind, last);
+      }
+    });
+    board.addEventListener('drop', function(e) {
+      e.preventDefault();
+      board.querySelectorAll('.decision-drop-indicator').forEach(function(i) { i.remove(); });
+      var id = e.dataTransfer.getData('text/plain');
+      var card = document.getElementById(id);
+      if (!card) return;
+      var cards = board.querySelectorAll('.decision-card:not(.dragging)');
+      var closest = null, closestOffset = Number.NEGATIVE_INFINITY;
+      cards.forEach(function(c) {
+        var box = c.getBoundingClientRect();
+        var offset = e.clientY - box.top - box.height / 2;
+        if (offset < 0 && offset > closestOffset) { closestOffset = offset; closest = c; }
+      });
+      if (closest) board.insertBefore(card, closest);
+      else {
+        var lastAdd = board.querySelectorAll('.decision-add-btn');
+        if (lastAdd.length) board.insertBefore(card, lastAdd[lastAdd.length - 1].nextSibling);
+        else board.appendChild(card);
+      }
+      saveDecisions();
+      var title = card.querySelector('.decision-title').textContent;
+      if (typeof logAction === 'function') logAction('decision: reordered "' + title + '"');
+    });
+    document.addEventListener('dragover', function(e) { _dragClientY2 = e.clientY; });
+
+    // ── Edit Decision (inline) ──
+    function startEdit(card) {
+      var titleEl = card.querySelector('.decision-title');
+      var outcomeEl = card.querySelector('.decision-outcome');
+      titleEl.contentEditable = 'true';
+      titleEl.focus();
+      if (outcomeEl) outcomeEl.contentEditable = 'true';
+      // Save on blur
+      function save() {
+        titleEl.contentEditable = 'false';
+        if (outcomeEl) outcomeEl.contentEditable = 'false';
+        saveDecisions();
+      }
+      titleEl.addEventListener('blur', save, {once: true});
+      titleEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); titleEl.blur(); }
+      });
+    }
+
+    // ── Create New Decision ──
+    var _nextId = 100;
+    function createDecision(afterElement) {
+      var card = document.createElement('div');
+      card.className = 'decision-card';
+      card.draggable = true;
+      card.dataset.owner = 'all-founders';
+      card.dataset.status = 'open';
+      card.dataset.id = 'd' + (_nextId++);
+      card.innerHTML = '<button class="decision-status-btn s-open">Open</button>'
+        + '<div class="decision-body">'
+        + '<div class="decision-title">New Decision</div>'
+        + '<div class="decision-meta"><span class="decision-owner-tag">All Founders</span></div>'
+        + '<div class="decision-outcome">Describe the decision and options here.</div>'
+        + '</div>'
+        + '<button class="decision-flag" title="Toggle urgent">&#9873;</button>'
+        + '<button class="decision-delete-btn" title="Delete">&times;</button>'
+        + '<button class="decision-edit-btn" title="Edit">&#9998;</button>';
+      if (afterElement && afterElement.nextSibling) board.insertBefore(card, afterElement.nextSibling);
+      else board.appendChild(card);
+      saveDecisions();
+      updateProgress();
+      startEdit(card);
+      if (typeof logAction === 'function') logAction('decision: created new decision');
+    }
+
+    // ── Delete Decision ──
+    function deleteDecision(card) {
+      var title = card.querySelector('.decision-title').textContent;
+      card.remove();
+      saveDecisions();
+      updateProgress();
+      if (typeof logAction === 'function') logAction('decision: deleted "' + title + '"');
+    }
+
+    // ── Notes ──
+    function openDecisionNote(card) {
+      var existingNote = card.dataset.note || '';
+      var titleText = card.querySelector('.decision-title').textContent;
+      var overlay = document.createElement('div');
+      overlay.className = 'task-note-overlay';
+      overlay.id = 'decision-note-overlay';
+      var dialog = document.createElement('div');
+      dialog.className = 'task-note-dialog';
+      var h = document.createElement('h3');
+      h.textContent = existingNote ? 'Edit Note' : 'Add Note';
+      dialog.appendChild(h);
+      var label = document.createElement('p');
+      label.className = 'task-note-dialog-text';
+      label.textContent = titleText;
+      dialog.appendChild(label);
+      var ta = document.createElement('textarea');
+      ta.className = 'task-note-input';
+      ta.rows = 5; ta.placeholder = 'Add a note...';
+      ta.value = existingNote;
+      dialog.appendChild(ta);
+      var actions = document.createElement('div');
+      actions.className = 'task-note-actions';
+      if (existingNote) {
+        var rmBtn = document.createElement('button');
+        rmBtn.className = 'task-note-remove'; rmBtn.textContent = 'Remove Note';
+        rmBtn.addEventListener('click', function() { delete card.dataset.note; card.dataset.note = ''; updateDecisionNoteBadge(card); closeDecisionNote(); saveDecisions(); });
+        actions.appendChild(rmBtn);
+      }
+      var cancelBtn = document.createElement('button');
+      cancelBtn.className = 'task-note-cancel'; cancelBtn.textContent = 'Cancel';
+      cancelBtn.addEventListener('click', closeDecisionNote);
+      actions.appendChild(cancelBtn);
+      var saveBtn = document.createElement('button');
+      saveBtn.className = 'task-note-save'; saveBtn.textContent = 'Save';
+      saveBtn.addEventListener('click', function() {
+        var val = ta.value.trim();
+        if (val) { card.dataset.note = val; } else { delete card.dataset.note; card.dataset.note = ''; }
+        updateDecisionNoteBadge(card);
+        closeDecisionNote();
+        saveDecisions();
+        if (typeof logAction === 'function') logAction('decision: ' + (val ? 'added note to' : 'removed note from') + ' "' + titleText + '"');
+      });
+      actions.appendChild(saveBtn);
+      dialog.appendChild(actions);
+      overlay.appendChild(dialog);
+      document.body.appendChild(overlay);
+      ta.focus();
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) closeDecisionNote(); });
+    }
+    function closeDecisionNote() {
+      var o = document.getElementById('decision-note-overlay');
+      if (o) o.remove();
+    }
+    function updateDecisionNoteBadge(card) {
+      var existing = card.querySelector('.decision-note-badge');
+      if (existing) existing.remove();
+      var note = card.dataset.note;
+      if (note && note.trim()) {
+        var badge = document.createElement('span');
+        badge.className = 'decision-note-badge';
+        badge.textContent = 'Note';
+        var tip = document.createElement('span');
+        tip.className = 'decision-note-tooltip';
+        tip.textContent = note.length > 200 ? note.substring(0, 200) + '...' : note;
+        badge.appendChild(tip);
+        var meta = card.querySelector('.decision-meta');
+        if (meta) meta.appendChild(badge);
+      }
+    }
+
+    // ── Actions Dropdown ──
+    function showActionsDropdown(card, btn) {
+      closeDropdown();
+      var dd = document.createElement('div');
+      dd.className = 'decision-status-dropdown';
+      var hasNote = card.dataset.note && card.dataset.note.trim().length > 0;
+      // Edit
+      var editOpt = document.createElement('button');
+      editOpt.className = 'decision-status-option';
+      editOpt.innerHTML = '&#9998; Edit';
+      editOpt.onclick = function(e) { e.stopPropagation(); closeDropdown(); startEdit(card); };
+      dd.appendChild(editOpt);
+      // Note
+      var noteOpt = document.createElement('button');
+      noteOpt.className = 'decision-status-option';
+      noteOpt.innerHTML = '&#9998; ' + (hasNote ? 'Edit Note' : 'Add Note');
+      noteOpt.onclick = function(e) { e.stopPropagation(); closeDropdown(); openDecisionNote(card); };
+      dd.appendChild(noteOpt);
+      // Divider
+      var div = document.createElement('div');
+      div.style.cssText = 'height:1px;background:var(--border);margin:4px 0;';
+      dd.appendChild(div);
+      // Delete
+      var delOpt = document.createElement('button');
+      delOpt.className = 'decision-status-option';
+      delOpt.style.color = '#B44032';
+      delOpt.innerHTML = '&times; Delete';
+      delOpt.onclick = function(e) { e.stopPropagation(); closeDropdown(); deleteDecision(card); };
+      dd.appendChild(delOpt);
+      var rect = btn.getBoundingClientRect();
+      dd.style.position = 'fixed'; dd.style.top = (rect.bottom + 4) + 'px';
+      dd.style.right = (window.innerWidth - rect.right) + 'px';
+      document.body.appendChild(dd);
+      activeDropdown = dd;
+    }
+
+    // ── Click handlers ──
+    board.addEventListener('click', function(e) {
+      var actionsBtn = e.target.closest('.decision-actions-btn');
+      if (actionsBtn) { e.stopPropagation(); showActionsDropdown(actionsBtn.closest('.decision-card'), actionsBtn); return; }
+      var addBtn = e.target.closest('.decision-add-btn');
+      if (addBtn) { e.stopPropagation(); createDecision(addBtn); return; }
+      var noteBadge = e.target.closest('.decision-note-badge');
+      if (noteBadge) { e.stopPropagation(); openDecisionNote(noteBadge.closest('.decision-card')); return; }
+    });
+
+    // ── Normalize cards: add draggable, edit/delete buttons, add-buttons ──
+    function normalizeCards() {
+      board.querySelectorAll('.decision-card').forEach(function(card) {
+        card.draggable = true;
+        // Remove legacy buttons
+        var oldDel = card.querySelector('.decision-delete-btn');
+        if (oldDel) oldDel.remove();
+        var oldEdit = card.querySelector('.decision-edit-btn');
+        if (oldEdit) oldEdit.remove();
+        var oldNoteBtn = card.querySelector('.decision-note-btn');
+        if (oldNoteBtn) oldNoteBtn.remove();
+        // Add actions dropdown trigger
+        if (!card.querySelector('.decision-actions-btn')) {
+          var actBtn = document.createElement('button');
+          actBtn.className = 'decision-actions-btn'; actBtn.title = 'Actions'; actBtn.innerHTML = '&#9662;';
+          card.appendChild(actBtn);
+        }
+        updateDecisionNoteBadge(card);
+      });
+      // Add "+ Add Decision" buttons after each category group
+      board.querySelectorAll('.decision-category').forEach(function(cat) {
+        // Find the end of this category's cards
+        var next = cat.nextElementSibling;
+        while (next && !next.classList.contains('decision-category') && !next.classList.contains('decision-add-btn')) {
+          next = next.nextElementSibling;
+        }
+        if (!next || !next.classList.contains('decision-add-btn')) {
+          var addBtn = document.createElement('button');
+          addBtn.className = 'decision-add-btn';
+          addBtn.textContent = '+ Add Decision';
+          if (next) board.insertBefore(addBtn, next);
+          else board.appendChild(addBtn);
         }
       });
     }
 
+    // ── Enhanced Save/Load (persist title, outcome, order) ──
+    var _origSave = saveDecisions;
+    saveDecisions = function() {
+      var data = { order: [], cards: {} };
+      document.querySelectorAll('#decision-list .decision-card, #decision-finalized-list .decision-card').forEach(function(card) {
+        var id = card.dataset.id;
+        data.order.push(id);
+        data.cards[id] = {
+          status: card.dataset.status,
+          owner: card.dataset.owner,
+          urgent: card.classList.contains('urgent'),
+          finalized: card.dataset.finalized === 'true',
+          title: card.querySelector('.decision-title').textContent,
+          outcome: card.querySelector('.decision-outcome') ? card.querySelector('.decision-outcome').textContent : '',
+          note: card.dataset.note || ''
+        };
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    };
+
+    var _origLoad = loadDecisions;
+    loadDecisions = function() {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      var data = JSON.parse(saved);
+      // Support old format (flat object without order)
+      var cards = data.cards || data;
+      board.querySelectorAll('.decision-card').forEach(function(card) {
+        var id = card.dataset.id;
+        if (!cards[id]) return;
+        var d = cards[id];
+        if (d.status) {
+          card.dataset.status = d.status;
+          var btn = card.querySelector('.decision-status-btn');
+          btn.className = 'decision-status-btn s-' + d.status;
+          btn.textContent = STATUS_LABELS[d.status];
+        }
+        if (d.owner) {
+          card.dataset.owner = d.owner;
+          var tag = card.querySelector('.decision-owner-tag');
+          if (tag) tag.textContent = OWNER_LABELS[d.owner] || d.owner;
+        }
+        if (d.urgent) {
+          card.classList.add('urgent');
+          var flag = card.querySelector('.decision-flag');
+          if (flag) flag.classList.add('flagged');
+        }
+        if (d.title) card.querySelector('.decision-title').textContent = d.title;
+        if (d.outcome && card.querySelector('.decision-outcome')) card.querySelector('.decision-outcome').textContent = d.outcome;
+        if (d.note) card.dataset.note = d.note;
+        updateFinalizeBtn(card);
+        if (d.finalized) finalizeDecision(card);
+      });
+      // Restore new cards from localStorage that aren't in HTML
+      if (data.order) {
+        data.order.forEach(function(id) {
+          if (board.querySelector('[data-id="' + id + '"]') || (finalizedList && finalizedList.querySelector('[data-id="' + id + '"]'))) return;
+          var d = cards[id];
+          if (!d) return;
+          var card = document.createElement('div');
+          card.className = 'decision-card';
+          card.draggable = true;
+          card.dataset.owner = d.owner || 'all-founders';
+          card.dataset.status = d.status || 'open';
+          card.dataset.id = id;
+          card.innerHTML = '<button class="decision-status-btn s-' + (d.status || 'open') + '">' + STATUS_LABELS[d.status || 'open'] + '</button>'
+            + '<div class="decision-body">'
+            + '<div class="decision-title">' + (d.title || 'Untitled') + '</div>'
+            + '<div class="decision-meta"><span class="decision-owner-tag">' + (OWNER_LABELS[d.owner] || d.owner || 'All Founders') + '</span></div>'
+            + '<div class="decision-outcome">' + (d.outcome || '') + '</div>'
+            + '</div>'
+            + '<button class="decision-flag" title="Toggle urgent">&#9873;</button>';
+          if (d.urgent) { card.classList.add('urgent'); card.querySelector('.decision-flag').classList.add('flagged'); }
+          if (d.note) card.dataset.note = d.note;
+          board.appendChild(card);
+          updateFinalizeBtn(card);
+          if (d.finalized) finalizeDecision(card);
+        });
+      }
+    };
+
     // ── Init ──
     loadDecisions();
+    normalizeCards();
+    board.querySelectorAll('.decision-card').forEach(function(card) { updateFinalizeBtn(card); });
     updateProgress();
+    updateFinalizedCount();
   })();
 </script>
 
