@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Amber &amp; Essence Candle Co. — Business Plan 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -35,7 +35,6 @@
   }
   body {
     min-height: 100%;
-    overflow-x: hidden;
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', -apple-system, sans-serif;
@@ -63,13 +62,16 @@
   /* ═══════════════ TOP NAV ═══════════════ */
   .top-nav {
     position: fixed; top: 0; left: 0; right: 0;
-    height: 56px; z-index: 200;
+    height: calc(56px + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    z-index: 200;
     background: rgba(240,238,233,0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center;
-    padding: 0 24px;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
     box-shadow: 0 1px 4px rgba(58,54,51,0.06);
     overflow: visible;
   }
@@ -156,7 +158,7 @@
     .search-toggle .kbd-hint { display: inline; }
   }
   .search-overlay {
-    position: fixed; top: 56px; left: 0; right: 0;
+    position: fixed; top: calc(56px + env(safe-area-inset-top, 0px)); left: 0; right: 0;
     z-index: 199; background: rgba(240,238,233,0.98);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
@@ -173,7 +175,7 @@
   .search-input {
     flex: 1; background: none; border: none; outline: none;
     color: var(--text); font-family: 'Inter', sans-serif;
-    font-size: 0.95rem; padding: 4px 0;
+    font-size: 1rem; padding: 4px 0;
   }
   .search-input::placeholder { color: var(--text-dim); }
   .search-close {
@@ -245,16 +247,20 @@
   }
   @media (max-width: 700px) {
     .mobile-menu-toggle { display: flex; }
-    .nav-tabs {
+    .top-nav .nav-tabs {
       display: none;
-      position: absolute; top: 56px; left: 0; right: 0;
+      position: absolute; top: calc(56px + env(safe-area-inset-top, 0px)); left: 0; right: 0;
       flex-direction: column; padding: 8px 0;
       background: rgba(240,238,233,0.98);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       box-shadow: 0 4px 12px rgba(58,54,51,0.08);
+      max-height: calc(100vh - 56px - env(safe-area-inset-top, 0px));
+      max-height: calc(100dvh - 56px - env(safe-area-inset-top, 0px));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    .nav-tabs.open { display: flex; }
+    .top-nav .nav-tabs.open { display: flex; }
     .nav-tabs .tab-btn {
       padding: 12px 24px; text-align: left;
       min-height: 44px; border-bottom: none;
@@ -274,6 +280,17 @@
     }
   }
 
+  /* ═══════════════ MOBILE NAV BACKDROP ═══════════════ */
+  .mobile-nav-backdrop {
+    display: none;
+    position: fixed;
+    top: calc(56px + env(safe-area-inset-top, 0px)); left: 0; right: 0; bottom: 0;
+    background: rgba(58,54,51,0.3);
+    z-index: 199;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav-backdrop.open { display: block; }
+
   /* ═══════════════ TOUCH TARGETS ═══════════════ */
   .search-toggle, .task-check, .task-flag, .task-delete,
   .task-add, .more-menu-btn, .task-filter-btn, .task-switch-btn {
@@ -286,10 +303,10 @@
   .tab-content.active { display: block; }
 
   /* ═══════════════ PRESENTATION TAB ═══════════════ */
-  #tab-presentation { padding-top: 56px; height: 100vh; }
+  #tab-presentation { padding-top: calc(56px + env(safe-area-inset-top, 0px)); height: 100vh; height: 100dvh; }
 
   /* Deck & Slides */
-  .deck { width: 100%; height: calc(100vh - 56px); position: relative; }
+  .deck { width: 100%; height: calc(100vh - 56px); height: calc(100dvh - 56px); position: relative; }
   .slide {
     position: absolute; inset: 0;
     display: none;
@@ -590,6 +607,7 @@
     position: fixed; bottom: 0; left: 0; right: 0;
     display: flex; justify-content: center; align-items: center;
     gap: 16px; padding: 14px 20px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom, 0px));
     background: rgba(240,238,233,0.95);
     border-top: 1px solid var(--border);
     z-index: 100;
@@ -647,8 +665,9 @@
 
   /* ═══════════════ REVENUE FORECAST TAB ═══════════════ */
   #tab-revenue-forecast {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .forecast-container {
     max-width: 960px;
@@ -863,8 +882,9 @@
 
   /* ═══════════════ PRODUCT LINE TAB ═══════════════ */
   #tab-product-line {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .product-container {
     max-width: 960px;
@@ -986,8 +1006,9 @@
 
   /* ═══════════════ CITATIONS TAB ═══════════════ */
   #tab-citations {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .citations-container {
     max-width: 960px;
@@ -1057,8 +1078,9 @@
 
   /* ═══════════════ CUSTOM CANDLE STRATEGY TAB ═══════════════ */
   #tab-custom-strategy {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .strategy-container {
     max-width: 960px;
@@ -1132,8 +1154,9 @@
 
   /* ═══════════════ ROLES & OPS TAB ═══════════════ */
   #tab-roles {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .roles-container {
     max-width: 960px;
@@ -1245,8 +1268,9 @@
 
   /* ═══════════════ OVERHEAD TAB ═══════════════ */
   #tab-overhead {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .overhead-container {
     max-width: 960px;
@@ -1305,8 +1329,9 @@
 
   /* ═══════════════ LAUNCH GUIDE TAB ═══════════════ */
   #tab-launch-guide {
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
+    min-height: 100dvh;
   }
   .guide-container {
     max-width: 960px;
@@ -1843,11 +1868,14 @@
     .slide { padding: 40px 16px 80px; }
     .scorecard { font-size: 0.65rem; }
     .scorecard th, .scorecard td { padding: 4px 4px; }
-    .top-nav { padding: 0 12px; }
+    .top-nav { padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); }
     .top-nav .logo { font-size: 0.9rem; }
     .tab-btn { font-size: 0.78rem; padding: 16px 10px; }
     .guide-container { padding: 72px 12px 80px; }
     .overhead-container { padding: 72px 12px 80px; }
+    .citations-container { padding: 72px 12px 80px; }
+    .strategy-container { padding: 72px 12px 80px; }
+    .decision-board { padding: 72px 12px 80px; }
   }
 </style>
 </head>
@@ -1860,7 +1888,7 @@
 <!-- ═══════════════ TOP NAVIGATION ═══════════════ -->
 <nav class="top-nav">
   <span class="logo">AMBER &amp; ESSENCE</span>
-  <button class="mobile-menu-toggle" onclick="document.querySelector('.nav-tabs').classList.toggle('open')" aria-label="Menu">
+  <button class="mobile-menu-toggle" onclick="toggleMobileNav()" aria-label="Menu">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
   <div class="nav-tabs">
@@ -1888,6 +1916,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
   </button>
 </nav>
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
 
 <div class="search-overlay" id="search-overlay" style="display:none;">
   <div class="search-bar">
@@ -2282,7 +2311,7 @@
         <tr><td>Startup Cost</td><td>&#10003; Free</td><td>&#10003; Free</td><td>&#10003; Free</td></tr>
       </tbody>
     </table>
-    <p class="footnote" style="margin-top:10px;"><strong class="accent">Printify Vendors:</strong> Candle Builders (5+ scents, 9oz, 1–2 day) · Lumient (100+ scents, 4–14oz, multiple vessels) · Printed Mint (4 scents, custom packaging) · Seventh Avenue Apothecary (3 blends, 11oz, 360° full wrap, 65hr burn, Tampa FL)</p>
+    <p class="footnote" style="margin-top:10px;"><strong class="accent">Printify Vendors:</strong> Candle Builders (5+ scents, 9oz, 1–2 day) · Lumient (100+ scents, 4–14oz, multiple vessels) · Printed Mint (4 scents, custom packaging) · Seventh Avenue Apothecary (3 blends, 11oz, 360° full wrap, 65hr burn, Tampa FL) <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Lumient's "100+ scents" is marketing copy — the live Printify catalog (lumient-catalog.json) shows 12 unique scents. See Research Citations &rarr; Vendor Data.]</span></p>
   </div>
 
   <!-- ═══════════════ SLIDE 11: SUPPLIER SCORECARD — SUSTAINABILITY ═══════════════ -->
@@ -2330,7 +2359,7 @@
         <span class="rank">#1</span>
         <h3>Printify</h3>
         <span class="url">printify.com</span>
-        <p>One platform, 4 vendors: Candle Builders (fast turnaround), Lumient (100+ scents, widest vessel variety), Printed Mint (custom packaging), Seventh Avenue Apothecary (360° full-wrap, premium 65hr burn). All support custom label uploads for our branded line AND custom candle service.</p>
+        <p>One platform, 4 vendors: Candle Builders (fast turnaround), Lumient (100+ scents, widest vessel variety), Printed Mint (custom packaging), Seventh Avenue Apothecary (360° full-wrap, premium 65hr burn). All support custom label uploads for our branded line AND custom candle service. <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Actual Lumient scent count on Printify is 12, not 100+.]</span></p>
         <p class="best-for">Best for: Platform backbone, 100+ scents, multi-vessel catalog, custom labels, multi-channel scaling</p>
         <p class="gap">Gap: Verify sustainability claims per vendor. Pricing varies by vendor.</p>
       </div>
@@ -2489,7 +2518,7 @@
           <li>Configure shipping rate profiles in Shopify</li>
           <li>Draft returns and exchange policy</li>
           <li>Write CS email templates (10 scenarios)</li>
-          <li>Secure product liability insurance (~$300–600/yr)</li>
+          <li>Secure product liability insurance (~$300–600/yr) <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Apr 2: NEXT/Thimble/Hiscox quotes show $408&ndash;768/yr ($34&ndash;64/mo); budget midpoint is $55/mo ($660/yr). See Research &rarr; Insurance for details.]</span></li>
         </ul>
       </div>
       <div class="week-col">
@@ -3124,7 +3153,7 @@
         <tr><td>Insurance (1st month)</td><td class="highlight">$55</td></tr>
         <tr><td>USPTO Trademark (Class 4)</td><td class="highlight">$250–350</td></tr>
         <tr style="border-top:2px solid var(--glow-cyan);"><td><strong>Total to Launch</strong></td><td class="highlight"><strong>~$1,100–1,200</strong></td></tr>
-        <tr><td><strong>Per Person (4 members)</strong></td><td class="highlight"><strong>~$275–300</strong></td></tr>
+        <tr><td><strong>Per Person (4 members)</strong> <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Team is now 3 founders (Jose departed Apr 2026). Per-person is ~$367&ndash;400.]</span></td><td class="highlight"><strong>~$275–300</strong></td></tr>
       </tbody>
     </table>
 
@@ -3140,7 +3169,7 @@
         <tr><td>AI Tools</td><td class="highlight">~$20</td></tr>
         <tr><td>Domain/Hosting</td><td class="highlight">~$5</td></tr>
         <tr style="border-top:2px solid var(--glow-cyan);"><td><strong>Total Monthly Overhead</strong></td><td class="highlight"><strong>~$140</strong></td></tr>
-        <tr><td><strong>Per Person</strong></td><td class="highlight"><strong>~$35</strong></td></tr>
+        <tr><td><strong>Per Person</strong> <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: With 3 founders, ~$47/mo each.]</span></td><td class="highlight"><strong>~$35</strong></td></tr>
       </tbody>
     </table>
 
@@ -3158,6 +3187,8 @@
         <tr><td><strong>Margin %</strong></td><td class="highlight"><strong>~43%</strong></td><td class="highlight"><strong>~55%</strong></td><td class="highlight"><strong>~65%</strong></td></tr>
       </tbody>
     </table>
+
+    <p style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;margin-top:8px;">[Correction Jul 5: Margin percentages above exclude Etsy Offsite Ads fees (12&ndash;15% on attributed orders, mandatory above $10K trailing sales) and the $500&ndash;1,000/mo ad budget recommended in Overhead Phase 3. Realistic blended margin after full fee stack is ~28&ndash;38%. See Business Review Jul 2026.]</p>
 
     <h3 style="margin-top:28px;">Break-Even Analysis</h3>
     <div class="card" style="margin-top:12px;">
@@ -3177,7 +3208,7 @@
       <tbody>
         <tr><td><strong>Reinvest in Business</strong></td><td class="highlight">60%</td><td>Advertising budget, new product development, supplier expansion, tools/apps</td></tr>
         <tr><td><strong>Cash Reserve</strong></td><td class="highlight">25%</td><td>Emergency fund, seasonal inventory buffers, insurance deductibles, returns buffer</td></tr>
-        <tr><td><strong>Member Distribution</strong></td><td class="highlight">15%</td><td>Equal quarterly distribution to all four members</td></tr>
+        <tr><td><strong>Member Distribution</strong></td><td class="highlight">15%</td><td>Equal quarterly distribution to all four members <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Now three members &mdash; Jose departed Apr 2026; new structure TBD.]</span></td></tr>
       </tbody>
     </table>
 
@@ -3220,7 +3251,7 @@
         <div class="glow-bar purple"></div>
         <h3>Insurance Requirements</h3>
         <ul class="check-list">
-          <li>General Liability + Product Liability Insurance required (~$300–600/year)</li>
+          <li>General Liability + Product Liability Insurance required (~$300–600/year) <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Apr 2: Updated range is $408&ndash;768/yr ($34&ndash;64/mo); budget midpoint $55/mo ($660/yr). See Research &rarr; Insurance.]</span></li>
           <li>Recommended providers: Next Insurance, Thimble, Hiscox</li>
           <li>Coverage must be secured BEFORE first sale</li>
           <li>Review supplier terms to understand where their liability ends</li>
@@ -3577,7 +3608,7 @@
 
   <div class="callout-card purple" style="margin-top:20px;">
     <h4 style="color:var(--glow-purple);">Custom AI Candles Are Your Profit Engine</h4>
-    <p>A single custom candle at $49.99 generates <strong>$28.35 profit</strong> — nearly 3x the profit of a standard $29.99 candle. Pushing the custom line to 40%+ of your mix dramatically changes your bottom line. On Shopify, margins are ~5–6% higher due to lower platform fees (3.5% vs 10%).</p>
+    <p>A single custom candle at $49.99 generates <strong>$28.35 profit</strong> — nearly 3x the profit of a standard $29.99 candle. Pushing the custom line to 40%+ of your mix dramatically changes your bottom line. On Shopify, margins are ~5–6% higher due to lower platform fees (3.5% vs 10%). <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: The fee column above works out to 8.7&ndash;9.4%, below the ~10% stated in the Overhead tab, and excludes Etsy Offsite Ads (12&ndash;15% on attributed orders, mandatory above $10K trailing sales). Net profit per unit is overstated by ~$0.30&ndash;0.75 before Offsite Ads exposure.]</span></p>
   </div>
 
   <h3 style="margin-top:30px;">Vendor Comparison</h3>
@@ -3722,6 +3753,7 @@
     <span class="sh-label">Most Likely Outcome (Median)</span>
     <span class="sh-num">$27.3K Year 1 &rarr; $105K Year 3</span>
     <p class="sh-detail">62 orders/month growing to ~240 orders/month &middot; $743/person/month by Year 3</p>
+    <p style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;margin-top:8px;">[Correction Jul 5: (1) Per-person figures in these tables divide by 4 members; team is now 3 &mdash; each share is ~33% higher. (2) The Net Profit columns do not subtract the $500&ndash;1,000/mo ad budget recommended in Overhead Phase 3, Etsy Offsite Ads fees, returns buffer, or startup costs. Independent rebuilds (Business Review Jul 2026) put realistic median Year-1 net at roughly break-even to $7K, not $9,500.]</p>
   </div>
 </div>
 
@@ -3872,7 +3904,7 @@
 
   <div class="callout-card green" style="margin-top:24px;">
     <h4 style="color:var(--glow-green);">The AI Custom Line Exception</h4>
-    <p>Your AI custom candle line (65–75% margins through POD) may <strong>never need the self-manufacturing transition</strong> that limits most POD candle businesses. The customization itself is the value — not the production cost savings. Pure POD practical ceiling: ~$180K/year before margin compression. Documented $100K+ POD-only case: Francisco Rivera, $450K Year 1 (CNBC verified — 99th+ percentile).</p>
+    <p>Your AI custom candle line (65–75% margins through POD) may <strong>never need the self-manufacturing transition</strong> that limits most POD candle businesses. The customization itself is the value — not the production cost savings. Pure POD practical ceiling: ~$180K/year before margin compression. Documented $100K+ POD-only case: Francisco Rivera, $450K Year 1 (CNBC verified — 99th+ percentile). <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: CNBC figure is $462K revenue (not $450K), and his Etsy fees ran ~$55K (~12%) &mdash; above the ~10% fee rate modeled elsewhere in this tab.]</span></p>
   </div>
 </div>
 
@@ -3882,7 +3914,7 @@
   <p>Eight data-backed actions to maximize your chance of landing in the top quartile.</p>
 
   <ol class="rec-list">
-    <li><strong>Launch on Etsy first.</strong> 90M+ built-in buyers, $0 traffic cost, instant validation. Add Shopify when revenue exceeds ~$1,350/month — the fee crossover point where Shopify becomes cheaper.</li>
+    <li><strong>Launch on Etsy first.</strong> 90M+ built-in buyers, $0 traffic cost, instant validation. Add Shopify when revenue exceeds ~$1,350/month — the fee crossover point where Shopify becomes cheaper. <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Recomputed from this site's own fee inputs (Etsy ~10% vs Shopify $39/mo + ~3.5%), the crossover is ~$500&ndash;650/month, not $1,350. Also, Etsy reported 86.5M active buyers for FY2025 (declining), not 90M+.]</span></li>
     <li><strong>Be fully launched before September.</strong> Q4 represents 35–40% of annual candle sales. Missing your first holiday season is the #1 mistake new candle brands make. Your first Q4 performance is make-or-break.</li>
     <li><strong>Lead with custom &amp; memorial candles.</strong> Highest margins ($28–38/unit), strongest emotional purchase drivers, less price sensitivity. Memorial/sympathy has year-round demand with less competition.</li>
     <li><strong>Start with 4–6 SKUs, not 20.</strong> The jam study proved it: 6 options = 10x more purchases than 24. Launch tight, validate, then expand based on what sells.</li>
@@ -4099,7 +4131,7 @@
 
   <div class="callout-card" style="margin-top:20px;">
     <h4 class="accent">Pet Memorial Is the #1 Opportunity</h4>
-    <p>Only ~140 Etsy listings vs strong and growing demand. The pet humanization mega-trend ($150B industry) drives year-round emotional purchases with low price sensitivity. This is the single best demand-to-competition ratio found in our research.</p>
+    <p>Only ~140 Etsy listings vs strong and growing demand. The pet humanization mega-trend ($150B industry) drives year-round emotional purchases with low price sensitivity. This is the single best demand-to-competition ratio found in our research. <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: The "~140 listings" figure does not hold up &mdash; Etsy has dedicated pet-memorial-candle category pages with listings numbering in the thousands (individual listings show 400&ndash;600+ favorites). The niche remains attractive for its emotional price-insensitivity, not for low competition. Re-verify counts before relying on this ranking.]</span></p>
   </div>
 </div>
 
@@ -4210,7 +4242,7 @@
       <span class="kw pin">pet loss gift ideas</span>
       <span class="kw pin">rainbow bridge memorial</span>
     </div>
-    <p class="candle-why"><strong>Why:</strong> Lowest competition niche in research (~140 listings). Pet humanization is a $150B mega-trend with year-round demand. Emotional purchases have low price sensitivity. Label: paw print motif + "Forever in our hearts."</p>
+    <p class="candle-why"><strong>Why:</strong> Lowest competition niche in research (~140 listings). Pet humanization is a $150B mega-trend with year-round demand. Emotional purchases have low price sensitivity. Label: paw print motif + "Forever in our hearts." <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: "~140 listings" is inaccurate &mdash; actual competition is in the thousands. The emotional/price-insensitivity rationale still stands.]</span></p>
   </div>
 
   <!-- Candle 2 -->
@@ -4595,7 +4627,7 @@
       <li><strong>Customization depth:</strong> 9 vessel styles across 4 sizes = best foundation for the candle builder tool</li>
       <li><strong>Quality:</strong> NCA member, batch-tested for burn time &amp; scent throw. Phthalate-free, paraben-free. Reviews cite "zero tunneling, clean burn, great scent throw"</li>
       <li><strong>Reliability:</strong> No Trustpilot horror stories. No weight fraud. No holiday meltdowns (unlike Printed Mint)</li>
-      <li><strong>Margins:</strong> Lowest base cost (~$9.66) of the viable providers = best profit per unit</li>
+      <li><strong>Margins:</strong> Lowest base cost (~$9.66) of the viable providers = best profit per unit <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: ~$9.66 is the lowest-size/discounted figure. The flagship vessels actually used in our pricing cost $13.29&ndash;$20.97 to produce (see Research Citations &rarr; Full Margin Table) &mdash; use those for margin math.]</span></li>
       <li><strong>Sustainability:</strong> 100% USA-sourced soy wax, clean ingredients, NCA certified</li>
       <li><strong>Single-supplier advantage:</strong> Consistent quality, combined shipping ($3.49 additional items), uniform packaging</li>
     </ul>
@@ -4811,9 +4843,10 @@
     <p class="cite-claim">Etsy has 90M+ active buyers</p>
     <p class="cite-source">
       Etsy Q4 2024 Results — <a href="https://investors.etsy.com/news-events/press-releases" target="_blank">investors.etsy.com</a> — 96.5M unique buyers in 2024, 89.6M trailing 12-month<br>
-      Etsy Q3 2025 Results — 86.6M active buyers (most recent)
+      Etsy Q3 2025 Results — 86.6M active buyers<br>
+      Etsy Q4/FY2025 Results (Feb 2026) — 86.5M active buyers, down 3.4% YoY (most recent)
     </p>
-    <p class="cite-note">Originally stated as 93.9M. Updated to "90M+" as a round figure. Actual count fluctuates quarterly between 86–96M.</p>
+    <p class="cite-note">Originally stated as 93.9M. Updated to "90M+" as a round figure. Actual count fluctuates quarterly between 86–96M. <strong style="color:var(--glow-orange);">[Update Jul 5: FY2025 print is 86.5M and has declined for multiple consecutive quarters — "90M+" now overstates the buyer base. Use ~86M, and note the declining trend matters more than the headcount.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -4824,7 +4857,7 @@
       FireBear Studio: Shopify vs. Etsy Fees Comparison — <a href="https://firebearstudio.com/blog/shopify-vs-etsy-fees.html" target="_blank">firebearstudio.com</a><br>
       EcomBalance: Etsy vs Shopify Fees — <a href="https://ecombalance.com/etsy-vs-shopify-fees/" target="_blank">ecombalance.com</a>
     </p>
-    <p class="cite-note">Originally stated as $1,500. Corrected to ~$1,350 based on fee comparison analysis. Etsy total fees ~10.4% vs Shopify $39/mo + ~3.9%.</p>
+    <p class="cite-note">Originally stated as $1,500. Corrected to ~$1,350 based on fee comparison analysis. Etsy total fees ~10.4% vs Shopify $39/mo + ~3.9%. <strong style="color:var(--glow-orange);">[Update Jul 5: The $1,350 figure traces to blog aggregators and doesn't reconcile with our own fee inputs. Solving 0.104x = 39 + 0.039x gives a crossover of ~$600/month. Budget the Shopify decision around $500&ndash;650/mo, not $1,350.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -4846,12 +4879,14 @@
   </div>
 
   <div class="cite-item">
-    <span class="cite-tag verified">Verified</span>
+    <span class="cite-tag corrected">Corrected</span>
     <p class="cite-claim">Only 20% of POD sellers earn &gt;$50K/year; only 24% survive past 3 years</p>
     <p class="cite-source">
       Printify Community surveys and earnings reports<br>
-      EcommerceFuel: State of the Merchant Report (survival rates)
+      EcommerceFuel: State of the Merchant Report (survival rates)<br>
+      PodBase: POD Statistics — <a href="https://www.podbase.com/blogs/print-on-demand-statistics" target="_blank">podbase.com</a>
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Correction Jul 5: The "20% earn &gt;$50K/year" figure could not be verified and appears optimistic — independent data shows only ~3.8% of POD stores exceed $50K/month revenue, and community surveys are self-selected. The ~24% 3-year survival figure did verify. Treat the 20% claim as unsupported; do not use it to calibrate revenue expectations.]</strong></p>
   </div>
 </div>
 
@@ -4876,7 +4911,7 @@
       Baymard Institute: 50 Cart Abandonment Rate Statistics — <a href="https://baymard.com/lists/cart-abandonment-rate" target="_blank">baymard.com</a><br>
       Overall cart abandonment rate: 70.19%. Shipping costs are the #1 cited reason.
     </p>
-    <p class="cite-note">Originally stated as 39–48% range. Corrected to 47% per Baymard's current meta-analysis.</p>
+    <p class="cite-note">Originally stated as 39–48% range. Corrected to 47% per Baymard's current meta-analysis. <strong style="color:var(--glow-orange);">[Update Jul 5: 47% matches neither of Baymard's actual figures — their meta-analysis lists 39% (abandoners with purchase intent citing extra costs) and a separate Feb 2024 consumer survey found 48% (all US adults). Cite one of those two, specifying the population; the original 39&ndash;48% range was actually more accurate than the "corrected" 47%.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -4886,6 +4921,7 @@
       Invesp: How Free Shipping Influences Online Buying Decisions — <a href="https://www.invespcro.com/blog/free-shipping/" target="_blank">invespcro.com</a><br>
       Convertica: Free Shipping Case Study — <a href="https://convertica.org/ecommerce-case-study-free-shipping-and-its-impact-on-revenue/" target="_blank">convertica.org</a> — 88.3% increase in order completion
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Update Jul 5: The 88% figure is a single A/B-test case study (Convertica), not an industry benchmark — typical free-shipping conversion lift is 10&ndash;30%. The cited Invesp page contains no 88% statistic. Keep free shipping as strategy, but don't model an 88% lift.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -4993,13 +5029,14 @@
   </div>
 
   <div class="cite-item">
-    <span class="cite-tag verified">Verified</span>
+    <span class="cite-tag corrected">Corrected</span>
     <p class="cite-claim">Brooklyn Candle Studio: Started with $1,600 on Etsy, hit ~$5M/year by 2025</p>
     <p class="cite-source">
       Forbes: Brooklyn Candle Studio founder profile<br>
       Shopify Blog: Success Stories — Brooklyn Candle Studio<br>
       Key milestones: 10,000-candle Urban Outfitters order (2015), now at Nordstrom, Whole Foods, West Elm. 500K+ candles/year, 20 employees.
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Correction Jul 5: No Forbes founder profile could be located — only unrelated Forbes gift-guide mentions. The founder narrative is actually sourced to Crain's New York Business, Buffer's case study, and Industry City's blog. Core facts ($1,600 start in 2013, retail placements, ~$5M/yr) verified; the $5M is a third-party estimate, not audited financials.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -5070,32 +5107,35 @@
   </div>
 
   <div class="cite-item">
-    <span class="cite-tag verified">Verified</span>
+    <span class="cite-tag corrected">Corrected</span>
     <p class="cite-claim">9oz is the #1 best-selling candle size on Etsy for gifting; 64% of consumers have given candles as gifts</p>
     <p class="cite-source">
       NCA: Candle Facts &amp; Figures — gifting statistics<br>
       Love Eat Travel Repeat: POD Candles Profitability — <a href="https://loveeattravelrepeat.com/print-on-demand-candles/" target="_blank">loveeattravelrepeat.com</a>
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Correction Jul 5: Two issues. (1) The "9oz #1 on Etsy for gifting" claim has no traceable source — industry sources cite 8oz as the best-selling size; treat 9oz as our internal vessel choice, not market research. (2) The 64% figure is from a 2019 NCA/Nobles Research survey ("have given candles as a gift" — lifetime incidence). Beware conflating it with NCA's separate 64% retail-channel stat, and note the Research tab misquotes it as "64% of candle purchases are gifts."]</strong></p>
   </div>
 
   <div class="cite-item">
-    <span class="cite-tag verified">Verified</span>
+    <span class="cite-tag corrected">Corrected</span>
     <p class="cite-claim">Pet Memorial candles: only ~140 Etsy listings vs strong demand — highest sweet spot score (9.0/10)</p>
     <p class="cite-source">
       Etsy search analysis (March 2026): "pet sympathy candle" and "pet memorial candle" listing counts<br>
       Handmade Bosses: 20 Untapped Etsy Niches 2026 — <a href="https://www.handmadebosses.com/blog/20-niche" target="_blank">handmadebosses.com</a><br>
       PodBase: Profitable Niches 2026 — <a href="https://www.podbase.com/blogs/profitable-niches" target="_blank">podbase.com</a>
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Correction Jul 5: Re-verification (Jul 2026) found Etsy pet-memorial-candle competition in the thousands, not ~140 — Etsy maintains multiple dedicated category pages, with individual listings showing 400&ndash;600+ favorites. The ~140 count likely measured one narrow exact-match query. The niche's real strength is emotional price-insensitivity, not low competition. Sweet-spot rankings built on this count should be redone.]</strong></p>
   </div>
 
   <div class="cite-item">
-    <span class="cite-tag verified">Verified</span>
+    <span class="cite-tag corrected">Corrected</span>
     <p class="cite-claim">Manifestation candle: one Etsy seller has 24,144 sales on a single listing; expected to capture 15% of candle market by 2026</p>
     <p class="cite-source">
       Accio: Spiritual Candles Trends — <a href="https://www.accio.com/business/spiritual-candles-trends" target="_blank">accio.com</a><br>
       Accio: Trending Candles 2025 — <a href="https://www.accio.com/business/trending_candles" target="_blank">accio.com</a><br>
       Printify: Top-Selling Etsy Niches 2026 — <a href="https://printify.com/blog/top-selling-niches-on-etsy/" target="_blank">printify.com</a>
     </p>
+    <p class="cite-note"><strong style="color:var(--glow-orange);">[Correction Jul 5: The "15% of candle market by 2026" projection is implausible for a single niche and is sourced only to Accio, an AI content aggregator — do not weight product or marketing decisions on it. The 24,144-sales listing detail is plausible but unverified. Downgrade this source.]</strong></p>
   </div>
 
   <div class="cite-item">
@@ -5660,7 +5700,7 @@ Customer         Etsy            Our Backend (auto)     Printify        Lumient
 
   <div class="strategy-callout">
     <span class="callout-label">Updated Verdict</span>
-    <p style="margin:0;"><strong style="color:var(--glow-green);">Strong fit</strong> for 2026 premium candle market. Black/gold is oversaturated on Etsy and reads cold for emotional products (memorial, wellness). Warm neutrals with amber accents signal "premium but approachable" &mdash; the sweet spot for gift-buying (64% of candle purchases are gifts). 90% of first impressions are color-based.</p>
+    <p style="margin:0;"><strong style="color:var(--glow-green);">Strong fit</strong> for 2026 premium candle market. Black/gold is oversaturated on Etsy and reads cold for emotional products (memorial, wellness). Warm neutrals with amber accents signal "premium but approachable" &mdash; the sweet spot for gift-buying (64% of candle purchases are gifts). 90% of first impressions are color-based. <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: Two stats misquoted. NCA's figure is that 64% of consumers have <em>ever given</em> a candle as a gift (2019 survey) &mdash; not that 64% of purchases are gifts. The color stat is Singh (2006): 62&ndash;90% of snap product assessments can be color-based &mdash; a range from one marketing paper, not a flat 90% about first impressions. Directional conclusions unchanged.]</span></p>
   </div>
 
   <h3>Brand Models to Follow</h3>
@@ -6018,6 +6058,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     </tbody>
   </table>
   <p style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);">All products 43-47% margin. Blended AOV across flagship 6 (excl. Deluxe): $33.32.</p>
+  <p style="margin-top:8px;font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: These margins hold only for single-item orders with no Etsy Offsite Ads attribution. Offsite Ads (12&ndash;15%, mandatory above $10K trailing sales) cut these to ~28&ndash;33%, and the bundle orders promoted in the Product Line tab run 24&ndash;33% (see Bundle Economics below). Realistic blended margin: ~28&ndash;38%, not 43&ndash;47%.]</p>
 </div>
 
 <!-- SHIPPING COSTS -->
@@ -6274,7 +6315,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
         <td><strong>Hearthstone</strong><br><span style="color:var(--text-dim);">Outdoors/Cozy</span></td>
         <td>Clear 11oz</td>
         <td>Glass 11oz, Engr 14oz</td>
-        <td>Rose candle sales +38% YoY. Floral market $1.58B in 2026. Valentine's/Mother's Day spikes. No 9oz option.</td>
+        <td>Rose candle sales +38% YoY. Floral market $1.58B in 2026. Valentine's/Mother's Day spikes. No 9oz option. <span style="font-size:0.7rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: "+38% YoY" is unverifiable &mdash; no source found; floral category growth runs ~7&ndash;12%/yr. The $1.58B figure verified.]</span></td>
       </tr>
     </tbody>
   </table>
@@ -6563,10 +6604,21 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 <!-- ═══════ TOPIC: LLC & EIN FORMATION ═══════ -->
 <!-- ═══════════════════════════════════════════════ -->
 <div id="res-llc">
-<h2 style="font-size:1.5rem;border-bottom:2px solid var(--glow-purple);padding-bottom:10px;margin-bottom:24px;">LLC &amp; EIN Formation <span style="font-size:0.75rem;font-weight:400;color:var(--text-dim);margin-left:8px;">Updated March 30, 2026</span></h2>
+<h2 style="font-size:1.5rem;border-bottom:2px solid var(--glow-purple);padding-bottom:10px;margin-bottom:24px;">LLC &amp; EIN Formation <span style="font-size:0.75rem;font-weight:400;color:var(--text-dim);margin-left:8px;">Updated April 2, 2026</span></h2>
 
-<div class="strategy-section">
-  <h3>Who Should Be Listed on the LLC Filing?</h3>
+<nav class="strategy-nav" style="margin-bottom:32px;">
+  <a href="#res-llc-members" style="color:var(--glow-purple);border-color:var(--glow-purple);">LLC Members</a>
+  <a href="#res-llc-agreement" style="color:var(--glow-purple);border-color:var(--glow-purple);">Operating Agreement</a>
+  <a href="#res-llc-ein" style="color:var(--glow-purple);border-color:var(--glow-purple);">EIN</a>
+  <a href="#res-llc-comparison" style="color:var(--glow-purple);border-color:var(--glow-purple);">FL vs DE Costs</a>
+  <a href="#res-llc-florida" style="color:var(--glow-purple);border-color:var(--glow-purple);">Florida Filing</a>
+  <a href="#res-llc-localtax" style="color:var(--glow-purple);border-color:var(--glow-purple);">Local Business Tax</a>
+  <a href="#res-llc-calendar" style="color:var(--glow-purple);border-color:var(--glow-purple);">Compliance Calendar</a>
+  <a href="#res-llc-sources" style="color:var(--glow-purple);border-color:var(--glow-purple);">Sources</a>
+</nav>
+
+<div class="strategy-section" id="res-llc-members" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Who Should Be Listed on the LLC Filing?</h3>
   <p style="margin-bottom:16px;">Delaware LLCs require listing at least one member or organizer. The key decision is whether to list all 4 founders or just 1&ndash;2. Both approaches are legally valid &mdash; the operating agreement ultimately governs ownership &mdash; but the trade-offs differ significantly.</p>
 
   <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Option A: All 4 Founders Listed</h4>
@@ -6599,8 +6651,8 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   <p style="margin:0;"><strong>List all 4 founders.</strong> For a $90 Delaware LLC with equal ownership and a clear 4-member operating agreement, the administrative overhead is minimal and the protection is worth it. The risk of a founder dispute without legal standing far outweighs the convenience of a leaner filing.</p>
 </div>
 
-<div class="strategy-section" style="margin-top:24px;">
-  <h3>Operating Agreement: Key Provisions</h3>
+<div class="strategy-section" id="res-llc-agreement" style="scroll-margin-top:72px;margin-top:24px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Operating Agreement: Key Provisions</h3>
   <p style="margin-bottom:12px;">The operating agreement (Task #3 &mdash; Mark) is the true safeguard regardless of who&rsquo;s on the LLC filing. It should define:</p>
   <table class="data-table" style="margin-top:8px;">
     <thead><tr><th>Provision</th><th>Why It Matters</th></tr></thead>
@@ -6615,8 +6667,8 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   </table>
 </div>
 
-<div class="strategy-section" style="margin-top:24px;">
-  <h3>EIN Application Notes</h3>
+<div class="strategy-section" id="res-llc-ein" style="scroll-margin-top:72px;margin-top:24px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">EIN Application Notes</h3>
   <p>The EIN (Employer Identification Number) is applied for on <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" style="color:var(--glow-purple);">IRS.gov</a> the same day the LLC is filed. Key details:</p>
   <ul style="margin-top:12px;padding-left:20px;line-height:2;">
     <li>Only <strong>one &ldquo;responsible party&rdquo;</strong> is listed on the EIN application (typically Mark as Finance lead)</li>
@@ -6627,9 +6679,163 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
   </ul>
 </div>
 
+<!-- ── FL vs DE Cost Comparison ── -->
+<div class="strategy-section" id="res-llc-comparison" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Florida-Only vs Delaware + Florida Foreign LLC</h3>
+  <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin-bottom:16px;">Two viable formation paths. Delaware offers business-friendly courts and investor familiarity; Florida-only is simpler and cheaper for a bootstrapped e-commerce LLC with no outside investors.</p>
+
+  <p style="font-size:0.85rem;color:var(--text-dim);line-height:1.65;margin-bottom:16px;"><strong>Note:</strong> Neither Florida&rsquo;s annual report nor Delaware&rsquo;s franchise tax are owed the year of formation. FL&rsquo;s first annual report is due May 1 of the following year; DE&rsquo;s $300 tax covers the prior year and is due June 1 of the following year. Timing of formation within 2026 does not affect Year 1 costs.</p>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Scenario 1: Florida Only</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Cost</th><th>Year 1 (2026)</th><th>Ongoing Annual</th></tr></thead>
+    <tbody>
+      <tr><td>FL LLC filing</td><td>$125</td><td>&mdash;</td></tr>
+      <tr><td>FL annual report</td><td>$0 (not due until May 2027)</td><td class="highlight">$138.75</td></tr>
+      <tr><td><strong>Total</strong></td><td class="highlight"><strong>$125</strong></td><td class="highlight"><strong>$138.75</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Scenario 2: Delaware + Foreign in Florida</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Cost</th><th>Year 1 (2026)</th><th>Ongoing Annual</th></tr></thead>
+    <tbody>
+      <tr><td>DE LLC filing</td><td>$110</td><td>&mdash;</td></tr>
+      <tr><td>FL foreign LLC registration</td><td>$125</td><td>&mdash;</td></tr>
+      <tr><td>DE registered agent</td><td>$50&ndash;150</td><td>$50&ndash;150</td></tr>
+      <tr><td>DE franchise tax</td><td>$0 (not due until June 2027)</td><td>$300</td></tr>
+      <tr><td>FL annual report</td><td>$0 (not due until May 2027)</td><td class="highlight">$138.75</td></tr>
+      <tr><td><strong>Total</strong></td><td class="highlight"><strong>$285&ndash;$385</strong></td><td class="highlight"><strong>$488.75&ndash;$588.75</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Savings Summary</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th></th><th>FL Only</th><th>DE + FL</th><th>Savings with FL Only</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Year 1 (2026)</strong></td><td>$125</td><td>$285&ndash;$385</td><td class="highlight"><strong>$160&ndash;$260</strong></td></tr>
+      <tr><td><strong>Ongoing annual</strong></td><td>$138.75</td><td>$488.75&ndash;$588.75</td><td class="highlight"><strong>$350&ndash;$450</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="strategy-callout" style="margin-top:24px;">
+    <span class="callout-label" style="color:var(--glow-purple);">Team Decision Pending</span>
+    <p style="margin:0;">Florida-only saves <strong>$350&ndash;$450/yr</strong> ongoing. Delaware advantages (business-friendly courts, investor familiarity) mainly matter when raising outside capital or managing complex multi-member agreements. For a bootstrapped 4-person candle e-commerce LLC, Florida-only is the simpler and cheaper path. <strong>Discuss with Mark before filing.</strong></p>
+  </div>
+</div>
+
+<!-- ── Florida LLC Filing Details ── -->
+<div class="strategy-section" id="res-llc-florida" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Florida LLC Filing Details</h3>
+
+  <h4 style="margin-top:16px;margin-bottom:12px;color:var(--glow-purple);">Formation Costs</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Fee</th><th>Amount</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Articles of Organization</td><td class="highlight">$100</td><td>Filed online at <a href="https://dos.fl.gov/sunbiz/" target="_blank" style="color:var(--glow-purple);">Sunbiz.org</a></td></tr>
+      <tr><td>Registered Agent designation</td><td class="highlight">$25</td><td>Included in filing; you can be your own RA in FL</td></tr>
+      <tr><td><strong>Total to form</strong></td><td class="highlight"><strong>$125</strong></td><td>Credit or debit card on Sunbiz</td></tr>
+      <tr><td>EIN from IRS</td><td>$0</td><td>Free, ~5 min at <a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" style="color:var(--glow-purple);">irs.gov</a></td></tr>
+      <tr><td>Name reservation (optional)</td><td>$25</td><td>Holds name for 120 days</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:24px;margin-bottom:12px;color:var(--glow-purple);">Full Sunbiz Fee Schedule</h4>
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Fee</th><th>Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Annual Report (on time, by May 1)</td><td class="highlight">$138.75</td></tr>
+      <tr><td>Annual Report (late, after May 1)</td><td class="highlight" style="color:#e74c3c;"><strong>$538.75</strong></td></tr>
+      <tr><td>Amended Annual Report</td><td>$50</td></tr>
+      <tr><td>Change of Registered Agent</td><td>$25</td></tr>
+      <tr><td>Articles of Correction</td><td>$25</td></tr>
+      <tr><td>Articles of Dissolution</td><td>$25</td></tr>
+      <tr><td>Reinstatement (if dissolved)</td><td>$100 + annual report fees</td></tr>
+      <tr><td>Certificate of Status</td><td>$5</td></tr>
+      <tr><td>Certified Copy of Record</td><td>$30</td></tr>
+      <tr><td>Certificate of Merger</td><td>$25 per party</td></tr>
+    </tbody>
+  </table>
+
+  <div class="strategy-callout" style="margin-top:24px;">
+    <span class="callout-label" style="color:var(--glow-purple);">Annual Report Rules</span>
+    <p style="margin:0;">You do <strong>not</strong> owe an annual report the year you form. Your first annual report is due <strong>May 1 of the year after formation</strong>. If you form any time in 2026, your first report is due May 1, 2027. The filing window opens January 1. Missing the May 1 deadline adds a <strong>$400 late penalty</strong> ($138.75 &rarr; $538.75). If not filed by the third Friday in September, the LLC is <strong>administratively dissolved</strong>.</p>
+  </div>
+
+  <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin-top:16px;"><strong>No state income tax.</strong> Florida has no state income tax, no franchise tax, and no separate business license at the state level. The only recurring state cost is the $138.75 annual report.</p>
+</div>
+
+<!-- ── Local Business Tax ── -->
+<div class="strategy-section" id="res-llc-localtax" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Local Business Tax (Miami-Dade / Coral Gables)</h3>
+  <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin-bottom:16px;">Florida counties and cities require a Local Business Tax Receipt (formerly &ldquo;Occupational License&rdquo;) to operate within their jurisdiction. This applies even to online-only businesses based on where <em>you</em> operate from, not where customers are.</p>
+
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Receipt</th><th>Who Collects</th><th>Est. Cost</th><th>Due</th></tr></thead>
+    <tbody>
+      <tr><td><strong>County</strong> Local Business Tax</td><td><a href="https://mdctaxcollector.gov/services/local-business-tax-receipt" target="_blank" style="color:var(--glow-purple);">Miami-Dade Tax Collector</a></td><td class="highlight">~$50</td><td>October 1</td></tr>
+      <tr><td><strong>City</strong> Business Tax Receipt</td><td><a href="https://www.coralgables.com/department/finance/services/local-business-tax-online-renewal-service" target="_blank" style="color:var(--glow-purple);">City of Coral Gables</a></td><td class="highlight">Varies by classification</td><td>October 1</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem;color:var(--text-dim);margin-top:8px;">Tax year runs October 1 &ndash; September 30. Receipts not renewed by September 30 become delinquent with additional penalties.</p>
+
+  <div class="strategy-callout" style="margin-top:24px;border-color:rgba(231,76,60,0.4);background:rgba(231,76,60,0.06);">
+    <span class="callout-label" style="color:#e74c3c;">&#9888; Coral Gables Zoning Restriction</span>
+    <p style="margin:0;">Coral Gables <strong>prohibits businesses from operating in residential homes</strong>. This is stricter than most Florida cities. Since this is an online-only dropship business with no inventory or foot traffic, this is a gray area. Options:</p>
+    <ul style="font-size:0.88rem;color:var(--text-dim);line-height:1.8;padding-left:20px;margin-top:8px;margin-bottom:0;">
+      <li><strong>Virtual office address</strong> &mdash; commercial address in Coral Gables or nearby (~$100&ndash;$300/yr)</li>
+      <li><strong>Unincorporated Miami-Dade address</strong> &mdash; skip the city BTR entirely, only pay county (~$50)</li>
+      <li><strong>Register anyway</strong> &mdash; some e-commerce sellers do since there is no physical business activity at the home</li>
+    </ul>
+    <p style="margin:8px 0 0;font-size:0.85rem;"><strong>Recommendation:</strong> Call the <a href="https://www.coralgables.com/department/development-services/planning-and-zoning-division/services/starting-business-coral" target="_blank" style="color:var(--glow-purple);">Coral Gables Development Services</a> office to confirm whether a dropship e-commerce LLC with no inventory or foot traffic qualifies.</p>
+  </div>
+</div>
+
+<!-- ── Compliance Calendar ── -->
+<div class="strategy-section" id="res-llc-calendar" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Compliance Calendar</h3>
+  <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin-bottom:16px;">All recurring deadlines for maintaining the LLC and staying compliant. Set reminders 2&ndash;4 weeks before each date.</p>
+
+  <table class="data-table" style="margin-top:8px;">
+    <thead><tr><th>Deadline</th><th>What</th><th>Cost</th><th>Penalty if Missed</th></tr></thead>
+    <tbody>
+      <tr><td><strong>May 1</strong></td><td>FL Annual Report (Sunbiz)</td><td class="highlight">$138.75</td><td style="color:#e74c3c;"><strong>+$400 late fee;</strong> dissolution by Sept</td></tr>
+      <tr><td><strong>June 1</strong></td><td>DE Franchise Tax for prior year <em>(only if DE route)</em></td><td>$300</td><td>$200 penalty + 1.5%/mo interest</td></tr>
+      <tr><td><strong>October 1</strong></td><td>Miami-Dade County BTR renewal</td><td>~$50</td><td>Delinquency fees</td></tr>
+      <tr><td><strong>October 1</strong></td><td>Coral Gables City BTR renewal</td><td>Varies</td><td>Delinquency fees</td></tr>
+      <tr><td><strong>Annual</strong></td><td>Insurance policy renewal</td><td>~$660/yr</td><td>Coverage lapse &mdash; no sales allowed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="strategy-callout" style="margin-top:24px;">
+    <span class="callout-label" style="color:var(--glow-purple);">Year 1 Estimated Total (Florida Only)</span>
+    <p style="margin:0;">LLC filing <strong>$125</strong> + EIN <strong>$0</strong> + County BTR <strong>~$50</strong> + City BTR <strong>~$30&ndash;$100</strong> = <strong>~$205&ndash;$275 total</strong> to get started. No annual report or franchise tax owed the year of formation &mdash; first FL annual report due May 1, 2027. Insurance (~$55/mo) is a separate line item budgeted in the business plan.</p>
+  </div>
+</div>
+
+<!-- ── Sources & Citations ── -->
+<div class="strategy-section" id="res-llc-sources" style="scroll-margin-top:72px;margin-bottom:40px;">
+  <h3 style="font-size:1.2rem;margin-bottom:16px;">Sources &amp; Citations</h3>
+  <ul style="font-size:0.85rem;color:var(--text-dim);line-height:2;padding-left:20px;">
+    <li><a href="https://dos.fl.gov/sunbiz/forms/fees/llc-fees/" target="_blank" style="color:var(--glow-purple);">Florida Dept. of State &mdash; Sunbiz LLC Fees (Official)</a></li>
+    <li><a href="https://dos.fl.gov/sunbiz/manage-business/efile/annual-report/" target="_blank" style="color:var(--glow-purple);">Florida Dept. of State &mdash; Sunbiz Annual Report Filing</a></li>
+    <li><a href="https://dos.fl.gov/sunbiz/manage-business/efile/annual-report/instructions" target="_blank" style="color:var(--glow-purple);">Florida Dept. of State &mdash; Sunbiz Annual Report Instructions</a></li>
+    <li><a href="https://mdctaxcollector.gov/services/local-business-tax-receipt" target="_blank" style="color:var(--glow-purple);">Miami-Dade County &mdash; Local Business Tax Receipt</a></li>
+    <li><a href="https://www.coralgables.com/department/development-services/planning-and-zoning-division/services/starting-business-coral" target="_blank" style="color:var(--glow-purple);">City of Coral Gables &mdash; Starting a Business</a></li>
+    <li><a href="https://www.coralgables.com/department/finance/services/local-business-tax-online-renewal-service" target="_blank" style="color:var(--glow-purple);">City of Coral Gables &mdash; Local Business Tax Renewal</a></li>
+    <li><a href="https://www.llcuniversity.com/florida-llc/costs/" target="_blank" style="color:var(--glow-purple);">LLC University &mdash; Florida LLC Costs (2026)</a></li>
+    <li><a href="https://www.statebusinesscompliance.com/blog/florida-llc-taxes-fees-2026" target="_blank" style="color:var(--glow-purple);">State Business Compliance &mdash; Florida LLC Costs 2026</a></li>
+    <li><a href="https://www.zenbusiness.com/florida-filing-fees/" target="_blank" style="color:var(--glow-purple);">ZenBusiness &mdash; Florida LLC Filing Fees</a></li>
+    <li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" style="color:var(--glow-purple);">IRS &mdash; Apply for EIN Online</a></li>
+    <li><a href="https://corp.delaware.gov/fee/" target="_blank" style="color:var(--glow-purple);">Delaware Division of Corporations &mdash; Fee Schedule</a></li>
+    <li><a href="https://corp.delaware.gov/alt-entitytaxinstructions/" target="_blank" style="color:var(--glow-purple);">Delaware Division of Corporations &mdash; LLC/LP/GP Franchise Tax Instructions</a></li>
+    <li><a href="https://www.llcuniversity.com/delaware-llc/costs/" target="_blank" style="color:var(--glow-purple);">LLC University &mdash; Delaware LLC Costs (2026)</a></li>
+  </ul>
+</div>
+
 </div><!-- /res-llc -->
 
-<p class="footnote" style="margin-top:40px;max-width:100%;">Research compiled March 2026. Sources: Printify API (live data), Lumient catalog (57 fragrances), Etsy marketplace analysis, NCA market data, 2026 trend reports, Lumient pricing blog, NEXT/Thimble/Hiscox insurance guides, Printify Merchant Protection policy. Production costs and scent availability verified via API on March 21-23, 2026. Insurance research compiled March 25, 2026. LLC formation research compiled March 30, 2026.</p>
+<p class="footnote" style="margin-top:40px;max-width:100%;">Research compiled March&ndash;April 2026. Sources: Printify API (live data), Lumient catalog (57 fragrances), Etsy marketplace analysis, NCA market data, 2026 trend reports, Lumient pricing blog, NEXT/Thimble/Hiscox insurance guides, Printify Merchant Protection policy, Florida Sunbiz fee schedule, Miami-Dade Tax Collector, City of Coral Gables. Production costs and scent availability verified via API on March 21-23, 2026. Insurance research compiled March 25, 2026. LLC formation research compiled March 30, 2026. LLC cost analysis and local tax research compiled April 2, 2026.</p>
 
 </div><!-- /strategy-container -->
 </div><!-- /tab-research -->
@@ -6722,7 +6928,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
 
   <div class="overhead-callout" style="background:rgba(74,122,111,0.08);border-color:rgba(74,122,111,0.25);">
     <span class="callout-label" style="color:var(--glow-green);">Etsy Fee Math</span>
-    <p style="font-size:0.9rem;line-height:1.65;margin:0;">On a $35 candle, Etsy takes ~$3.50 in fees. Budget 10% of gross Etsy revenue for marketplace fees. The $0.20 listing fee is per-listing (not per-sale) and renews every 4 months or when sold.</p>
+    <p style="font-size:0.9rem;line-height:1.65;margin:0;">On a $35 candle, Etsy takes ~$3.50 in fees. Budget 10% of gross Etsy revenue for marketplace fees. The $0.20 listing fee is per-listing (not per-sale) and renews every 4 months or when sold. <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: The ~10% covers base fees only. Etsy Offsite Ads adds 12&ndash;15% on attributed orders &mdash; mandatory once the shop passes $10K trailing-12-month sales, which the median forecast crosses in Year 1. Budget 12&ndash;13% blended, and model Offsite Ads exposure explicitly.]</span></p>
   </div>
 </div>
 
@@ -7072,7 +7278,7 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
       <div class="decision-body">
         <div class="decision-title">Primary Candle Supplier</div>
         <div class="decision-meta"><span class="decision-owner-tag">Robert</span><span class="decision-decided-by">AOR decision</span></div>
-        <div class="decision-outcome">Lumient via Printify (Provider 219). 57+ scents, 9 vessel styles, NCA certified, 100% soy wax, lowest base cost (~$9.66).</div>
+        <div class="decision-outcome">Lumient via Printify (Provider 219). 57+ scents, 9 vessel styles, NCA certified, 100% soy wax, lowest base cost (~$9.66). <span style="font-size:0.75rem;color:var(--glow-orange);font-weight:700;">[Correction Jul 5: "57+" matches no source &mdash; the live Printify catalog (lumient-catalog.json) shows 12 unique scents. Flagship vessel production costs are $13.29&ndash;$20.97; ~$9.66 is the lowest-size figure.]</span></div>
       </div>
       <button class="decision-flag" title="Toggle urgent">&#9873;</button>
     </div>
@@ -7592,13 +7798,28 @@ Negative: blurry, misspelled, vertical layout, photorealistic, black background,
     if (wrap && !wrap.contains(e.target)) closeMoreMenu();
   });
 
+  // ═══════════════ MOBILE NAV ═══════════════
+  function toggleMobileNav() {
+    var navTabs = document.querySelector('.nav-tabs');
+    var backdrop = document.getElementById('mobile-nav-backdrop');
+    var isOpen = navTabs.classList.toggle('open');
+    if (backdrop) backdrop.classList.toggle('open', isOpen);
+  }
+  function closeMobileNav() {
+    var navTabs = document.querySelector('.nav-tabs');
+    var backdrop = document.getElementById('mobile-nav-backdrop');
+    if (navTabs) navTabs.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (e.target.id === 'mobile-nav-backdrop') closeMobileNav();
+  });
+
   // ═══════════════ TAB SWITCHING ═══════════════
   var MORE_TABS = ['presentation','launch-guide','revenue-forecast','product-line','citations','custom-strategy','roles'];
 
   function switchTab(tabId) {
-    // Close mobile nav if open
-    var navTabs = document.querySelector('.nav-tabs');
-    if (navTabs) navTabs.classList.remove('open');
+    closeMobileNav();
     // Hide all tab content
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     // Deactivate all tab buttons (top-level)

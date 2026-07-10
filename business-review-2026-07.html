@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amber &amp; Essence — Business Model Review (Jul 2026)</title>
+<style>
+  :root{
+    --cream:#F0EEE9; --charcoal:#3A3633; --amber:#C08B5C; --patina:#7A9E99; --putty:#C4B5A5;
+    --ink:#2B2825; --dim:#6B655F; --line:#E0DBD2; --card:#FBFAF7;
+    --crit:#B4453C; --high:#C0763C; --med:#B99A3E; --ok:#5E8A73;
+    --shadow:0 1px 2px rgba(58,54,51,.06),0 8px 28px rgba(58,54,51,.07);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px;}
+  h1,h2,h3{font-family:'DM Serif Display',Georgia,'Times New Roman',serif;font-weight:400;color:var(--charcoal);line-height:1.15;}
+  code,.mono{font-family:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;font-size:.86em;}
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(192,139,92,.35);}
+  a:hover{border-bottom-color:var(--amber);}
+
+  /* ---- Masthead ---- */
+  header.mast{padding:64px 0 40px;border-bottom:1px solid var(--line);margin-bottom:8px;}
+  .kicker{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:16px;}
+  header.mast h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:0 0 14px;letter-spacing:-.01em;}
+  header.mast p.sub{font-size:1.12rem;color:var(--dim);max-width:70ch;margin:0;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;font-size:.82rem;color:var(--dim);}
+  .meta-row b{color:var(--charcoal);font-weight:600;}
+
+  /* ---- Verdict banner ---- */
+  .verdict{margin:38px 0;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--high);
+    border-radius:14px;padding:30px 34px;box-shadow:var(--shadow);}
+  .verdict .tag{display:inline-block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+    color:#fff;background:var(--high);padding:5px 12px;border-radius:100px;margin-bottom:16px;}
+  .verdict h2{font-size:1.7rem;margin:0 0 12px;}
+  .verdict p{margin:0 0 12px;font-size:1.03rem;}
+  .verdict p:last-child{margin-bottom:0;}
+
+  section{margin-top:56px;}
+  section > h2{font-size:1.75rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;}
+  section > h2 .num{font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--amber);font-weight:600;}
+  section > p.lede{color:var(--dim);margin:0 0 24px;max-width:74ch;}
+
+  /* ---- Scorecard ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+  .score{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);}
+  .score h3{font-size:1.05rem;margin:0 0 6px;font-family:'Inter',sans-serif;font-weight:650;color:var(--charcoal);}
+  .score .grade{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1;}
+  .score .cap{font-size:.82rem;color:var(--dim);margin-top:8px;}
+  .g-a{color:var(--ok);} .g-b{color:var(--patina);} .g-c{color:var(--med);} .g-d{color:var(--high);} .g-f{color:var(--crit);}
+
+  /* ---- Tables ---- */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);}
+  table{border-collapse:collapse;width:100%;background:var(--card);font-size:.9rem;min-width:640px;}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{background:#F5F2EC;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+  .claimed{color:var(--dim);}
+  .real{font-weight:650;color:var(--charcoal);}
+
+  /* ---- Severity pills ---- */
+  .sev{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 9px;border-radius:100px;white-space:nowrap;}
+  .sev.crit{background:rgba(180,69,60,.12);color:var(--crit);}
+  .sev.high{background:rgba(192,118,60,.14);color:var(--high);}
+  .sev.med{background:rgba(185,154,62,.16);color:#8a7226;}
+  .sev.ok{background:rgba(94,138,115,.14);color:var(--ok);}
+
+  /* ---- Finding cards ---- */
+  .finding{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:14px;
+    box-shadow:var(--shadow);border-left:4px solid var(--putty);}
+  .finding.c-crit{border-left-color:var(--crit);}
+  .finding.c-high{border-left-color:var(--high);}
+  .finding.c-med{border-left-color:var(--med);}
+  .finding .fhead{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:8px;}
+  .finding h3{font-family:'Inter',sans-serif;font-weight:650;font-size:1.05rem;margin:0;color:var(--charcoal);}
+  .finding p{margin:6px 0 0;font-size:.94rem;}
+  .finding .src{font-size:.8rem;color:var(--dim);margin-top:8px;}
+  .quote{border-left:2px solid var(--putty);padding-left:12px;margin:8px 0;color:var(--dim);font-style:italic;font-size:.9rem;}
+
+  /* ---- Two-col ---- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:760px){.cols{grid-template-columns:1fr;}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;box-shadow:var(--shadow);}
+  .panel h3{font-family:'Inter',sans-serif;font-weight:650;font-size:1.05rem;margin:0 0 12px;}
+  .panel.good{border-top:4px solid var(--ok);}
+  .panel.bad{border-top:4px solid var(--crit);}
+  .panel ul{margin:0;padding-left:18px;}
+  .panel li{margin-bottom:9px;font-size:.93rem;}
+
+  /* ---- Action list ---- */
+  ol.actions{list-style:none;counter-reset:a;padding:0;margin:0;}
+  ol.actions li{counter-increment:a;position:relative;padding:16px 20px 16px 60px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin-bottom:12px;box-shadow:var(--shadow);}
+  ol.actions li::before{content:counter(a);position:absolute;left:18px;top:16px;width:28px;height:28px;
+    background:var(--amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;}
+  ol.actions li b{color:var(--charcoal);}
+  .pri{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-left:8px;}
+  .pri.now{background:rgba(180,69,60,.12);color:var(--crit);}
+  .pri.soon{background:rgba(192,118,60,.14);color:var(--high);}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--dim);}
+  footer h3{font-size:.95rem;margin:0 0 10px;}
+  footer a{word-break:break-word;}
+  .callout{background:rgba(122,158,153,.08);border:1px solid rgba(122,158,153,.25);border-radius:12px;padding:18px 22px;margin:20px 0;font-size:.94rem;}
+  .callout b{color:var(--charcoal);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">Independent Business Review</div>
+  <h1>Amber &amp; Essence Candle Co.</h1>
+  <p class="sub">A critical fact-check and business-model assessment of the internal strategy dashboard — scenario projections, unit economics, market research, and the AI custom-candle thesis.</p>
+  <div class="meta-row">
+    <span><b>Prepared:</b> July 3, 2026</span>
+    <span><b>Scope:</b> index.html — Revenue Forecast, Product Line, Overhead, Research, Citations, Custom Strategy, Launch Guide</span>
+    <span><b>Method:</b> 4 parallel specialist audits + arithmetic reconciliation + live web verification</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="tag">Verdict — Conditional / Proceed With Corrections</span>
+  <h2>A viable lean side-business dressed up as a high-margin AI venture.</h2>
+  <p>The underlying idea is sound and low-risk: print-on-demand candles carry <b>no inventory exposure</b>, cost ~$1,100 to launch, and target genuinely under-served emotional niches (pet memorial, sympathy). The operational diligence — Printify API verification, Etsy TOS compliance, phased overhead planning — is real and above-average for a bootstrapped team.</p>
+  <p>But the dashboard <b>systematically overstates the three numbers that matter most</b>: margins, net profit, and market opportunity. The headline "43–47% margins" hold only for single-item orders with no ad attribution; realistic blended margin is <b>~28–38%</b>. The "$9,500 median Year-1 profit" is <b>not reproducible</b> — two independent rebuilds put the honest figure at roughly <b>break-even to $7K</b> once real Etsy fees, offsite ads, and the plan's <em>own</em> recommended ad budget are applied. And the "AI custom candle" the business is named around <b>does not exist yet</b> — the launch product is a plain photo-to-label print, identical to thousands of existing Etsy listings.</p>
+  <p><b>Bottom line:</b> Fund it as a $3–7K/year side venture with real upside in the pet-memorial niche — not as the "AI-powered, 65–75% margin" business the deck describes. Fix the model's honesty problems before anyone makes decisions on these numbers.</p>
+</div>
+
+<!-- ============ SCORECARD ============ -->
+<section>
+  <h2><span class="num">01</span> Component Scorecard</h2>
+  <p class="lede">Each surface of the dashboard graded on factual accuracy and business soundness.</p>
+  <div class="grid">
+    <div class="score"><h3>Overhead Model</h3><div class="grade g-a">A−</div><div class="cap">Phased, conservative, internally consistent. Correctly uses ~10% Etsy + real ad ranges. Missing: Printify Premium fee, founder pay.</div></div>
+    <div class="score"><h3>Niche Selection</h3><div class="grade g-b">B</div><div class="cap">Pet memorial / sympathy are genuinely low-price-sensitivity wins. But the competition counts backing the ranking are wrong.</div></div>
+    <div class="score"><h3>Product / Unit Economics</h3><div class="grade g-c">C</div><div class="cap">Margins real only in the narrowest case. Cost anchor (~$9.66) understates real vessel costs ($13.29–20.97). Bundles drop to 24–33%.</div></div>
+    <div class="score"><h3>Revenue Forecast</h3><div class="grade g-d">C−</div><div class="cap">No traffic-to-orders model. Net profit excludes the ad budget it recommends. Still divides per-person by 4 (team is 3).</div></div>
+    <div class="score"><h3>Market Research</h3><div class="grade g-c">C+</div><div class="cap">Headline market sizes roughly OK, but several load-bearing stats are unsourced, mis-read, or implausible.</div></div>
+    <div class="score"><h3>AI Custom Strategy</h3><div class="grade g-d">D+</div><div class="cap">Well-engineered pipeline, but the "AI" is deferred to a future phase and, once built, is a commoditized gimmick.</div></div>
+  </div>
+</section>
+
+<!-- ============ FINANCIAL REALITY ============ -->
+<section>
+  <h2><span class="num">02</span> The Financial Reality Check</h2>
+  <p class="lede">The single most important correction. The deck's median Year-1 net profit of <b>$9,500</b> does not survive its own cost assumptions applied consistently. Two independent rebuilds converged on the same answer.</p>
+
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr><th>Line item (Median scenario, $27,300 rev)</th><th class="num">Deck's model</th><th class="num">Realistic rebuild</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Gross revenue</td><td class="num">$27,300</td><td class="num">$27,300</td></tr>
+        <tr><td>COGS + shipping (~$16.93–20/unit × ~744)</td><td class="num claimed">−$12,596</td><td class="num real">−$12,600 to −$14,900</td></tr>
+        <tr><td>Etsy fees <span class="mono">(deck ~10% vs real ~13%)</span></td><td class="num claimed">−$2,730</td><td class="num real">−$3,300 to −$3,550</td></tr>
+        <tr><td>Etsy Offsite Ads (15%, mandatory &lt;$10K) — <b>omitted</b></td><td class="num claimed">$0</td><td class="num real">−$1,200</td></tr>
+        <tr><td>Ad spend — deck recommends $500–1k/mo, then omits it</td><td class="num claimed">−$2,400</td><td class="num real">−$2,700 to −$7,200</td></tr>
+        <tr><td>Printify Premium (~$25/mo) — omitted</td><td class="num claimed">$0</td><td class="num real">−$300</td></tr>
+        <tr><td>Returns / replacements (2.5%, budgeted but never subtracted)</td><td class="num claimed">$0</td><td class="num real">−$683</td></tr>
+        <tr><td>Fixed overhead</td><td class="num claimed">−$1,680</td><td class="num real">−$1,000 to −$1,680</td></tr>
+        <tr style="background:rgba(192,139,92,.07);"><td><b>Net profit — before any founder pay</b></td><td class="num claimed"><b>$9,500</b></td><td class="num real"><b>≈ −$2,000 to +$7,000</b></td></tr>
+        <tr><td>Per founder / year <span class="mono">(÷3, not ÷4)</span></td><td class="num claimed">$2,375</td><td class="num real">≈ $0 – $2,300</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <b>Why the gap exists — it's not fraud, it's scope-drift.</b> The deck's "Net Profit" column is really <em>contribution margin before marketing</em>. Every cost it omits (offsite ads, the real ad budget, returns, Printify's fee) is acknowledged <em>somewhere else</em> in the same document — just never netted into the number the reader is asked to trust. The margins are technically correct for the narrowest order type and quietly presented as typical.
+  </div>
+
+  <div class="finding c-high">
+    <div class="fhead"><span class="sev high">Structural</span><h3>There is no traffic-acquisition model</h3></div>
+    <p>At the deck's own honest 1.4% conversion rate, the median "62 orders/month" requires <b>~4,400 visitors/month</b>. A brand-new, review-less Etsy shop realistically sees 500–1,500/month for the first half-year — which lands the business in the <b>Floor–to–Below-Average band ($8–17K), below the $25–50K target</b>. Hitting median requires paid traffic, which then wipes out the profit. The two assumptions (high organic traffic + low ad spend) are mutually contradictory.</p>
+  </div>
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Reframe</span><h3>Even the optimistic cases are side-income, not a business</h3></div>
+    <p>Median Year 1 ≈ <b>$2,375/founder/year</b>; median Year 3 ≈ <b>$8,900/founder/year</b>. Even the 90th-percentile Year-3 ceiling is ~$32K/founder after three years. This is a legitimate side hustle — the deck should say so plainly rather than imply a full-time income. Zero founder compensation is modeled anywhere.</p>
+  </div>
+</section>
+
+<!-- ============ FACT CHECK ============ -->
+<section>
+  <h2><span class="num">03</span> Fact-Check — Findings by Severity</h2>
+  <p class="lede">Every material factual claim was extracted verbatim and verified against live 2025–2026 sources. Findings surfaced as corrections to review — per your audit protocol, existing content should get a visible correction note, not a silent rewrite.</p>
+
+  <div class="finding c-crit">
+    <div class="fhead"><span class="sev crit">Critical</span><h3>"Pet Memorial — only ~140 Etsy listings" — the basis for the #1 product</h3></div>
+    <p>This claim drives the entire flagship strategy ("single best demand-to-competition ratio found in our research"). It is <b>not credible.</b> Etsy has dedicated category pages for pet memorial candles with <b>thousands</b> of listings; individual listings show 471 and 608 favorites. The "low competition" thesis for the #1 pick collapses on inspection — the real edge in this niche is <em>emotional price-insensitivity</em>, not white space.</p>
+    <p class="src">Verified via Etsy market pages (pet_memorial_candle, dog_memorial_candle, pet_loss_memorial_candles), July 2026.</p>
+  </div>
+
+  <div class="finding c-crit">
+    <div class="fhead"><span class="sev crit">Critical</span><h3>"20% of POD sellers earn &gt;$50K/year" — the biggest optimism-bias in the deck</h3></div>
+    <p>This stat (cited only to "Printify Community surveys") makes the $25–50K target look routine. Real data: only <b>~3.8% of POD stores exceed $50K/month revenue</b>, and far fewer than 20% clear $50K/year in <em>profit</em>. Paired with the verified "~24% of POD stores survive past 3 years," the honest framing is that this is a <b>hard, low-odds game</b>, not a probable outcome.</p>
+    <p class="src">Sources: <a href="https://www.podbase.com/blogs/print-on-demand-statistics">Podbase POD statistics</a>.</p>
+  </div>
+
+  <div class="finding c-high">
+    <div class="fhead"><span class="sev high">High</span><h3>"43–47% margins" is true only for the narrowest order type</h3></div>
+    <p>Arithmetically correct for a single/double-item order, no offsite ads, using the <em>correct</em> $13.29–$20.97 production cost. But the deck's own data shows bundles (which the same tab actively promotes) drop to <b>24–33%</b>, and offsite ads cut single-item margins to <b>~28–33%</b>. Realistic blended margin is <b>~28–38%</b>, not 43–47%.</p>
+  </div>
+
+  <div class="finding c-high">
+    <div class="fhead"><span class="sev med">Medium</span><h3>Base-cost framing understates true product cost by 27–54%</h3></div>
+    <p>The Product Line tab anchors on Lumient's <span class="mono">~$9.66</span> "lowest base cost" ("best profit per unit"). But the flagship vessels actually used in the pricing run <b>$13.29–$20.97</b> to produce per the Citations tab's own margin table — the $9.66 is the lowest-size/discounted figure. Anyone reading only the Product Line tab underestimates the real cost basis. <em>(Revised Jul 5: an earlier version of this finding claimed the table mis-transcribed a $7.99 shipping figure into the cost column; on re-verification the table's columns align correctly — the issue is the cherry-picked $9.66 anchor, not a transcription error.)</em></p>
+  </div>
+
+  <div class="finding c-high">
+    <div class="fhead"><span class="sev high">High</span><h3>Etsy fees are inconsistent (10% vs 13%) and everywhere omit offsite ads</h3></div>
+    <p>The base stack (6.5% + 3% + $0.25 + $0.20 listing) is ~10–11%. The site uses <b>10% in the Revenue Forecast calculator but 13% in the product margin table</b> — the 13% is fine (conservative), the 10% is optimistic. The consistent problem in <em>both</em> is the missing <b>Offsite Ads fee</b> (12–15% on attributed orders, mandatory once established). Independent confirmation: the deck's own hero case, Francisco Rivera, paid <b>~$55K in fees on ~$462K</b> — ~12%. Pick one rate site-wide and add an offsite-ads line.</p>
+    <p class="src">Sources: <a href="https://www.etsy.com/legal/fees/">Etsy Fees policy</a>, <a href="https://www.gelato.com/blog/the-real-cost-of-selling-on-etsy">Gelato — real cost of selling on Etsy</a>.</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>"64% of candle purchases are gifts" mis-reads the source</h3></div>
+    <p>A load-bearing brand-positioning stat. The National Candle Association's actual 64% figure is a <b>retail-channel</b> statistic ("mass merchandisers + specialty stores account for 64% of purchases"), not a gifting stat. The gifting story may still be true, but this specific number is wrong.</p>
+    <p class="src">Source: <a href="https://candles.org/facts-figures/">candles.org facts &amp; figures</a>.</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>"Manifestation candles = 15% of the candle market by 2026"</h3></div>
+    <p>Implausible for a single niche, and sourced only to an AI-aggregator (low authority). If used to weight inventory/marketing toward manifestation, it misallocates effort.</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>Assorted unsourced / imprecise stats</h3></div>
+    <p>"Rose candle sales +38% YoY" (unverifiable, likely inflated) · "90% of first impressions are color-based" (mangled 2006 study, unsourced) · Pantone "Cloud Dancer 2026 COTY" (unverified — 2025 COTY was Mocha Mousse) · Francisco Rivera "$450K" (actually <b>$462K</b>) · POD market "$12.96B in 2025" (that's really the 2026 figure; 2025 ≈ $10.8B) · "76% of POD stores fail in 3 years" (no citation) · "88% free-shipping lift" (a single case study, not a benchmark; typical lift is 10–30%) · Etsy "90M+ buyers" (now <b>86.5M and declining</b> for multiple quarters).</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>Arithmetic error: the Shopify switch-over point is wrong</h3></div>
+    <p>The deck advises adding Shopify "when revenue exceeds ~$1,350/month." Solved from the site's <em>own</em> fee inputs (Etsy ~10% vs. Shopify $39/mo + 3.5%), the real crossover is <b>~$500–650/month</b>. The guidance tells the team to stay on higher-fee Etsy-only <b>2–3× longer than the math supports</b>, leaving margin on the table during the ramp.</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>Citation-consistency drift: the same fact stated four different ways</h3></div>
+    <p>The <b>Lumient scent count</b> appears as four contradictory figures across the site — <span class="mono">"100+"</span> (stale marketing claim, 4 places), <span class="mono">"10–15"</span> (the official correction), <span class="mono">"12"</span> (the real count per <span class="mono">lumient-catalog.json</span>), and <span class="mono">"57+"</span> (an orphaned figure in the Decisions tab matching no source). The correction was applied in some tabs but never propagated to others. Separately, the <b>Brooklyn Candle Studio</b> case study attributes its founder profile to <b>Forbes</b>, but no such Forbes profile exists — the real sources are Crain's, Buffer, and Shopify's blog. Core facts (2013 start, $1,600, ~$5M/yr) check out; the citation doesn't.</p>
+  </div>
+
+  <div class="finding" style="border-left-color:var(--ok);">
+    <div class="fhead"><span class="sev ok">Verified ✓</span><h3>Claims that held up</h3></div>
+    <p>US candle market <b>~$3.4B, 5.6% CAGR</b> (within the $2.97–3.81B range firms report) · Personalized gifts <b>$33.7B</b> (top of the $31–34B range, verified) · Q4 = <b>35%</b> of candle sales (NCA ✓) · Floral candle market <b>$1.58B in 2026</b> (exact match ✓) · Vanilla <b>#1 scent, ~11% share</b> (Statista ✓) · Cart abandonment <b>47%</b> over extra costs (now 48% ✓) · Francisco Rivera POD candle case (real, CNBC ✓) · 3-year POD survival ~24% (✓).</p>
+  </div>
+</section>
+
+<!-- ============ STRATEGY ============ -->
+<section>
+  <h2><span class="num">04</span> The AI Custom-Candle Thesis</h2>
+  <p class="lede">The business is named and marketed around an "AI custom candle builder." This is the weakest strategic pillar.</p>
+
+  <div class="finding c-crit">
+    <div class="fhead"><span class="sev crit">Critical</span><h3>The "AI" doesn't exist yet — and isn't differentiated when it does</h3></div>
+    <div class="quote">"Phase 1 is photo-to-label (customer uploads, we resize and print). Phase 2 adds AI transformation — the real margin multiplier." <span class="mono">— index.html:5538</span></div>
+    <p>The launch product is a <b>plain photo-print candle</b> — mechanically identical to thousands of existing Etsy "custom photo candle" listings (5,000+ indexed). The AI styling (caricature, cartoon, watercolor) is deferred to a "Phase 2 (Future)," uncosted beyond a rough per-image guess. And even once built, AI-stylized photo gifts are <b>already a commoditized sub-niche</b> across mugs, canvas, and portraits. It's a channel extension of an existing gimmick, not a moat.</p>
+  </div>
+
+  <div class="finding c-high">
+    <div class="fhead"><span class="sev high">High</span><h3>The "$0 CAC" assumption conflates content cost with acquisition cost</h3></div>
+    <div class="quote">"AI-Powered Marketing Stack… Total Replaced: $14,500–24,000/mo… Our Cost: $0" <span class="mono">— index.html:3024</span></div>
+    <p>AI genuinely lowers <em>content production</em> cost. It does <b>not</b> lower <em>customer acquisition</em> cost — someone still pays for reach, in ad dollars or sweat equity. Real home-goods/gifts CAC runs <b>$58–$120</b> per customer. Against a custom candle's gross profit, paid acquisition eats most of the premium the "custom" positioning was meant to capture. This gap is worse now that the marketing founder (Jose) has departed.</p>
+    <p class="src">Sources: <a href="https://eightx.co/blog/average-cac-ecommerce-vertical">Eightx CAC by vertical</a>, <a href="https://www.ringly.io/blog/ecommerce-customer-acquisition-cost-statistics-2026">Ringly DTC CAC 2026</a>.</p>
+  </div>
+
+  <div class="finding c-med">
+    <div class="fhead"><span class="sev med">Medium</span><h3>Two contradictory architectures &amp; stale team assumptions coexist</h3></div>
+    <p>The Custom Strategy tab commits to "100% on Etsy, no separate website"; the Launch Guide describes a "Shopify customizer" flow — two different GTM architectures in one file. Financials still divide per-person by <b>4</b> (team is now 3), and the Etsy account registration is still assigned to <b>Jose</b>, who has left. The plan hasn't been re-scoped since the team's most consequential change.</p>
+  </div>
+</section>
+
+<!-- ============ BALANCE ============ -->
+<section>
+  <h2><span class="num">05</span> What's Genuinely Sound vs. What's Broken</h2>
+  <div class="cols">
+    <div class="panel good">
+      <h3>✓ Real strengths — keep these</h3>
+      <ul>
+        <li><b>Zero inventory risk &amp; ~$1,100 startup.</b> POD is the right structure for a bootstrapped, unfunded team.</li>
+        <li><b>Pet memorial &amp; sympathy niches</b> have genuine low price-sensitivity — the pricing power here is real even if the "low competition" claim isn't.</li>
+        <li><b>Overhead planning is disciplined</b> — phased by revenue stage, conservative on fees, honest about the Shopify crossover (~$1,350/mo).</li>
+        <li><b>Etsy-first, delay-paid-ads-until-reviews</b> sequencing is textbook-correct.</li>
+        <li><b>Technical diligence is above average</b> — Printify API verified, TOS compliance researched, bundle margin compression honestly disclosed.</li>
+      </ul>
+    </div>
+    <div class="panel bad">
+      <h3>✕ Core problems — fix before deciding</h3>
+      <ul>
+        <li><b>Profit is overstated ~30–100%.</b> Median is near break-even, not $9,500, once real fees + ad spend are applied.</li>
+        <li><b>Margins overstated.</b> 43–47% is a best-case, not typical; realistic blended is 28–38%.</li>
+        <li><b>No traffic model</b> connects visitors to the order counts the whole forecast depends on.</li>
+        <li><b>The "AI" identity is aspirational</b> and undifferentiated — the launch product is a generic photo candle.</li>
+        <li><b>"$0 CAC" is a fantasy</b>, especially after losing the marketing founder.</li>
+        <li><b>Single-platform + single-vendor</b> concentration (Etsy + Lumient) with no owned audience.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTIONS ============ -->
+<section>
+  <h2><span class="num">06</span> Prioritized Actions</h2>
+  <p class="lede">Ordered by impact on decision quality. The first three are about making the numbers honest before anyone relies on them.</p>
+  <ol class="actions">
+    <li><b>Rebuild the Revenue Forecast with real costs.</b><span class="pri now">Do now</span> Apply ~13% Etsy fees + a blended offsite-ads allowance, subtract the actual $300–700/mo ad budget you recommend, add Printify Premium + returns, and re-baseline "Net Profit" to contribution-after-marketing. Show the traffic → visits → orders bridge explicitly.</li>
+    <li><b>Correct the load-bearing factual errors (with visible correction notes).</b><span class="pri now">Do now</span> Pet-memorial listing count, the ~$9.66 cost anchor, the "20% earn &gt;$50K/yr" stat, and the "64% gifts" mis-read. Per your audit protocol: annotate, don't silently overwrite existing content. <em>(Done Jul 5 — correction notes applied across all tabs.)</em></li>
+    <li><b>Fix the stale team math.</b><span class="pri now">Do now</span> Divide per-person figures by 3, reassign every task still pointed at Jose, and reconcile the Etsy-only vs. Shopify-customizer architecture into one plan.</li>
+    <li><b>Reframe the identity honestly.</b><span class="pri soon">Soon</span> Lead with <em>pet memorial + sympathy</em> (your real edge) and market emotional connection, not "AI." Keep AI styling as a roadmap item, not the brand's name — ship it only when it's built and costed.</li>
+    <li><b>Re-rank niches on real competition data.</b><span class="pri soon">Soon</span> Pull actual current Etsy listing counts for each niche before committing the flagship 6; the current ranking rests on numbers that don't hold up.</li>
+    <li><b>Decide the margin end-game.</b><span class="pri soon">Soon</span> The deck admits a ~$180K/yr POD ceiling. If profit (not hobby income) is the goal, plan the self-pour transition for the branded line and make the custom line genuinely differentiated — otherwise accept this as a capped side venture and size effort accordingly.</li>
+  </ol>
+</section>
+
+<footer>
+  <h3>Method &amp; sources</h3>
+  <p>Four parallel specialist audits (market/citations, financial model, product unit-economics, strategy/GTM) reading fixed line-ranges of <span class="mono">index.html</span>, each cross-verifying against live sources; findings reconciled against independent arithmetic checks and web verification by the reviewer. Two independent financial rebuilds converged on the near-break-even median conclusion. No files in the site were edited — this review is a standalone document.</p>
+  <p style="margin-top:12px;">Key sources: <a href="https://www.grandviewresearch.com/horizon/outlook/candle-market/united-states">Grand View — US candle market</a> · <a href="https://www.businessresearchinsights.com/market-reports/personalized-gifts-market-102185">Personalized gifts market</a> · <a href="https://www.etsy.com/legal/fees/">Etsy fees</a> · <a href="https://www.gelato.com/blog/etsy-conversion-rate">Gelato — Etsy conversion benchmarks</a> · <a href="https://www.cnbc.com/2024/04/25/how-etsy-candle-seller-brought-in-six-figures-from-passive-side-hustle.html">CNBC — Francisco Rivera candle case</a> · <a href="https://www.podbase.com/blogs/print-on-demand-statistics">Podbase POD statistics</a> · <a href="https://candles.org/facts-figures/">National Candle Association</a> · <a href="https://eightx.co/blog/average-cac-ecommerce-vertical">Eightx — ecommerce CAC</a> · <a href="https://printify.com/blog/selling-candles-on-etsy-with-print-on-demand/">Printify — selling candles on Etsy</a>.</p>
+  <p style="margin-top:12px;color:var(--putty);">Amber &amp; Essence Candle Co. — internal business review · July 3, 2026 · Not for external distribution.</p>
+</footer>
+
+</div>
+</body>
+</html>
